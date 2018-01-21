@@ -1,0 +1,226 @@
+{
+	"info": {
+		"name": "ribbon-client",
+		"_postman_id": "ae5722a3-1ef9-6a12-ca40-c439799b0261",
+		"description": "测试Ribbon.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0.Check Service",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "name",
+						"value": "K.O"
+					},
+					{
+						"key": "age",
+						"value": "28"
+					},
+					{
+						"key": "sign",
+						"value": "asd"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"K.O\",\n  \"age\": 18,\n  \"sign\": \"编码半生，愿如老友重逢！\"\n}"
+				},
+				"url": "localhost:8083/consumer",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "1.Add User 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"K.O\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2.Add User 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Sultan\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3.Get All User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Art\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/users",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4.Update User 2",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Art\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5.Get User 1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Art\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user/1",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6.Get User 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Art\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user/2",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7.Remove User 1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"Sultan\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user/1",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8.Remove User 2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"K.O\",\n  \"age\": 27,\n  \"birthday\": \"1991-04-15\"\n}"
+				},
+				"url": "localhost:8083/user/2",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9.Get All User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": "localhost:8083/users",
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4ffc7f4e-fbdb-44e4-816f-db3bf50bfe60",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9cc357bd-78cb-470a-a0b6-6bc05ab1f774",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
