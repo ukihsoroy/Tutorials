@@ -8,12 +8,14 @@
   <name>Chapter3-0-0 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
+    <!--Spring依赖带有Core, Aop, Beans, Expression, Jcl-->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.0.2.RELEASE</version>
     </dependency>
+
   </dependencies>
   <build>
     <finalName>Chapter3-0-0</finalName>
