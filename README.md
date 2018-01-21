@@ -45,7 +45,9 @@
 - `Chapter4-5-1-1`：Spring Boot #使用EhCache缓存
 
 **6.消息服务**
-
+- `Chapter4-6-1`：Spring Boot #使用ActiveMQ
+- `Chapter4-6-3`：Spring Boot #使用RabbitMQ
+- `Chapter4-6-4`：Spring Boot #使用Kafka
 **7.定时任务**
 - `Chapter4-7-1`：Spring Boot #使用Schedule注解开启定时任务
 
