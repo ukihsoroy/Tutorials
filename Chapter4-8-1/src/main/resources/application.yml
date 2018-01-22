@@ -3,8 +3,8 @@ spring:
     name: spring-boot #spring boot 快速启动
   mail:
     host: smtp.qq.com
-    username: 814777765@qq.com
-    password: SS123..
+    username: username@qq.com
+    password: password
     properties:
       mail:
         smtp:
