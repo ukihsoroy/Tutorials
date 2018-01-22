@@ -1,8 +1,8 @@
 # framework-learning
 ## 样例列表
 #### **Chapter1 WEB** 
-- `Chapter1-0-0`：#Spring WebMVC 简单初始化
-- `Chapter1-0-1`：#Spring WebMVC 注解配置
+- `Chapter1-0-0`：Spring #WebMVC 简单初始化
+- `Chapter1-0-1`：Spring #WebMVC 注解配置
 ----------
 #### **Chapter2 ORM** 
 
@@ -48,26 +48,30 @@
 - `Chapter4-6-1`：Spring Boot #使用ActiveMQ
 - `Chapter4-6-3`：Spring Boot #使用RabbitMQ
 - `Chapter4-6-4`：Spring Boot #使用Kafka
+
 **7.定时任务**
 - `Chapter4-7-1`：Spring Boot #使用Schedule注解开启定时任务
 
 **8.邮件发送**
+- `Chapter4-8-1`：Spring Boot #使用Spring Mail 发送邮件
 
 **9.流程管理**
 - `Chapter4-9-1`：Spring Boot #Activiti 第一个流程图开发
 
-**10.项目监控**
+**10.REST API**
 
-**11.其他内容**
+**11.项目监控**
+
+**12.其他内容**
 
 ----------
-#### **Chapter5 SpringBoot Dubbo**
+#### **Chapter5 Spring Boot Dubbo**
 - `Chapter5-1-1`：Spring Boot #Dubbo自连接简单使用
 - `Chapter5-1-2`：Spring Boot #Dubbo使用Zookeeper注册中心
 - `Chapter5-2-1`：Spring Boot #使用Dubbo Starters自连接快速配置
 - `Chapter5-2-2`：Spring Boot #使用Dubbo Starters快速配置(Zookeeper注册中心)
 ----------
-#### **Chapter6 SpringCloud**
+#### **Chapter6 Spring Cloud**
 - `Chapter6-1-1`：Spring Cloud #Eureka服务治理
 - `Chapter6-1-2`：Spring Cloud #使用Ribbon服务消费
 - `Chapter6-1-3`：Spring Cloud #Ribbon开启Hystrix断路器
