@@ -59,6 +59,7 @@
 - `Chapter4-9-1`：Spring Boot #Activiti 第一个流程图开发
 
 **10.REST API**
+- `Chapter4-10-1`：Spring Boot #使用Swagger2 配置API
 
 **11.项目监控**
 
