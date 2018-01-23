@@ -3,6 +3,7 @@
 #### **Chapter1 WEB** 
 - `Chapter1-0-0`：Spring #WebMVC 简单初始化
 - `Chapter1-0-1`：Spring #WebMVC 注解配置
+- `Chapter1-0-2`：Spring #WebMVC Converter, Formatter类型转换
 ----------
 #### **Chapter2 ORM** 
 
@@ -60,6 +61,7 @@
 
 **10.REST API**
 - `Chapter4-10-1`：Spring Boot #使用Swagger2 配置API
+- `Chapter4-10-1`：Spring Boot #JSONDoc快速生成RestfulAPI
 
 **11.项目监控**
 
