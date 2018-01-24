@@ -28,7 +28,6 @@
   </properties>
 
   <dependencies>
-
     <!--Spring Boot AMQP协议快速启动 包括Boot Starter, Massaging, RabbitMQ-->
     <dependency>
       <groupId>org.springframework.boot</groupId>

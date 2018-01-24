@@ -47,7 +47,7 @@
 
 **6.消息服务**
 - `Chapter4-6-1`：Spring Boot #使用ActiveMQ
-- `Chapter4-6-3`：Spring Boot #使用RabbitMQ
+- `Chapter4-6-3`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
 - `Chapter4-6-4`：Spring Boot #使用Kafka
 
 **7.定时任务**

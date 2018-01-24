@@ -1,7 +1,8 @@
 package org.ko.amqp;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ko.amqp.send.AmqpSender;
+import org.ko.amqp.service.send.AmqpSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -10,11 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class AmqpTests {
 
-    @Autowired AmqpSender amqpSender;
+    @Autowired
+    AmqpSenderService amqpSenderService;
 
+    @Test
     public void sendTest () {
         for (int i = 1; i < 100; i++) {
-            amqpSender.send("message" + i);
+            amqpSenderService.send("message" + i);
         }
     }
 

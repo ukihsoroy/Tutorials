@@ -7,11 +7,13 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
+//监听的消息队列
 @RabbitListener(queues = "ko-queue")
 public class RabbitReceiver {
 
     private static final Logger _Logger = LoggerFactory.getLogger(RabbitReceiver.class);
 
+    //指定消息处理方法
     @RabbitHandler
     public void process (String message) {
         _Logger.info("Receiver message: {}", message);
