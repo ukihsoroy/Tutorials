@@ -9,6 +9,15 @@
   <url>http://maven.apache.org</url>
 
   <dependencies>
+
+    <!-- Servlet API -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- SpringMVC依赖-包括Spring核心依赖 -->
     <dependency>
       <groupId>org.springframework</groupId>

@@ -1,4 +1,4 @@
-# 注解配置SpringMVC
+# Spring WebMVC Interceptor拦截器简单应用
 
 **1.pom引入SpringMVC jar依赖**
 ```
@@ -76,17 +76,101 @@
     }
 ```
 
-**5.启动**
+**5.实现HandlerInterceptor**
+
+- 实现访问/{code}时, 当请求数字大于零时, 返回Hello, World!. 否则直接返回{code}
+```
+    /**
+     * SpringMVC 拦截器
+     * 三个阶段
+     * 1) 请求到Controller前, #{@link #preHandle}
+     * 2) Controller执行后, DispatcherServlet视图渲染前, #{@link #postHandle}
+     * 3) 视图渲染后, #{@link #afterCompletion}
+     * 4) 2,3都依赖1结果为true
+     */
+    public class GlobalInterceptor implements HandlerInterceptor {
+    
+        private static final Logger _LOGGER = LoggerFactory.getLogger(GlobalInterceptor.class);
+        /**
+         * 请求到Controller前执行
+         * 返回false则请求结束, 不会进入Controller
+         */
+        @Override
+        public boolean preHandle(HttpServletRequest request,
+                                 HttpServletResponse response, Object handler) throws Exception {
+            String url = request.getRequestURI();
+            _LOGGER.info("Request url: {}", url);
+            if (!StringUtils.isEmpty(url)) {
+                try {
+                    url = url.replaceAll("/", "");
+                    if (Integer.valueOf(url) > 0) {
+                        request.setAttribute("code", "Hello, World!");
+                    }
+                } catch (NumberFormatException nfe) {
+                    _LOGGER.info("Number format error: {} not number.", url);
+                }
+            }
+            return true;
+        }
+    
+    
+        /**
+         * Controller执行后, DispatcherServlet视图渲染前执行
+         * 用来处理一些Model数据等
+         */
+        @Override
+        public void postHandle(HttpServletRequest request,
+                               HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    
+        }
+    
+        /**
+         * 视图渲染完成后执行
+         * 用来进行资源清理等
+         */
+        @Override
+        public void afterCompletion(HttpServletRequest request,
+                                    HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    
+        }
+    }
+```
+- 方法解释：
+```
+    1) preHandle(): 请求在进入Controller前会先进入这个方法, 如果该方法返回false请求返回, 可以在这里做一些验证, 或者修改一些参数等等.
+    2) postHandle(): 进入该方法时Controller已经执行完毕, 但页面还未渲染, 这里可以做一些视图渲染或者Model方面的改动.
+    3) afterCompletion(): 此时页面已经渲染完毕, 该方法可以做一些资源清理等操作.
+```
+
+**6.配置Interceptor**
+
+- 在spring-mvc.xml中添加配置
+```
+    <!--自定义拦截器配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截的请求路径-->
+            <mvc:mapping path="/**"/>
+            <!--执行的拦截器-->
+            <bean class="org.ko.mvc.interceptor.GlobalInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+
+**7.启动**
 
 - 在webapp下创建index.jsp
 ```
     <html>
         <body>
-            <a href="/hello">Say Hello!</a>
+            <a href="/hello">Click Hello!</a>
+            <br/>
+            <a href="/1">Click Number!</a>
+            <br/>
+            <a href="/Artist">Click Artist</a>
         </body>
     </html>
 ```
 
-**6.结束**
-
-- 点击Say Hello!--发起请求/hello-->HelloController.hello()--返回-->hello-->ViewResolver-->WEB-INF/views/hello.jsp
+**8.结束**

@@ -17,37 +17,13 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <!--配置Spring WebMVC 类型转换器-->
-    <bean id="_conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <set>
-                <!--字符串转日期-->
-                <bean class="org.ko.mvc.converter.DateToStringConverter">
-                    <constructor-arg name="pattern" value="yyyy-MM-dd"/>
-                </bean>
-            </set>
-        </property>
-    </bean>
-
-    <!--配置Spring WebMVC 类型格式化-->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-        <property name="formatters">
-            <set>
-                <bean class="org.ko.mvc.formatter.DateFormatter">
-                    <constructor-arg value="yyyy-MM-dd HH:mm:ss" />
-                </bean>
-            </set>
-        </property>
-        <property name="converters">
-            <set>
-                <!--字符串转日期-->
-                <bean class="org.ko.mvc.converter.DateToStringConverter">
-                    <constructor-arg name="pattern" value="yyyy-MM-dd"/>
-                </bean>
-            </set>
-        </property>
-    </bean>
-
-    <!--为annotation-driven元素赋值-->
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!--自定义拦截器配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截的请求路径-->
+            <mvc:mapping path="/**"/>
+            <!--执行的拦截器-->
+            <bean class="org.ko.mvc.interceptor.GlobalInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
