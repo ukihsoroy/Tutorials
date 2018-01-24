@@ -18,6 +18,6 @@
     <bean class="org.ko.mvc.adapter.ControllerHandlerAdapter"/>
 
     <!-- 配置Controller-->
-    <bean name="hello.action" class="org.ko.mvc.controller.HelloController"/>
+    <bean name="/hello.action" class="org.ko.mvc.controller.HelloController"/>
 
 </beans>
