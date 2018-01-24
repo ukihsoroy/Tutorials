@@ -1,5 +1,6 @@
 package org.ko.mvc.controller;
 
+import org.ko.mvc.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public class HelloController {
     //配置URL映射
     @RequestMapping("/hello")
     public String hello (ModelMap model) {
-        model.addAttribute("date", new Date());
+        model.addAttribute("user", new User("K.O", new Date()));
         //返回视图名称
         return "hello";
     }

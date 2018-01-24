@@ -20,14 +20,12 @@ public class DateFormatter implements Formatter<Date> {
 
     @Override
     public String print(Date date, Locale locale) {
-        String value = sdf.format(date);
-        return value;
+        return sdf.format(date);
     }
 
     @Override
     public Date parse(String time, Locale locale) throws ParseException {
-        Date date  = sdf.parse(time);
-        return date;
+        return sdf.parse(time);
     }
 
 }

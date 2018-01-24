@@ -32,11 +32,19 @@
     <!--配置Spring WebMVC 类型格式化-->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
-            <list>
+            <set>
                 <bean class="org.ko.mvc.formatter.DateFormatter">
                     <constructor-arg value="yyyy-MM-dd HH:mm:ss" />
                 </bean>
-            </list>
+            </set>
+        </property>
+        <property name="converters">
+            <set>
+                <!--字符串转日期-->
+                <bean class="org.ko.mvc.converter.DateToStringConverter">
+                    <constructor-arg name="pattern" value="yyyy-MM-dd"/>
+                </bean>
+            </set>
         </property>
     </bean>
 
