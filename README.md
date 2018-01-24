@@ -1,8 +1,8 @@
 # framework-learning
 ## 样例列表
 #### **Chapter1 WEB** 
-- `Chapter1-0-0`：Spring [#WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
-- `Chapter1-0-1`：Spring #WebMVC 注解配置
+- `Chapter1-0-0`：[Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
+- `Chapter1-0-1`：[Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
 - `Chapter1-0-2`：Spring #WebMVC Converter, Formatter类型转换
 ----------
 #### **Chapter2 ORM** 
