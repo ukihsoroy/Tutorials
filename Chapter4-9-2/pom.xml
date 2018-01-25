@@ -17,22 +17,26 @@
   <url>http://maven.apache.org</url>
 
   <dependencies>
+    <!--WebSocket快速启动, 包含Web, messaging, WebSocket-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-websocket</artifactId>
     </dependency>
 
+    <!--Boot 测试组件-->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
 
+    <!--使用Thymeleaf模版-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
   </dependencies>
+
   <build>
     <finalName>Chapter4-9-2</finalName>
     <plugins>

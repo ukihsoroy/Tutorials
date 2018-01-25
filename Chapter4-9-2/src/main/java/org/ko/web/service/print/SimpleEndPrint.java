@@ -11,6 +11,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
+//表示发送消息端点
 @ServerEndpoint("/end/print")
 public class SimpleEndPrint {
 
@@ -34,6 +35,7 @@ public class SimpleEndPrint {
      */
     private Session session;
 
+    //获取连接时调用
     @OnOpen
     public void onOpen (Session session) {
         this.session = session;
@@ -41,20 +43,26 @@ public class SimpleEndPrint {
         addUser();
     }
 
+    //连接关闭时调用
     @OnClose
     public void onClose () {
+        //从容器中删除用户
         container.remove(this);
+        //减去用户数量
         subUser();
     }
 
+    //接受WebSocket发送的消息
     @OnMessage
     public void onMessage (String message, Session session) {
+        _Logger.info("Send all user: {}", message);
         container.forEach(target -> target.sendMessage(message));
     }
 
+    //发生错误时调用
     @OnError
     public void onError (Session session, Throwable error) {
-
+        _Logger.info("error: {}", error.getMessage());
     }
 
     public void sendMessage (String message) {
@@ -66,14 +74,17 @@ public class SimpleEndPrint {
     }
 
     public static void sendUsers (String message) {
+        _Logger.info("Send all user: {}", message);
         container.forEach(target -> target.sendMessage(message));
     }
 
     public void addUser () {
+        _Logger.info("Add user: {}", COUNT.get());
         SimpleEndPrint.COUNT.addAndGet(1);
     }
 
     public void subUser () {
+        _Logger.info("Sub user: {}", COUNT.get());
         SimpleEndPrint.COUNT.addAndGet(-1);
     }
 
