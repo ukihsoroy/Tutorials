@@ -12,13 +12,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 //表示发送消息端点
-@ServerEndpoint("/end/print")
-public class SimpleEndPrint {
+@ServerEndpoint("/endpoint")
+public class SimpleEndpoint {
 
     /**
      * 日志
      */
-    private static final Logger _Logger = LoggerFactory.getLogger(SimpleEndPrint.class);
+    private static final Logger _Logger = LoggerFactory.getLogger(SimpleEndpoint.class);
 
     /**
      * 线程安全基本数据
@@ -28,7 +28,7 @@ public class SimpleEndPrint {
     /**
      * 在线用户实例
      */
-    private static CopyOnWriteArraySet<SimpleEndPrint> container = new CopyOnWriteArraySet<SimpleEndPrint>();
+    private static CopyOnWriteArraySet<SimpleEndpoint> container = new CopyOnWriteArraySet<SimpleEndpoint>();
 
     /**
      * 当前用户Session
@@ -65,6 +65,10 @@ public class SimpleEndPrint {
         _Logger.info("error: {}", error.getMessage());
     }
 
+    /**
+     * 发送消息
+     * @param message
+     */
     public void sendMessage (String message) {
         try {
             this.session.getBasicRemote().sendText(message);
@@ -73,19 +77,29 @@ public class SimpleEndPrint {
         }
     }
 
+    /**
+     * 自定义发送消息给全部用户
+     * @param message
+     */
     public static void sendUsers (String message) {
         _Logger.info("Send all user: {}", message);
         container.forEach(target -> target.sendMessage(message));
     }
 
+    /**
+     * 添加用户数量
+     */
     public void addUser () {
         _Logger.info("Add user: {}", COUNT.get());
-        SimpleEndPrint.COUNT.addAndGet(1);
+        SimpleEndpoint.COUNT.addAndGet(1);
     }
 
+    /**
+     * 减去用户数量
+     */
     public void subUser () {
         _Logger.info("Sub user: {}", COUNT.get());
-        SimpleEndPrint.COUNT.addAndGet(-1);
+        SimpleEndpoint.COUNT.addAndGet(-1);
     }
 
 }

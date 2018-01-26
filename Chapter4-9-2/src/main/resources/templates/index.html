@@ -13,7 +13,7 @@
     </style>
 </head>
     <body onkeydown="enter()">
-        <h2>Hello World!</h2>
+        <h2>简易聊天室!</h2>
         <div id="_window"></div>
         <input type="text" id="_text"/>
         <input type="button" id="_send" onclick="send()" value="发送"/>
@@ -21,13 +21,13 @@
             var socket = null;
             //判断当前浏览器是否支持WebSocket
             if ('WebSocket' in window) {
-                socket = new WebSocket("ws://localhost:8081/end/print");
+                socket = new WebSocket("ws://10.100.4.11:8081/endpoint");
             } else {
                 alert('Not support socket')
             }
 
             //连接发生错误的回调方法
-            socket.onerror = function () {
+            socket.onerror = function (e) {
                 setMessageInnerHTML("error");
             };
 

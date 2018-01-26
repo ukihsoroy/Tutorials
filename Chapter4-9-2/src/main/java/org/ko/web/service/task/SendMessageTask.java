@@ -1,8 +1,7 @@
 package org.ko.web.service.task;
 
-import org.ko.web.service.print.SimpleEndPrint;
+import org.ko.web.service.print.SimpleEndpoint;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,7 +15,7 @@ public class SendMessageTask {
 
     @Scheduled(fixedRate = 1000)
     public void sendMessage () {
-        SimpleEndPrint.sendUsers("发送消息" + COUNT.addAndGet(1));
+        SimpleEndpoint.sendUsers("发送消息" + COUNT.addAndGet(1));
     }
 
 }
