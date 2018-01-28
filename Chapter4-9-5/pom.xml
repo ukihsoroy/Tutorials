@@ -11,11 +11,11 @@
   </parent>
 
   <groupId>org.ko</groupId>
-  <artifactId>Chapter4-10-2</artifactId>
+  <artifactId>Chapter4-9-5</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Chapter4-10-2</name>
+  <name>Chapter4-9-5</name>
   <url>http://maven.apache.org</url>
 
   <properties>
