@@ -46,26 +46,24 @@
 - `Chapter4-5-1-1`：Spring Boot #使用EhCache缓存
 
 **6.消息服务**
-- `Chapter4-6-1`：Spring Boot #使用ActiveMQ
-- `Chapter4-6-3`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
-- `Chapter4-6-4`：Spring Boot #使用Kafka
+- `Chapter4-6-1`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
+- `Chapter4-6-2`：Spring Boot #使用ActiveMQ
+- `Chapter4-6-3`：Spring Boot #使用Kafka
 
 **7.定时任务**
 - `Chapter4-7-1`：Spring Boot #使用Schedule注解开启定时任务
 
-**8.邮件发送**
-- `Chapter4-8-1`：Spring Boot #使用Spring Mail 发送邮件
+**8.项目监控**
+- `Chapter4-8-1`: Spring Boot #使用Actuator端点监控
 
-**9.流程管理**
+
+**9.其他内容**
 - `Chapter4-9-1`：Spring Boot #Activiti 第一个流程图开发
+- `Chapter4-9-2`：[Spring Boot #使用WebSocket简单聊天室](https://www.jianshu.com/p/9b22a390747a)
+- `Chapter4-9-3`：Spring Boot #使用Spring Mail 发送邮件
+- `Chapter4-9-4`：[Spring Boot #使用Swagger2 配置API](https://www.jianshu.com/p/847fdad3fba2)
+- `Chapter4-9-5`：[Spring Boot #JSONDoc快速生成RestfulAPI](https://www.jianshu.com/p/291217345e5d)
 
-**10.REST API**
-- `Chapter4-10-1`：Spring Boot #使用Swagger2 配置API
-- `Chapter4-10-1`：Spring Boot #JSONDoc快速生成RestfulAPI
-
-**11.项目监控**
-
-**12.其他内容**
 
 ----------
 #### **Chapter5 Spring Boot Dubbo**
