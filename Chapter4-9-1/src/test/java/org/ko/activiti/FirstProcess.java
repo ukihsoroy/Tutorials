@@ -19,7 +19,7 @@ public class FirstProcess {
         RepositoryService repositoryService = engine.getRepositoryService();
 
         //4. 部署流程图
-        repositoryService.createDeployment().addClasspathResource("process/askOffProcess.bpmn20.xml").deploy();
+        repositoryService.createDeployment().addClasspathResource("processes/askOffProcess.bpmn20.xml").deploy();
 
         //5. 获取运行时服务RuntimeService
         RuntimeService runtimeService = engine.getRuntimeService();

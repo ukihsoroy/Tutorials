@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <!--Spring Boot StarterPoms依赖-->
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -18,6 +17,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -38,11 +38,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
 
-    <!-- Activiti 流程引擎依赖 -->
+    <!--Activiti 流程引擎-->
     <dependency>
       <groupId>org.activiti</groupId>
-      <artifactId>activiti-engine</artifactId>
-      <version>7-201711-EA</version>
+      <artifactId>activiti-spring-boot-starter-basic</artifactId>
+      <version>6.0.0</version>
     </dependency>
 
     <!-- H2微型数据库配置 -->
@@ -50,9 +50,19 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>1.4.196</version>
-      <scope>test</scope>
     </dependency>
-
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
