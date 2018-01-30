@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.ko</groupId>
-  <artifactId>Chapter2-0-0</artifactId>
+  <artifactId>Chapter2-1-1</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Chapter2-0-0</name>
+  <name>Chapter2-1-1</name>
   <url>http://maven.apache.org</url>
 
   <properties>
