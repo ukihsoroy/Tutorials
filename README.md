@@ -32,6 +32,7 @@
 - `Chapter4-2-0`：Spring Boot #使用Spring-JDBC 数据库操作
 - `Chapter4-2-1-0`：Spring Boot #MyBatis使用注解管理SQL
 - `Chapter4-2-1-1`：Spring Boot #MyBatis使用XML/Example构建SQL
+- `Chapter4-2-1-2`：Spring Boot #MyBatis多数据源配置
 - `Chapter4-2-2`：Spring Boot #使用Spring-Data-JPA进行数据访问
 - `Chapter4-2-3`：Spring Boot #使用Spring-Date-Mongo简化MongoDB查询
 - `Chapter4-2-4`：Spring Boot #使用Spring-Date-Redis简化Redis配置
@@ -57,7 +58,6 @@
 
 **8.项目监控**
 - `Chapter4-8-1`: Spring Boot #使用Actuator端点监控
-
 
 **9.其他内容**
 - `Chapter4-9-1`：Spring Boot #Activiti 第一个流程图开发
