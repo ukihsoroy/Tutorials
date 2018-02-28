@@ -1,6 +1,8 @@
 # java 教程
 
 ### **样例列表** 
+- `apache-poi`: Excel, Word, PPT 导入导出
+- `apache-shiro`: Apache 轻量级安全框架
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
 - `spring-webmvc-annotation`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
 - `spring-webmvc-interceptor`: [Spring #WebMVC Interceptor拦截器简单应用](https://www.jianshu.com/p/c7cae4fba59d)
@@ -8,6 +10,7 @@
 - `mybatis`: #MyBatis 基础
 - `mybatis-simple`: MyBatis #简单手写实现
 - `spring-ioc`: Spring IOC控制反转
+- `spring-security`: Spring 安全框架
 - `spring-simple`: Spring #简单手写实现
 - `springboot`：Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
 - `springboot-webflux`：Spring Boot #2.0.0 web flux 工程
