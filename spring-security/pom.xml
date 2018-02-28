@@ -8,11 +8,26 @@
     <name>spring-security Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+
+        <!--包含过滤器和相关的网络安全基础架构代码, 具有servlet API依赖项目使用-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+
+        <!--包含安全名称空间解析代码和Java配置代码, 使用XML配置时需要引入-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+
+        <!--JSP JSTL支持-->
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
     <build>
