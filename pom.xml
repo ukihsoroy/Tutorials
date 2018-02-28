@@ -14,8 +14,10 @@
     </properties>
 
     <modules>
+        <module>apache-mina</module>
         <module>apache-poi</module>
         <module>apache-shiro</module>
+        <module>jboss-netty</module>
         <module>spring-webmvc</module>
         <module>spring-webmvc-annotation</module>
         <module>spring-webmvc-interceptor</module>
