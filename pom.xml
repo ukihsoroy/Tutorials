@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.ko</groupId>
+    <artifactId>tutorials-java</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>tutorials-java</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>spring-webmvc</module>
+        <module>spring-webmvc-annotation</module>
+        <module>spring-webmvc-interceptor</module>
+        <module>spring-webmvc-simple</module>
+        <module>mybatis</module>
+        <module>mybatis-simple</module>
+        <module>spring-ioc</module>
+        <module>spring-simple</module>
+        <module>springboot</module>
+        <module>springboot-webflux</module>
+        <module>springboot-webmvc-application</module>
+        <module>springboot-webmvc-rest</module>
+        <module>springboot-webmvc-jsp</module>
+        <module>springboot-webmvc-html</module>
+        <module>springboot-webmvc-thymeleaf</module>
+        <module>springboot-webmvc-freemarker</module>
+        <module>springboot-webmvc-velocity</module>
+        <module>springboot-webmvc-exception</module>
+        <module>springboot-jdbc</module>
+        <module>springboot-mybatis-annotation</module>
+        <module>springboot-mybatis-xml</module>
+        <module>springboot-mybatis-multi-ds</module>
+        <module>springboot-data-jpa</module>
+        <module>springboot-data-mongo</module>
+        <module>springboot-data-redis</module>
+        <module>springboot-logger</module>
+        <module>springboot-logback</module>
+        <module>springboot-security</module>
+        <module>springboot-security-json</module>
+        <module>springboot-ehcache</module>
+        <module>springboot-ribbitmq</module>
+        <module>springboot-activemq</module>
+        <module>springboot-schedule</module>
+        <module>springboot-actuator</module>
+        <module>springboot-activiti</module>
+        <module>springboot-websocket</module>
+        <module>springboot-mail</module>
+        <module>springboot-swagger2</module>
+        <module>springboot-jsondoc</module>
+        <module>springboot-dubbo</module>
+        <module>springboot-dubbo-zookeeper</module>
+        <module>springboot-dubbo-starters</module>
+        <module>springboot-dubbo-zookeeper-starters</module>
+        <module>springcloud-eureka</module>
+        <module>springcloud-ribbon</module>
+        <module>springcloud-ribbon-hystrix</module>
+        <module>springcloud-feign</module>
+        <module>springcloud-zuul</module>
+        <module>springcloud-config</module>
+    </modules>
+</project>

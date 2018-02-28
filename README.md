@@ -1,88 +1,55 @@
-# Spring 技术栈框架练习
+# java 教程
 
-### **一. Chapter1 WEB** 
-- `Chapter1-0-0`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
-- `Chapter1-0-1`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
-- `Chapter1-0-2`: [Spring #WebMVC Interceptor拦截器简单应用](https://www.jianshu.com/p/c7cae4fba59d)
-- `Chapter1-simple`: Spring #WebMVC #简单手写实现
-### **二. Chapter2 ORM** 
-- `Chapter2-1-1`: #MyBatis 基础
-- `Chapter2-1-simple`: MyBatis #简单手写实现
+### **样例列表** 
+- `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
+- `spring-webmvc-annotation`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
+- `spring-webmvc-interceptor`: [Spring #WebMVC Interceptor拦截器简单应用](https://www.jianshu.com/p/c7cae4fba59d)
+- `spring-webmvc-simple`: Spring #WebMVC #简单手写实现
+- `mybatis`: #MyBatis 基础
+- `mybatis-simple`: MyBatis #简单手写实现
+- `spring-ioc`: Spring IOC控制反转
+- `spring-simple`: Spring #简单手写实现
+- `springboot`：Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
+- `springboot-webflux`：Spring Boot #2.0.0 web flux 工程
+- `springboot-webmvc-application`：Spring Boot #随机数 多环境等配置文件详解
+- `springboot-webmvc-rest`：Spring Boot #构建一个较为复杂的web mvc
+- `springboot-webmvc-jsp`：Spring Boot #使用JSP开发简单WEB程序
+- `springboot-webmvc-html`：Spring Boot #Spring Boot 直接返回HTML静态文件
+- `springboot-webmvc-thymeleaf`：Spring Boot #Spring Boot 使用Thymeleaf模版引擎构建简单WEB程序
+- `springboot-webmvc-freemarker`：Spring Boot #Spring Boot 使用FreeMarker模版引擎构建简单WEB程序
+- `springboot-webmvc-velocity`：Spring Boot #Spring Boot 使用Velocity模版引擎构建简单WEB工程
+- `springboot-webmvc-exception`：Spring Boot #Spring Boot 全局异常处理(页面和JSON返回)
+- `springboot-jdbc`：Spring Boot #使用Spring-JDBC 数据库操作
+- `springboot-mybatis-annotation`：Spring Boot #MyBatis使用注解管理SQL
+- `springboot-mybatis-xml`：Spring Boot #MyBatis使用XML/Example构建SQL
+- `springboot-mybatis-multi-ds`：Spring Boot #MyBatis多数据源配置
+- `springboot-data-jpa`：Spring Boot #使用Spring-Data-JPA进行数据访问
+- `springboot-data-mongo`：Spring Boot #使用Spring-Date-Mongo简化MongoDB查询
+- `springboot-data-redis`：Spring Boot #使用Spring-Date-Redis简化Redis配置
+- `springboot-logger`：Spring Boot #logger日志默认配置
+- `springboot-logback`：Spring Boot #使用自定义logBack日志配置
+- `springboot-security`：Spring Boot #使用Security安全管理
+- `springboot-security-json`：Spring Boot #使用Security安全管理Json返回
+- `springboot-ehcache`：Spring Boot #使用EhCache缓存
+- `springboot-ribbitmq`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
+- `springboot-activemq`：Spring Boot #使用ActiveMQ
+- `springboot-kafka`：Spring Boot #使用Kafka
+- `springboot-schedule`：Spring Boot #使用Schedule注解开启定时任务
+- `springboot-actuator`: Spring Boot #使用Actuator端点监控
+- `springboot-activiti`：Spring Boot #Activiti 第一个流程图开发
+- `springboot-websocket`：[Spring Boot #使用WebSocket简单聊天室](https://www.jianshu.com/p/9b22a390747a)
+- `springboot-mail`：Spring Boot #使用Spring Mail 发送邮件
+- `springboot-swagger2`：[Spring Boot #使用Swagger2 配置API](https://www.jianshu.com/p/847fdad3fba2)
+- `springboot-jsondoc`：[Spring Boot #JSONDoc快速生成RestfulAPI](https://www.jianshu.com/p/291217345e5d)
+- `springboot-dubbo`：Spring Boot #Dubbo自连接简单使用
+- `springboot-dubbo-zookeeper`：Spring Boot #Dubbo使用Zookeeper注册中心
+- `springboot-dubbo-starters`：Spring Boot #使用Dubbo Starters自连接快速配置
+- `springboot-dubbo-zookeeper-starters`：Spring Boot #使用Dubbo Starters快速配置(Zookeeper注册中心)
+- `springcloud-eureka`：Spring Cloud #Eureka服务治理
+- `springcloud-ribbon`：Spring Cloud #使用Ribbon服务消费
+- `springcloud-ribbon-hystrix`：Spring Cloud #Ribbon开启Hystrix断路器
+- `springcloud-feign`：Spring Cloud #开启Feign客户端
+- `springcloud-zuul`：Spring Cloud #Zuul网关，Filter请求过滤
+- `springcloud-config`：Spring Cloud #Config 全局配置中心
 
-### **三. Chapter3 Spring** 
-- `Chapter3-0-0`: Spring IOC控制反转
-- `Chapter3-simple`: Spring #简单手写实现
-
-### **四. Chapter4 Spring Boot**
-**0.简单入门**
-- `Chapter4-0-0`：Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
-- `Chapter4-0-1`：Spring Boot #2.0.0 web flux 工程
-- `Chapter4-0-2`：Spring Boot #随机数 多环境等配置文件详解
-
-**1.WEB开发**
-- `Chapter4-1-0`：Spring Boot #构建一个较为复杂的web mvc
-- `Chapter4-1-1`：Spring Boot #使用JSP开发简单WEB程序
-- `Chapter4-1-2`：Spring Boot #Spring Boot 直接返回HTML静态文件
-- `Chapter4-1-3`：Spring Boot #Spring Boot 使用Thymeleaf模版引擎构建简单WEB程序
-- `Chapter4-1-4`：Spring Boot #Spring Boot 使用FreeMarker模版引擎构建简单WEB程序
-- `Chapter4-1-5`：Spring Boot #Spring Boot 使用Velocity模版引擎构建简单WEB工程
-- `Chapter4-1-6`：Spring Boot #Spring Boot 全局异常处理(页面和JSON返回)
-
-**2.数据访问**
-- `Chapter4-2-0`：Spring Boot #使用Spring-JDBC 数据库操作
-- `Chapter4-2-1-0`：Spring Boot #MyBatis使用注解管理SQL
-- `Chapter4-2-1-1`：Spring Boot #MyBatis使用XML/Example构建SQL
-- `Chapter4-2-1-2`：Spring Boot #MyBatis多数据源配置
-- `Chapter4-2-2`：Spring Boot #使用Spring-Data-JPA进行数据访问
-- `Chapter4-2-3`：Spring Boot #使用Spring-Date-Mongo简化MongoDB查询
-- `Chapter4-2-4`：Spring Boot #使用Spring-Date-Redis简化Redis配置
-
-**3.日志管理**
-- `Chapter4-3-0`：Spring Boot #logger日志默认配置
-- `Chapter4-3-1`：Spring Boot #使用自定义logBack日志配置
-
-**4.安全管理**
-- `Chapter4-4-1-1`：Spring Boot #使用Security安全管理
-- `Chapter4-4-1-2`：Spring Boot #使用Security安全管理Json返回
-
-**5.缓存管理**
-- `Chapter4-5-1-1`：Spring Boot #使用EhCache缓存
-
-**6.消息服务**
-- `Chapter4-6-1`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
-- `Chapter4-6-2`：Spring Boot #使用ActiveMQ
-- `Chapter4-6-3`：Spring Boot #使用Kafka
-
-**7.定时任务**
-- `Chapter4-7-1`：Spring Boot #使用Schedule注解开启定时任务
-
-**8.项目监控**
-- `Chapter4-8-1`: Spring Boot #使用Actuator端点监控
-
-**9.其他内容**
-- `Chapter4-9-1`：Spring Boot #Activiti 第一个流程图开发
-- `Chapter4-9-2`：[Spring Boot #使用WebSocket简单聊天室](https://www.jianshu.com/p/9b22a390747a)
-- `Chapter4-9-3`：Spring Boot #使用Spring Mail 发送邮件
-- `Chapter4-9-4`：[Spring Boot #使用Swagger2 配置API](https://www.jianshu.com/p/847fdad3fba2)
-- `Chapter4-9-5`：[Spring Boot #JSONDoc快速生成RestfulAPI](https://www.jianshu.com/p/291217345e5d)
-
-
-### **五. Chapter5 Spring Boot Dubbo**
-- `Chapter5-1-1`：Spring Boot #Dubbo自连接简单使用
-- `Chapter5-1-2`：Spring Boot #Dubbo使用Zookeeper注册中心
-- `Chapter5-2-1`：Spring Boot #使用Dubbo Starters自连接快速配置
-- `Chapter5-2-2`：Spring Boot #使用Dubbo Starters快速配置(Zookeeper注册中心)
-
-
-### **六. Chapter6 Spring Cloud**
-- `Chapter6-1-1`：Spring Cloud #Eureka服务治理
-- `Chapter6-1-2`：Spring Cloud #使用Ribbon服务消费
-- `Chapter6-1-3`：Spring Cloud #Ribbon开启Hystrix断路器
-- `Chapter6-1-4`：Spring Cloud #开启Feign客户端
-- `Chapter6-1-5`：Spring Cloud #Zuul网关，Filter请求过滤
-- `Chapter6-1-6`：Spring Cloud #Config 全局配置中心
-- `Chapter6-final`：Spring Cloud #Framework Prototype
-
-### **END.参考**
-- `SpringBoot-Learning`：[程序员DIDI Spring Boot基础教程](https://github.com/SpringForAll/SpringBoot-Learning)
-
+> 这个项目一点点练习积累起来的, 勤能补拙, 希望可以帮到大家!
