@@ -17,13 +17,17 @@
         <module>apache-mina</module>
         <module>apache-poi</module>
         <module>apache-shiro</module>
+        <module>asm</module>
+        <module>concurrency</module>
         <module>jboss-netty</module>
+        <module>socket</module>
         <module>spring-webmvc</module>
         <module>spring-webmvc-annotation</module>
         <module>spring-webmvc-interceptor</module>
         <module>spring-webmvc-simple</module>
         <module>mybatis</module>
         <module>mybatis-simple</module>
+        <module>spring-aop</module>
         <module>spring-ioc</module>
         <module>spring-security</module>
         <module>spring-simple</module>
@@ -53,6 +57,7 @@
         <module>springboot-activemq</module>
         <module>springboot-schedule</module>
         <module>springboot-actuator</module>
+        <module>springboot-aop</module>
         <module>springboot-activiti</module>
         <module>springboot-websocket</module>
         <module>springboot-mail</module>
