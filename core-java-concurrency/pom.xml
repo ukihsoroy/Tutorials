@@ -16,10 +16,10 @@
             </plugin>
         </plugins>
     </build>
-    <artifactId>concurrency</artifactId>
+    <artifactId>core-java-concurrency</artifactId>
     <packaging>jar</packaging>
 
-    <name>concurrency</name>
+    <name>core-java-concurrency</name>
     <url>http://maven.apache.org</url>
 
     <properties>
