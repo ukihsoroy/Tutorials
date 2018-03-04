@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/welcome")
     public String login (@RequestParam("username") String username,
                          @RequestParam("password") String password) {
         System.out.printf("username: s%, password: s%", username, password);
