@@ -10,7 +10,7 @@
     <!--开启默认的拦截器-->
     <http auto-config='true'>
         <!--允许访问的uri-->
-        <intercept-url pattern="/**" access="ROLE_USER"/>
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
     </http>
 
     <!--权限管理者-->
@@ -19,8 +19,8 @@
         <authentication-provider>
             <!--可提供登陆访问的用户-->
             <user-service>
-                <user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN"/>
-                <user name="xixi" password="xixi" authorities="ROLE_USER"/>
+                <user name="admin" password="123456" authorities="ROLE_USER, ROLE_ADMIN"/>
+                <user name="user" password="123456" authorities="ROLE_USER"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>

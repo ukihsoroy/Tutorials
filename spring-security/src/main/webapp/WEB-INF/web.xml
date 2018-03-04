@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-    <!--security filter必须在最前面, 因为言拦截全部url-->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <!-- 应用上下文配置文件 -->
-        <param-value>
-            classpath:spring-security.xml
-        </param-value>
-    </context-param>
+    <!--&lt;!&ndash;security filter必须在最前面, 因为言拦截全部url&ndash;&gt;-->
+    <!--<context-param>-->
+        <!--<param-name>contextConfigLocation</param-name>-->
+        <!--&lt;!&ndash; 应用上下文配置文件 &ndash;&gt;-->
+        <!--<param-value>-->
+            <!--classpath:spring-security.xml-->
+        <!--</param-value>-->
+    <!--</context-param>-->
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--</listener>-->
 
-    <!-- spring securit start -->
+    <!-- spring security start -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
