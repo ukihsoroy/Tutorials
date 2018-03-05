@@ -1,8 +1,12 @@
 # java 教程
 
 ### **样例列表** 
+- `apache-mina`: Apache NIO框架
 - `apache-poi`: Excel, Word, PPT 导入导出
 - `apache-shiro`: Apache 轻量级安全框架
+- `asm`: 字节码生成工具
+- `core-java-concurrency`: java并发包
+- `jboss-netty`: Jboss NIO框架
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
 - `spring-webmvc-annotation`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
 - `spring-webmvc-interceptor`: [Spring #WebMVC Interceptor拦截器简单应用](https://www.jianshu.com/p/c7cae4fba59d)
@@ -10,6 +14,7 @@
 - `mybatis`: #MyBatis 基础
 - `mybatis-simple`: MyBatis #简单手写实现
 - `spring-ioc`: Spring IOC控制反转
+- `spring-aop`: Spring AOP切面
 - `spring-security`: Spring 安全框架
 - `spring-simple`: Spring #简单手写实现
 - `springboot`：Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
@@ -34,6 +39,7 @@
 - `springboot-security`：Spring Boot #使用Security安全管理
 - `springboot-security-json`：Spring Boot #使用Security安全管理Json返回
 - `springboot-ehcache`：Spring Boot #使用EhCache缓存
+- `springboot-elasticsearch`: Spring Boot #使用ElasticSearch搜索引擎
 - `springboot-ribbitmq`: [Spring Boot #使用RabbitMQ](https://www.jianshu.com/p/b777d78df63d)
 - `springboot-activemq`：Spring Boot #使用ActiveMQ
 - `springboot-kafka`：Spring Boot #使用Kafka
@@ -54,5 +60,5 @@
 - `springcloud-feign`：Spring Cloud #开启Feign客户端
 - `springcloud-zuul`：Spring Cloud #Zuul网关，Filter请求过滤
 - `springcloud-config`：Spring Cloud #Config 全局配置中心
-
+- `sso`: SSO单点登录
 > 这个项目一点点练习积累起来的, 勤能补拙, 希望可以帮到大家!

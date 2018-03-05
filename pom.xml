@@ -74,5 +74,6 @@
         <module>springcloud-feign</module>
         <module>springcloud-zuul</module>
         <module>springcloud-config</module>
+        <module>sso</module>
     </modules>
 </project>
