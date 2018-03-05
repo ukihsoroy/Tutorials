@@ -4,19 +4,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-    <!--&lt;!&ndash;security filter必须在最前面, 因为言拦截全部url&ndash;&gt;-->
-    <!--<context-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--&lt;!&ndash; 应用上下文配置文件 &ndash;&gt;-->
-        <!--<param-value>-->
-            <!--classpath:spring-security.xml-->
-        <!--</param-value>-->
-    <!--</context-param>-->
-
-    <!--<listener>-->
-        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-    <!--</listener>-->
-
     <!-- spring security start -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
@@ -35,7 +22,7 @@
         <!-- 配置Spring MVC下的配置文件的位置和名称, 以配置到上面.-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-mvc.xml</param-value>
+            <param-value>classpath:*-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -45,5 +32,13 @@
         <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
 
 </web-app>
