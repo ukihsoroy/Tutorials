@@ -6,6 +6,7 @@
 - `apache-shiro`: Apache 轻量级安全框架
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
+- `jackson`: json序列化工具
 - `jboss-netty`: Jboss NIO框架
 - `jexcel`: java excel API 适合数据量较大的excel操作, 没有POI功能强大, 对JVM内存利用率比较高
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)

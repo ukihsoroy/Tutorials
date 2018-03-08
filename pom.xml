@@ -19,6 +19,7 @@
         <module>apache-shiro</module>
         <module>asm</module>
         <module>core-java-concurrency</module>
+        <module>jackson</module>
         <module>jboss-netty</module>
         <module>jexcel</module>
         <module>socket</module>
