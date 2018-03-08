@@ -77,5 +77,6 @@
         <module>springcloud-zuul</module>
         <module>springcloud-config</module>
         <module>sso</module>
+        <module>jdbc</module>
     </modules>
 </project>

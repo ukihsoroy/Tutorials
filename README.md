@@ -8,6 +8,7 @@
 - `core-java-concurrency`: java并发包
 - `jackson`: json序列化工具
 - `jboss-netty`: Jboss NIO框架
+- `jdbc`: java database connection(数据库连接)
 - `jexcel`: java excel API 适合数据量较大的excel操作, 没有POI功能强大, 对JVM内存利用率比较高
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
 - `spring-webmvc-annotation`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
