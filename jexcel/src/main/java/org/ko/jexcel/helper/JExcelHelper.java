@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JExcelHelper {
+public final class JExcelHelper {
 
-    public Map<Integer, List<String>> readJExcel(String fileLocation) throws IOException, BiffException {
+    public static Map<Integer, List<String>> readJExcel(String fileLocation) throws IOException, BiffException {
         Map<Integer, List<String>> data = new HashMap<>();
 
         Workbook workbook = Workbook.getWorkbook(new File(fileLocation));
@@ -32,7 +32,7 @@ public class JExcelHelper {
         return data;
     }
 
-    public void writeJExcel() throws IOException, WriteException {
+    public static void writeJExcel() throws IOException, WriteException {
         WritableWorkbook workbook = null;
         try {
             File currDir = new File(".");
@@ -70,6 +70,7 @@ public class JExcelHelper {
                 workbook.close();
             }
         }
-
     }
+
+    private JExcelHelper() {}
 }
