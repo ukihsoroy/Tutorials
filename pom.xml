@@ -20,6 +20,7 @@
         <module>asm</module>
         <module>core-java-concurrency</module>
         <module>jboss-netty</module>
+        <module>jexcel</module>
         <module>socket</module>
         <module>spring-webmvc</module>
         <module>spring-webmvc-annotation</module>
