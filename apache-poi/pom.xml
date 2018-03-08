@@ -11,14 +11,58 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <poi.version>3.17</poi.version>
+        <jupiter.version>5.1.0</jupiter.version>
+        <apache.lang3>3.7</apache.lang3>
     </properties>
 
     <dependencies>
+        <!--Apache poi导入导出-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
+        <!--Apache lang3 工具集 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.lang3}</version>
+        </dependency>
+
+        <!--slf4j log API-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!--Junit5 jupiter API-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
