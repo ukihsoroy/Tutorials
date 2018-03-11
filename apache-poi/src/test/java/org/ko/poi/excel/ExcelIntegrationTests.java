@@ -11,20 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class ExcelIntegrationTest {
+public class ExcelIntegrationTests {
 
     private static String FILE_NAME = "city.xlsx";
 
-    private String fileLocation;
-
     @Test
-    public void generateExcelFile() throws IOException {
+    public void exportExcel() throws IOException {
 
-        File file = new File(".");
-        String path = file.getAbsolutePath();
-        fileLocation = path.substring(0, path.length() - 1) + FILE_NAME;
         List<String> header = Arrays.asList(
                 "序号",
                 "主键",
@@ -48,32 +41,19 @@ public class ExcelIntegrationTest {
             row.add(ExcelHelper.formatDateTime(city.getCreateDate()));
             rows.add(row);
         }
-
+        long startTime = System.currentTimeMillis();
         ExcelHelper.export(header, rows, FILE_NAME);
+        long endTime = System.currentTimeMillis();
+
+        System.out.printf("Time: %ds", (endTime - startTime) / 1000);
 
     }
 
     @Test
-    public void whenParsingPOIExcelFile_thenCorrect() throws IOException {
-        Map<Integer, List<String>> data = ExcelHelper.readExcel(fileLocation);
-
-        assertEquals("Name", data.get(0)
-            .get(0));
-        assertEquals("Age", data.get(0)
-            .get(1));
-
-        assertEquals("John Smith", data.get(1)
-            .get(0));
-        assertEquals("20", data.get(1)
-            .get(1));
-    }
-
-    @Test
-    public void cleanup(){
-        File testFile = new File(fileLocation);
-        if (testFile.exists()) {
-           testFile.delete();     
-        }
+    public void readExcel() throws IOException {
+        Map<Integer, List<String>> data = ExcelHelper.readExcel(FILE_NAME);
+        //with header
+        assert data.size() == 3307;
     }
 
     private List<City> readJson () {

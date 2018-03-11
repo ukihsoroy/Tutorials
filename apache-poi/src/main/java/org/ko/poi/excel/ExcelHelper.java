@@ -2,11 +2,13 @@ package org.ko.poi.excel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.ko.poi.excel.annotation.ExcelColumn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,77 +16,115 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.*;
 
 import static org.ko.poi.excel.ExcelHelper.PATTERN.*;
 
+/**
+ * <p>Excel import/export helper.</p>
+ * @author #{K.O you_leet@foxmail.com}
+ */
 public final class ExcelHelper {
 
 	private static final Logger log = LoggerFactory.getLogger(ExcelHelper.class);
 	
 	private static final int DATE_FORMAT_STYLE = 58;
 
+
+	/**
+	 * <p>读取Excel</p>
+	 * @param path 文件路径
+	 * @return Map #key 行号 #value 对应列的值, 需要自行format
+	 * @throws IOException
+	 */
 	public static Map<Integer, List<String>> readExcel(String path) throws IOException {
+		return readExcel(path, null);
+	}
+
+	/**
+	 * <p>读取Excel</p>
+	 * @param path 文件路径
+	 * @param checkExcel 校验
+	 * @return Map #key 行号 #value 对应列的值, 需要自行format
+	 * @throws IOException
+	 */
+	public static Map<Integer, List<String>> readExcel(String path, CheckExcel checkExcel) throws IOException {
 		Map<Integer, List<String>> data = new HashMap<>();
 		FileInputStream file = new FileInputStream(new File(path));
-		Workbook workbook = new XSSFWorkbook(file);
-		Sheet sheet = workbook.getSheetAt(0);
-		int i = 0;
-		for (Row row : sheet) {
-			data.put(i, new ArrayList<>());
-			for (Cell cell : row) {
-				switch (cell.getCellTypeEnum()) {
-					case STRING:
-						data.get(i).add(cell.getRichStringCellValue().getString());
-						break;
-					case NUMERIC:
-						if (DateUtil.isCellDateFormatted(cell)) {
-							data.get(i).add(String.valueOf(cell.getDateCellValue()));
-						} else {
-							data.get(i).add(String.valueOf(cell.getNumericCellValue()));
-						}
-						break;
-					case BOOLEAN:
-						data.get(i).add(String.valueOf(cell.getBooleanCellValue()));
-						break;
-					case FORMULA:
-						data.get(i).add(cell.getCellFormula());
-						break;
-					default:
-						data.get(i).add("");
-				}
+		try (Workbook workbook = new XSSFWorkbook(file)) {
+			Sheet sheet = workbook.getSheetAt(0);
+			//Excel格式校验
+			if (Objects.nonNull(checkExcel)) {
+				checkExcel.check(sheet);
 			}
-			i++;
-		}
-		if (workbook != null){
-			workbook.close();
+			int i = 0;
+			for (Row row : sheet) {
+				data.put(i, new ArrayList<>());
+				for (Cell cell : row) {
+					data.get(i).add(getCellValue(cell));
+				}
+				i++;
+			}
 		}
 		return data;
 	}
 
-	private static CellStyle builderHeaderStyle (Workbook workbook) {
-		CellStyle headerStyle = workbook.createCellStyle();
-		headerStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
-		headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		headerStyle.setFont(builderHeaderFont(workbook));
-		return headerStyle;
+	/**
+	 * <p>读取Excel</p>
+	 * @param path 文件路径
+	 * @param clazz 返回的对象类型
+	 * @param checkExcel 检查excel
+	 * @param <T> 泛型
+	 * @return 直接返回解析后的对象
+	 * @throws IOException
+	 */
+	public static <T> List<T> readExcel (String path, Class<T> clazz, CheckExcel checkExcel) throws IOException {
+		FileInputStream file = new FileInputStream(new File(path));
+		List<T> data = new ArrayList<>();
+		try (Workbook workbook = new XSSFWorkbook(file)) {
+			Sheet sheet = workbook.getSheetAt(0);
+
+			if (Objects.nonNull(checkExcel)) {
+				checkExcel.check(sheet);
+			}
+			Map<String, Field> fieldMap = reflectFields(clazz);
+
+			for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+				Row row = sheet.getRow(i);
+				T target = null;
+				try {
+					target = clazz.newInstance();
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+				for (int j = 1; j <= fieldMap.size(); j++) {
+					Cell cell = row.getCell(j);
+					Field field = fieldMap.get(String.valueOf(j));
+					field.setAccessible(true);
+					try {
+						field.set(target, fieldValue(field, cell));
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+				}
+				data.add(target);
+			}
+		}
+		return data;
 	}
 
-	private static XSSFFont builderHeaderFont (Workbook workbook) {
-		XSSFFont font = ((XSSFWorkbook) workbook).createFont();
-		font.setFontName("Euphemia");
-		font.setFontHeightInPoints((short) 16);
-		font.setBold(true);
-		return font;
-	}
-
-	private static CellStyle builderContentStyle (Workbook workbook) {
-		CellStyle contentStyle = workbook.createCellStyle();
-		contentStyle.setWrapText(true);
-		return contentStyle;
-	}
-
+	/**
+	 * <p>导出Excel</p>
+	 * @param heads 表格头(列名)
+	 * @param rows 数据内容
+	 * @param output 输出文件路径
+	 * @throws IOException
+	 */
 	public static void export (List<String> heads, List<List<String>> rows, String output) throws IOException {
 
 		try (Workbook wb = new XSSFWorkbook()) {
@@ -123,10 +163,86 @@ public final class ExcelHelper {
 			wb.write(new FileOutputStream(new File(output)));
 			log.info("exported {}", output);
 		}
-
 	}
 
-	public static String getCellValue(Cell cell){
+	/**
+	 * <p>Excel导出</p>
+	 * @param rows 数据内容
+	 * @param output 文件路径
+	 * @param clazz 列表泛型
+	 * @param <T> 模版泛型
+	 * @throws IOException IO异常
+	 */
+	public static <T> void export (List<T> rows, String output, Class<T> clazz) throws IOException {
+		//表格头
+		List<String> header = excelHeader(clazz);
+		//表格内容
+		List<List<String >> content = excelContent(rows, clazz);
+		export(header, content, output);
+	}
+
+	public static String formatDate(Date date){
+		return date == null ? "" : DateFormatUtils.format(date, YYYY_MM_DD);
+	}
+
+	public static String formatDateTime(Date date){
+		return date == null ? "" : DateFormatUtils.format(date, YYYY_MM_DD_HH_MM_SS);
+	}
+
+	public static String getStringValue(Object o){
+		return o == null ? "" : StringUtils.trimToEmpty(String.valueOf(o));
+	}
+
+	private static Object fieldValue (Field field, Cell cell) {
+		String value = getCellValue(cell);
+		Object result = null;
+		if (field.getType().equals(byte.class) || field.getType().equals(Byte.class)) {
+			result = Byte.parseByte(value);
+		} else if (field.getType().equals(short.class) || field.getType().equals(Short.class)) {
+			result = Short.parseShort(value);
+		} else if (field.getType().equals(int.class) || field.getType().equals(Integer.class)) {
+			result = Integer.parseInt(value);
+		} else if (field.getType().equals(double.class) || field.getType().equals(Double.class)) {
+			result = Double.parseDouble(value);
+		} else if (field.getType().equals(long.class) || field.getType().equals(Long.class)) {
+			result = Long.parseLong(value);
+		} else if (field.getType().equals(BigDecimal.class)) {
+			result = new BigDecimal(value);
+		} else if (field.getType().equals(Date.class)) {
+			try {
+				result = DateUtils.parseDate(value, YYYY_MM_DD_HH_MM_SS);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		} else {
+			result = value;
+		}
+		return result;
+	}
+
+	private static CellStyle builderHeaderStyle (Workbook workbook) {
+		CellStyle headerStyle = workbook.createCellStyle();
+		headerStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+		headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		headerStyle.setFont(builderHeaderFont(workbook));
+		return headerStyle;
+	}
+
+	private static XSSFFont builderHeaderFont (Workbook workbook) {
+		XSSFFont font = ((XSSFWorkbook) workbook).createFont();
+		font.setFontName("Euphemia");
+		font.setFontHeightInPoints((short) 16);
+		font.setBold(true);
+		return font;
+	}
+
+	private static CellStyle builderContentStyle (Workbook workbook) {
+		CellStyle contentStyle = workbook.createCellStyle();
+		contentStyle.setWrapText(true);
+		return contentStyle;
+	}
+
+	private static String getCellValue(Cell cell){
 		String value = "";
 		
 		if(cell != null){
@@ -169,7 +285,7 @@ public final class ExcelHelper {
 		String value;
 		if (HSSFDateUtil.isCellDateFormatted(cell)) {
             // 日期格式：处理yyyy-MM-dd, d/m/yyyy h:mm, HH:mm 等不含文字的日期格式
-            String format = null;
+            String format;
             if (cell.getCellStyle().getDataFormat() == HSSFDataFormat.getBuiltinFormat(H_MM)) {
                 format = HH_MM;
             } else if(cell.getCellStyle().getDataFormat() == HSSFDataFormat.getBuiltinFormat("h:mm:ss")) {
@@ -191,28 +307,83 @@ public final class ExcelHelper {
 		return value;
 	}
 
-	public static String formatDate(Date date){
-		return date == null ? "" : DateFormatUtils.format(date, YYYY_MM_DD);
+	private static Map<String, Field> reflectFields (Class clazz) {
+		Field[] fields = clazz.getDeclaredFields();
+		LinkedHashMap<String, Field> fieldMap = new LinkedHashMap<>();
+		//取出Excel所有字段
+		for (Field field : fields) {
+			ExcelColumn column = field.getAnnotation(ExcelColumn.class);
+			if (Objects.nonNull(column)) {
+				fieldMap.put(column.index(), field);
+			}
+		}
+		return fieldMap;
 	}
-	
-	public static String formatDateTime(Date date){
-		return date == null ? "" : DateFormatUtils.format(date, YYYY_MM_DD_HH_MM_SS);
+
+	private static List<String> excelHeader (Class clazz) {
+		Field[] fields = clazz.getDeclaredFields();
+		String[] contains = new String[fields.length + 1];
+		contains[0] = "序号";
+		//取出Excel所有字段
+		for (Field field : fields) {
+			ExcelColumn column = field.getAnnotation(ExcelColumn.class);
+			if (Objects.nonNull(column)) {
+				contains[Integer.parseInt(column.index())] = column.name();
+			}
+		}
+		List<String> header = new ArrayList<>();
+		for (String name: contains) {
+			if (Objects.isNull(name)) break;
+			header.add(name);
+		}
+		return header;
 	}
-	
-	public static String getStringValue(Object o){
-		return o == null ? "" : StringUtils.trimToEmpty(String.valueOf(o));
+
+	private static <T> List<List<String>> excelContent (List<T> data, Class<T> clazz) {
+		Map<String, Field> fieldMap = reflectFields(clazz);
+		List<List<String>> rows = new ArrayList<>();
+		for (int i = 0; i < data.size(); i++) {
+			List<String> row = new ArrayList<>();
+			row.add(String.valueOf(i + 1));
+			for (int j = 1; j <= fieldMap.size(); j++) {
+				Field field = fieldMap.get(String.valueOf(j));
+				field.setAccessible(true);
+				try {
+					row.add(converterString(field.get(data.get(i))));
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+			rows.add(row);
+		}
+		return rows;
 	}
-	
+
+	private static String converterString(Object target) {
+		String value;
+		if (target instanceof Number) {
+			value = String.valueOf(target);
+		} else if (target instanceof Date) {
+			value = formatDateTime(Date.class.cast(target));
+		} else {
+			value = String.class.cast(target);
+		}
+		return value;
+	}
+
 	private ExcelHelper(){}
 
+	public interface CheckExcel {
+		void check(Sheet sheet);
+	}
 
-	public final class PATTERN {
+	final class PATTERN {
 
-		public static final String H_MM = "h:mm";
-		public static final String HH_MM = "HH:mm";
-		public static final String HH_MM_SS = "HH:mm:ss";
-		public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
-		public static final String YYYY_MM_DD = "yyyy-MM-dd";
+		static final String H_MM = "h:mm";
+		static final String HH_MM = "HH:mm";
+		static final String HH_MM_SS = "HH:mm:ss";
+		static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+		static final String YYYY_MM_DD = "yyyy-MM-dd";
 
 		private PATTERN() {}
 	}
