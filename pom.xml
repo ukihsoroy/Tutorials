@@ -17,6 +17,7 @@
         <module>apache-mina</module>
         <module>apache-poi</module>
         <module>apache-shiro</module>
+        <module>apache-zookeeper</module>
         <module>asm</module>
         <module>core-java-concurrency</module>
         <module>generator</module>

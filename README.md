@@ -4,6 +4,7 @@
 - `apache-mina`: Apache NIO框架
 - `apache-poi`: Excel, Word, PPT 导入导出
 - `apache-shiro`: Apache 轻量级安全框架
+- `apache-zookeeper`: Apache 高性能协调服务
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
 - `generator`: 快速开发生成工具(html, css, js, mvc)
