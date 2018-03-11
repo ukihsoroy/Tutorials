@@ -6,6 +6,7 @@
 - `apache-shiro`: Apache 轻量级安全框架
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
+- `generator`: 快速开发生成工具(html, css, js, mvc)
 - `jackson`: json序列化工具
 - `jboss-netty`: Jboss NIO框架
 - `jdbc`: java database connection(数据库连接)

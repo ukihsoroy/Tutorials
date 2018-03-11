@@ -19,8 +19,10 @@
         <module>apache-shiro</module>
         <module>asm</module>
         <module>core-java-concurrency</module>
+        <module>generator</module>
         <module>jackson</module>
         <module>jboss-netty</module>
+        <module>jdbc</module>
         <module>jexcel</module>
         <module>socket</module>
         <module>spring-webmvc</module>
@@ -77,6 +79,5 @@
         <module>springcloud-zuul</module>
         <module>springcloud-config</module>
         <module>sso</module>
-        <module>jdbc</module>
     </modules>
 </project>
