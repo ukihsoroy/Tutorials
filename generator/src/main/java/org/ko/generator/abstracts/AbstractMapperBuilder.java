@@ -15,9 +15,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.ko.generator.bean.ColumnValue;
-import org.ko.generator.bean.DBConfig;
-import org.ko.generator.bean.Table;
+import org.ko.generator.bean.*;
 import org.ko.generator.conf.ConfigFactory;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -26,8 +24,6 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.ko.generator.bean.TableMetaData;
 
 import freemarker.template.Template;
 
@@ -38,13 +34,15 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 	private static final String TEMPLATE_NAME = "generator.ftl";
 	
 	private static final String META_TEMPLATE_NAME = "Constants.ftl";
+
+	private static final String ROOT_PATH = "/src/main/java/";
 	
 	@Autowired private freemarker.template.Configuration freeMarkerConfiguration;
 	
-	protected DBConfig config = ConfigFactory.dbConfig();
+	protected DBConfig config;
 
-	protected String moduleName;
-	
+	protected GeneratorConfig generator;
+
 	protected abstract String getMBGXmlPath();
 	
 	@Override
@@ -131,7 +129,7 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 			
 			int index = dir.indexOf("target");
 			String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
-			moduleRoot += "\\" + moduleName;
+			moduleRoot += "/" + generator.getModuleName();
 			
 			if(StringUtils.isNotBlank(getJavaFileOutputFolder())){
 				moduleRoot = getJavaFileOutputFolder();
@@ -141,7 +139,7 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 				System.out.println(moduleRoot + " doens't exist");
 			}
 			
-			String javaDir = moduleRoot + "\\src\\main\\java\\org\\ko\\prototype\\data\\constants\\domain\\";
+			String javaDir = moduleRoot + ROOT_PATH + converterPackage(generator.getRootPackage()) + "/constants/";
 			String javaFileName = javaDir + domainName + "Constants.java";
 			
 			String javaFileDir = FilenameUtils.getFullPath(javaFileName);
@@ -166,7 +164,7 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 		makeXml(tableNames);
 		
 		File configFile = new File(getMBGXmlPath());
-		List<String> warnings = new ArrayList<String>();
+		List<String> warnings = new ArrayList<>();
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
 		DefaultShellCallback callback = new DefaultShellCallback(true);
@@ -202,7 +200,11 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 		model.put("pwd", config.getPassword());
 		model.put("port", config.getPort());
 		model.put("tables", tables);
-		model.put("module", moduleName);
+		model.put("module", generator.getModuleName());
+		model.put("rootPackage", generator.getRootPackage());
+		model.put("domainPackage", generator.getDomainPackage());
+		model.put("mapperPackage", generator.getMapperPackage());
+		model.put("xmlPackage", generator.getXmlPackage());
 		
 		Template template = freeMarkerConfiguration.getTemplate(TEMPLATE_NAME);
 		Writer out = new OutputStreamWriter(new FileOutputStream(new File(getMBGXmlPath())), "UTF-8");

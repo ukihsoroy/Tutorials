@@ -21,15 +21,15 @@ public class MyBatisGenerator extends AbstractMapperBuilder {
 	
 	@Override
 	protected String getMBGXmlPath() {
-		return "d:\\generator.xml";
+		return "d:/generator.xml";
 	}
 
-	@Before public void init(){
-		moduleName = "data-test";
+	@Before public void before(){
+		generator = ConfigFactory.generatorConfig();
 		config = ConfigFactory.dbConfig();
 	}
 	
-	@Test public void build() throws Exception {
+	@Test public void generator() throws Exception {
 		buildSingleMapper();
 //		buildAllMappers();
 	}

@@ -104,7 +104,7 @@ public abstract class AbstractBuilder {
 				if(len != null){
 					scale = rs.getString("NUMERIC_SCALE");
 				}
-			}while(false);
+			} while (false);
 			
 			length = convertToInt(len);
 			if(StringUtils.isNotBlank(scale)){
@@ -139,6 +139,10 @@ public abstract class AbstractBuilder {
 			}
 		}
 		return domainName;
+	}
+
+	protected String converterPackage (String packages) {
+		return packages.replace(".", "/");
 	}
 
 	public int convertToInt(Object obj){

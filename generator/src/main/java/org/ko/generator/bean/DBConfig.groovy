@@ -1,6 +1,7 @@
 package org.ko.generator.bean
 
 class DBConfig {
+
     String ip
 
     String user

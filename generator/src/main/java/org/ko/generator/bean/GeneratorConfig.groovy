@@ -2,11 +2,20 @@ package org.ko.generator.bean
 
 class GeneratorConfig {
 
-    String appName
+    String author;
+
+    String email;
+
+    String mobile;
+
+    String moduleName
 
     String rootPackage
 
-    String apiPackage
+    String domainPackage
 
-    String mybatisPackage
+    String mapperPackage
+
+    String xmlPackage
+
 }

@@ -11,10 +11,13 @@ public final class ConfigFactory {
 
 	public static GeneratorConfig generatorConfig() {
 		GeneratorConfig config = new GeneratorConfig();
-		config.setAppName("");
-		config.setRootPackage("");
-		config.setMybatisPackage("");
-		config.setApiPackage("");
+		config.setAuthor("K.O");
+		config.setEmail("you_leet@foxmail.com");
+		config.setModuleName("data");
+		config.setRootPackage("org.ko.data");
+		config.setDomainPackage("bean");
+		config.setMapperPackage("dao");
+		config.setXmlPackage("mappers");
 		return config;
 	}
 
