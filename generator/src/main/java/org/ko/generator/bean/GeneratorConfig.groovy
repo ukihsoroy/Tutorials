@@ -2,11 +2,11 @@ package org.ko.generator.bean
 
 class GeneratorConfig {
 
-    String author;
+    String author
 
-    String email;
+    String email
 
-    String mobile;
+    String mobile
 
     String moduleName
 
