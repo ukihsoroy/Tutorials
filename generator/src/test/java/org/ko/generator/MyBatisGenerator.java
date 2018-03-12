@@ -21,21 +21,21 @@ public class MyBatisGenerator extends AbstractMapperBuilder {
 	
 	@Override
 	protected String getMBGXmlPath() {
-		return "d:\\generatorConfig.xml";
+		return "d:\\generator.xml";
 	}
 
 	@Before public void init(){
-		moduleName = "prototype-data";
-		config = ConfigFactory.getConfig();
+		moduleName = "data-test";
+		config = ConfigFactory.dbConfig();
 	}
 	
 	@Test public void build() throws Exception {
-//		buildSingleMapper();
-		buildAllMappers();
+		buildSingleMapper();
+//		buildAllMappers();
 	}
-	
+
 	private void buildSingleMapper() throws Exception {
-		String[] tables = new String[]{"sys_request_log"};
+		String[] tables = new String[]{"art_link"};
 		generateStubs(tables);
 		generateDomainConstants(tables);
 	}

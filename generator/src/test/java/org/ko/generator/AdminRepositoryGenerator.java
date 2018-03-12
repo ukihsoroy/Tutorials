@@ -32,8 +32,7 @@ public class AdminRepositoryGenerator extends AbstractRepositoryBuilder {
 
 	@Before public void init(){
 		moduleName = getModuleName();
-		
-		config = ConfigFactory.getConfig();
+		config = ConfigFactory.dbConfig();
 	}
 
 	@Override

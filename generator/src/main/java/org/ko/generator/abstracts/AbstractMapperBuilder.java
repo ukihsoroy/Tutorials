@@ -18,6 +18,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.ColumnValue;
 import org.ko.generator.bean.DBConfig;
 import org.ko.generator.bean.Table;
+import org.ko.generator.conf.ConfigFactory;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
@@ -34,13 +35,14 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractMapperBuilder.class);
 	
-	private static final String TEMPLATE_NAME = "generatorConfig.ftl";
+	private static final String TEMPLATE_NAME = "generator.ftl";
 	
 	private static final String META_TEMPLATE_NAME = "Constants.ftl";
 	
 	@Autowired private freemarker.template.Configuration freeMarkerConfiguration;
 	
-	protected DBConfig config;
+	protected DBConfig config = ConfigFactory.dbConfig();
+
 	protected String moduleName;
 	
 	protected abstract String getMBGXmlPath();
@@ -127,7 +129,7 @@ public abstract class AbstractMapperBuilder extends AbstractBuilder {
 			
 			String dir = new File(this.getClass().getClassLoader().getResource(".").toURI()).getAbsolutePath();
 			
-			int index = dir.indexOf("out");
+			int index = dir.indexOf("target");
 			String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
 			moduleRoot += "\\" + moduleName;
 			

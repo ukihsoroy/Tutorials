@@ -20,6 +20,7 @@ import org.ko.generator.bean.DBConfig;
 import org.ko.generator.bean.QueryElement;
 import org.ko.generator.bean.SelectOption;
 import org.ko.generator.bean.TableMetaData;
+import org.ko.generator.conf.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public abstract class AbstractRepositoryBuilder extends AbstractBuilder {
 	
 	@Autowired private freemarker.template.Configuration freeMarkerConfiguration;
 	
-	protected DBConfig config;
+	protected DBConfig config = ConfigFactory.dbConfig();;
 	protected String moduleName;
 	
 	protected boolean withUI = false;

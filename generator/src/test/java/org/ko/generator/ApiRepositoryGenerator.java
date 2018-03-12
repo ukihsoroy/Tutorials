@@ -30,8 +30,6 @@ public class ApiRepositoryGenerator extends AbstractRepositoryBuilder {
 	
 	@Before public void init(){
 		moduleName = getModuleName();
-		
-		config = ConfigFactory.getConfig();
 	}
 	
 	@Override
