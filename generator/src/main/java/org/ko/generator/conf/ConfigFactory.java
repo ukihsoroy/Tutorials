@@ -18,6 +18,10 @@ public final class ConfigFactory {
 		config.setDomainPackage("bean");
 		config.setMapperPackage("dao");
 		config.setXmlPackage("mappers");
+		config.setNodePath("D:/node");
+		config.setHtml("/page");
+		config.setJs("/js");
+
 		return config;
 	}
 

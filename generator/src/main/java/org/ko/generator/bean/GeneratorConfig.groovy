@@ -18,4 +18,10 @@ class GeneratorConfig {
 
     String xmlPackage
 
+    String nodePath
+
+    String html
+
+    String js;
+
 }

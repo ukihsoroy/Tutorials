@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.ko.generator.abstracts.AbstractRepositoryBuilder;
+import org.ko.generator.generator.AbstractRepositoryGenerator;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/repository-generator-context.xml") 
-public class AdminRepositoryGenerator extends AbstractRepositoryBuilder {
+public class AdminRepositoryGenerator extends AbstractRepositoryGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(AdminRepositoryGenerator.class);
 	

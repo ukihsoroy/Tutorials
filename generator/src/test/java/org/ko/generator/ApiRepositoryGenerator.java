@@ -5,8 +5,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ko.generator.abstracts.AbstractRepositoryBuilder;
-import org.ko.generator.conf.ConfigFactory;
+import org.ko.generator.generator.AbstractRepositoryGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("classpath:spring/repository-generator-context.xml") 
-public class ApiRepositoryGenerator extends AbstractRepositoryBuilder {
+public class ApiRepositoryGenerator extends AbstractRepositoryGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(ApiRepositoryGenerator.class);
 
