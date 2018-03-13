@@ -20,11 +20,13 @@
         <module>apache-zookeeper</module>
         <module>asm</module>
         <module>core-java-concurrency</module>
+        <module>fastDFS</module>
         <module>generator</module>
         <module>jackson</module>
         <module>jboss-netty</module>
         <module>jdbc</module>
         <module>jexcel</module>
+        <module>jvm</module>
         <module>socket</module>
         <module>spring-webmvc</module>
         <module>spring-webmvc-annotation</module>

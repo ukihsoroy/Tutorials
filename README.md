@@ -7,11 +7,13 @@
 - `apache-zookeeper`: Apache 高性能协调服务
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
+- `fastDFS`: 文件断点续传
 - `generator`: 快速开发生成工具(html, css, js, mvc)
 - `jackson`: json序列化工具
 - `jboss-netty`: Jboss NIO框架
 - `jdbc`: java database connection(数据库连接)
 - `jexcel`: java excel API 适合数据量较大的excel操作, 没有POI功能强大, 对JVM内存利用率比较高
+- `jvm`: Java虚拟机(JVM)调优练习
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
 - `spring-webmvc-annotation`: [Spring #WebMVC 注解配置](https://www.jianshu.com/p/a4c88883747f)
 - `spring-webmvc-interceptor`: [Spring #WebMVC Interceptor拦截器简单应用](https://www.jianshu.com/p/c7cae4fba59d)
