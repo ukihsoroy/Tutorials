@@ -41,7 +41,7 @@ public class AdminRepositoryGenerator extends AbstractRepositoryGenerator {
 		return "d:\\tmp";
 //		return super.getJavaFileOutputFolder();
 	}
-	
+
 	@Test public void build() throws Exception {
 		super.withUI = true;
 //		buildSingleRepository();

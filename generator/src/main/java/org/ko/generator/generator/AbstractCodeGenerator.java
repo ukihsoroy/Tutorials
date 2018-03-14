@@ -31,7 +31,7 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
 
     protected GeneratorConfig generator = ConfigFactory.generatorConfig();
 
-    protected String moduleName;
+    protected String moduleName = ConfigFactory.generatorConfig().getModuleName();
 
     protected boolean withUI = false;
 
@@ -51,15 +51,12 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
 
     private static List<String> ENV_JAVA = Arrays.asList(
             "bo.java.ftl",
-            "constants.java.ftl",
+//            "constants.java.ftl",
             "controller.java.ftl",
             "mapper.java.ftl",
             "service.java.ftl",
             "mapper.xml.ftl"
     );
-
-    protected abstract String getModuleName();
-    protected abstract String getAdminRoot();
 
     protected void generateStubs(String...tableNames) throws Exception {
         if(ArrayUtils.isEmpty(tableNames)){
@@ -71,15 +68,7 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
 
         int index = dir.indexOf("target");
         String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
-        moduleRoot += "\\" + moduleName;
-
-        if(StringUtils.isNotBlank(getJavaFileOutputFolder())){
-            moduleRoot = getJavaFileOutputFolder();
-        }
-
-        if(!new File(moduleRoot).isDirectory()){
-            System.out.println(moduleRoot + " doens't exist");
-        }
+        moduleRoot += "/" + moduleName;
 
         String componentName = StringUtils.split(moduleName, "-")[1];
         String javaDir = moduleRoot + "/src/main/java/org/ko/prototype/" + componentName + "/dao/repository/";
@@ -134,7 +123,7 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
 
             for (String ftl : ENV_JAVA) {
                 Template template = freeMarkerConfiguration.getTemplate(ftl);
-                String path = generator.getRootPackage() +
+                String path = moduleRoot + "/src/main/java/" + converterPackage(generator.getRootPackage()) + getContentName(ftl, domainName);
                 Writer out = new OutputStreamWriter(new FileOutputStream(new File(path)), "UTF-8");
                 template.process(model, out);
                 out.close();
@@ -425,6 +414,11 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
 //            out.close();
 //            log.info("generated {}", xmlFileName);
 //        }
+    }
+
+    protected String getContentName(String ftl, String name) {
+        String[] ary = StringUtils.split(ftl, ".");
+        return "/" + ary[0] + "/" + name + StringUtils.capitalize(ary[0] + "." + ary[1]);
     }
 
     private String getAbbr(String table){

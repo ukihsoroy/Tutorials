@@ -13,7 +13,7 @@ public final class ConfigFactory {
 		GeneratorConfig config = new GeneratorConfig();
 		config.setAuthor("K.O");
 		config.setEmail("you_leet@foxmail.com");
-		config.setModuleName("data");
+		config.setModuleName("case-generator");
 		config.setRootPackage("org.ko.data");
 		config.setDomainPackage("bean");
 		config.setMapperPackage("dao");
