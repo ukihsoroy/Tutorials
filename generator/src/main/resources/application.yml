@@ -1,0 +1,32 @@
+server.port: 1337
+
+spring:
+  application.name: ko-generator
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    name:
+    username:
+    password:
+
+copyProject:
+  name: project-name
+  path: D://
+  enable: false
+
+generator:
+  moduleName: case-generator
+  package: org.ko.generator
+  mybatis:
+    enable: true
+  puncture:
+    enable: true
+    package: org,ko.generator
+    resources: mappers
+  view:
+    enable: true
+    path:
+      root: D://generator-ui
+      js:
+      html:
+
+tables: []
