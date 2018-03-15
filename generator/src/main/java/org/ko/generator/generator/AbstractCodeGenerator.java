@@ -97,8 +97,11 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
             model.put("meta", meta);
             //生成时间
             model.put("now", DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
-
+            model.put("package", generator.getRootPackage());
             for (String ftl : ENV_JAVA) {
+                String[] ary = StringUtils.split(ftl, ".");
+                //包
+
                 Template template = freeMarkerConfiguration.getTemplate(ftl);
                 String path = getFilePath(moduleRoot, domainName, ftl);
                 Writer out = new OutputStreamWriter(new FileOutputStream(new File(path)), "UTF-8");
@@ -117,7 +120,7 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
                 dirPath = moduleRoot + MAIN_PATH + converterPackage(generator.getRootPackage()) + "/" + ary[0] + "/";
                 break;
             case "xml":
-                dirPath = moduleRoot + "/src/main/resources/" + converterPackage(generator.getMapperPackage()) + "/" + ary[0] + "/";
+                dirPath = moduleRoot + "/src/main/resources/" + converterPackage(generator.getXmlPackage()) + "/";
                 break;
             default:
                 throw new RuntimeException("happen error");
@@ -126,8 +129,8 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String contentName = "/" + ary[0] + "/" + domainName + StringUtils.capitalize(ary[0] + "." + ary[1]);
-        return moduleRoot + MAIN_PATH + converterPackage(generator.getRootPackage()) + contentName;
+        String contentName = domainName + StringUtils.capitalize(ary[0] + "." + ary[1]);
+        return dirPath + contentName;
     }
 
     private String getAbbr(String table){
@@ -143,41 +146,6 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
         }
 
         return abbr;
-    }
-
-    private boolean hint(String path){
-        boolean pass = false;
-
-        if(passAll){
-            return passAll;
-        }
-
-        File file = new File(path);
-        if(file.exists()){
-            Scanner scanner = new Scanner(System.in);
-            do{
-                System.out.println(path + "已存在");
-                System.out.print("继续生成有可能会覆盖已有改动，是否要替换(yes/no/all):");
-                String input = StringUtils.trimToEmpty(scanner.nextLine());
-                if("yes".equalsIgnoreCase(input) || "y".equalsIgnoreCase(input)){
-                    pass = true;
-                    break;
-                }else if("no".equalsIgnoreCase(input) || "n".equalsIgnoreCase(input)){
-                    pass = false;
-                    break;
-                }else if("all".equalsIgnoreCase(input) || "constants".equalsIgnoreCase(input)){
-                    passAll = true;
-                    pass = true;
-                    break;
-                }else{
-                    System.out.println("无效的输入");
-                }
-            }while(true);
-        }else{
-            pass = true;
-        }
-
-        return pass;
     }
 
 }
