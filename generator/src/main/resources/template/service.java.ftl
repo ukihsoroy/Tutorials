@@ -1,3 +1,3 @@
-public class ${name}Service {
+public class ${name}Repository {
 
 }

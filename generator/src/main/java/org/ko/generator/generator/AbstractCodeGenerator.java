@@ -54,9 +54,9 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
     private static List<String> ENV_JAVA = Arrays.asList(
             "bo.java.ftl",
             "controller.java.ftl",
-            "mapper.java.ftl",
+            "Repository.java.ftl",
             "service.java.ftl",
-            "mapper.xml.ftl"
+            "Repository.xml.ftl"
     );
 
     protected void generateStubs(String...tableNames) throws Exception {
