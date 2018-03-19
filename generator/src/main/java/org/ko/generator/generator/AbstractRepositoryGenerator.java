@@ -21,6 +21,7 @@ import org.ko.generator.bean.QueryElement;
 import org.ko.generator.bean.SelectOption;
 import org.ko.generator.bean.TableMetaData;
 import org.ko.generator.conf.ConfigFactory;
+import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public abstract class AbstractRepositoryGenerator extends AbstractGenerator {
 				textColumnName = textOptional.get().getColumnName();
 			}
 			
-			String domainName = buildDomainName(table);
+			String domainName = GeneratorHelper.buildDomainName(table);
 			
 			Map<String, Object> model = new HashMap<>();
 			model.put("Table", domainName);

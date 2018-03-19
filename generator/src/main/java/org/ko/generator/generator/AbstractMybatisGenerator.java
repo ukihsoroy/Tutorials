@@ -16,6 +16,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.*;
+import org.ko.generator.util.GeneratorHelper;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
@@ -25,7 +26,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import freemarker.template.Template;
+import org.springframework.stereotype.Component;
 
+@Component
 public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractMybatisGenerator.class);
@@ -56,7 +59,7 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 		}
 		
 		for(String name : tableNames){
-			String domainName = buildDomainName(name);
+			String domainName = GeneratorHelper.buildDomainName(name);
 			
 			List<TableMetaData> data = super.getTableMetaData(name);
 			
@@ -137,7 +140,7 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 				System.out.println(moduleRoot + " doens't exist");
 			}
 			
-			String javaDir = moduleRoot + ROOT_PATH + converterPackage(generator.getRootPackage()) + "/constants/";
+			String javaDir = moduleRoot + ROOT_PATH + GeneratorHelper.converterPackage(generator.getRootPackage()) + "/constants/";
 			String javaFileName = javaDir + domainName + "Constants.java";
 			
 			String javaFileDir = FilenameUtils.getFullPath(javaFileName);

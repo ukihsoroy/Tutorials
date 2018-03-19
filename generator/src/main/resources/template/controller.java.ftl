@@ -2,8 +2,8 @@ package org.ko.data.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.ko.data.bean.${name};
-import org.ko.data.service.${name}Service;
+import org.ko.data.bean.${domainName};
+import org.ko.data.service.${domainName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,39 +12,39 @@ import java.util.List;
 
 @Api(value = "连接接口", description = "链接")
 @RestController
-@RequestMapping("${name}")
-public class ${name}Controller {
+@RequestMapping("${domainName}")
+public class ${domainName}Controller {
 
-    @Autowired private ${name}Service linkService;
+    @Autowired private ${domainName}Service ${variableName}Service;
 
     @GetMapping
     @ApiOperation("查询全部链接")
-    public List<${name}> list () {
-        return linkService.list();
+    public List<${domainName}> list () {
+        return ${variableName}Service.list();
     }
 
     @GetMapping("{id}")
     @ApiOperation("通过ID获取链接详情")
-    public ${name} detail (@PathVariable("id") String id) {
-        return linkService.detail(Integer.parseInt(id));
+    public ${domainName} detail (@PathVariable("id") String id) {
+        return ${variableName}Service.detail(Integer.parseInt(id));
     }
 
     @PostMapping
     @ApiOperation("新增连接")
-    public void save (@RequestBody ${name} link) {
-        linkService.save(link);
+    public void save (@RequestBody ${domainName} ${variableName}) {
+        ${variableName}Service.save(link);
     }
 
     @PutMapping
     @ApiOperation("修改连接")
-    public void update (@RequestBody ${name} link) {
-        linkService.update(link);
+    public void update (@RequestBody ${domainName} ${variableName}) {
+        ${variableName}Service.update(${variableName});
     }
 
     @DeleteMapping("{id}")
     @ApiOperation("通过ID删除连接")
     public void remove (@PathVariable("id") String id) {
-        linkService.remove(Integer.parseInt(id));
+        ${variableName}Service.remove(Integer.parseInt(id));
     }
 
 }

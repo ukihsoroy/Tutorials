@@ -3,6 +3,7 @@ package org.ko.generator.generator;
 import org.apache.commons.lang3.StringUtils;
 import org.ko.generator.bean.DBConfig;
 import org.ko.generator.bean.TableMetaData;
+import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,9 @@ public abstract class AbstractGenerator {
 	protected String getJavaFileOutputFolder(){
 		return null;
 	}
-	
+
+	protected abstract void generator ();
+
 	protected List<String> getAllTableNames() throws Exception {
 		List<String> tableNames = new ArrayList<>();
 		
@@ -102,9 +105,9 @@ public abstract class AbstractGenerator {
 				}
 			} while (false);
 
-			Integer length = convertToInt(len);
+			Integer length = GeneratorHelper.convertToInt(len);
 			if(StringUtils.isNotBlank(scale)){
-				length = length + convertToInt(scale) + 1;
+				length = length + GeneratorHelper.convertToInt(scale) + 1;
 			}
 			
 			data.setLength(length);
@@ -123,33 +126,5 @@ public abstract class AbstractGenerator {
 		}
 		return type;
 	}
-	
-	protected String buildDomainName(String table){
-		String[] elements = StringUtils.split(table, "_");
-		String domainName = "";
-		if(elements.length == 1){
-			domainName = StringUtils.capitalize(elements[0]);
-		}else{
-			for(int i = 1; i < elements.length; i++){
-				domainName += StringUtils.capitalize(elements[i]);
-			}
-		}
-		return domainName;
-	}
 
-	protected String converterPackage (String packages) {
-		return packages.replace(".", "/");
-	}
-
-	public int convertToInt(Object obj){
-		int value = 0;
-
-		try{
-			value = obj != null && obj instanceof Integer ? ((Integer)obj).intValue() : Integer.valueOf(String.valueOf(obj));
-		}catch(NumberFormatException  e){
-			log.trace(e.getMessage());
-		}
-
-		return value;
-	}
 }
