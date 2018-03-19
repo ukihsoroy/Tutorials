@@ -7,13 +7,14 @@ import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.generator.AbstractCodeGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:spring/repository-generator-context.xml")
+@SpringBootTest
 public class CodeGeneratorTests extends AbstractCodeGenerator{
 
     private static final Logger log = LoggerFactory.getLogger(AdminRepositoryGenerator.class);
@@ -39,5 +40,10 @@ public class CodeGeneratorTests extends AbstractCodeGenerator{
     private void buildAllRepositories() throws Exception {
         List<String> tableNames = getAllTableNames();
         generateStubs(tableNames.toArray(new String[0]));
+    }
+
+    @Override
+    protected void generator() {
+
     }
 }

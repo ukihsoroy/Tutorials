@@ -1,4 +1,4 @@
-package org.ko.data.bo;
+package ${rootPackage}.bo;
 
 public class ${domainName}Bo {
 

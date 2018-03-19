@@ -16,6 +16,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.*;
+import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -125,6 +126,7 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 			model.put("values", values);
 			model.put("meta", data);
 			model.put("now", DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
+			model.put("rootPackage", generator.getRootPackage());
 			
 			String dir = new File(this.getClass().getClassLoader().getResource(".").toURI()).getAbsolutePath();
 			

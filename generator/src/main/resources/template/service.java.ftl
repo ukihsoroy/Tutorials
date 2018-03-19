@@ -1,8 +1,8 @@
-package org.ko.data.service;
+package ${rootPackage}.service;
 
-import org.ko.data.bean.${domainName};
-import org.ko.data.bean.${domainName}Example;
-import org.ko.data.dao.${domainName}Repository;
+import ${rootPackage}.bean.${domainName};
+import ${rootPackage}.bean.${domainName}Example;
+import ${rootPackage}.repository.${domainName}Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

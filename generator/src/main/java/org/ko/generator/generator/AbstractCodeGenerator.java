@@ -56,9 +56,9 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
     private static List<String> ENV_JAVA = Arrays.asList(
             "bo.java.ftl",
             "controller.java.ftl",
-            "Repository.java.ftl",
+            "repository.java.ftl",
             "service.java.ftl",
-            "Repository.xml.ftl"
+            "repository.xml.ftl"
     );
 
     protected void generateStubs(String...tableNames) throws Exception {
@@ -72,8 +72,6 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
         int index = dir.indexOf("target");
         String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
         moduleRoot += "/" + moduleName;
-
-        String componentName = StringUtils.split(moduleName, "-")[1];
 
         for (String table : tableNames) {
             //获取表全部字段

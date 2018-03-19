@@ -74,8 +74,8 @@ public final class GeneratorHelper {
 
 
     public static final class Constants {
-        public static final String MAIN_JAVA = "src/main/java/";
-        public static final String MAIN_RESOURCES = "src/main/resources/";
+        public static final String MAIN_JAVA = "/src/main/java/";
+        public static final String MAIN_RESOURCES = "/src/main/resources/";
     }
 
     private GeneratorHelper() {}

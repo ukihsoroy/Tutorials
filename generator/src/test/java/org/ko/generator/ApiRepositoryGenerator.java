@@ -12,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:spring/repository-generator-context.xml") 
 public class ApiRepositoryGenerator extends AbstractRepositoryGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(ApiRepositoryGenerator.class);
@@ -37,7 +36,12 @@ public class ApiRepositoryGenerator extends AbstractRepositoryGenerator {
 //		return "d:\\tmp";
 		return super.getJavaFileOutputFolder();
 	}
-	
+
+	@Override
+	protected void generator() {
+
+	}
+
 	@Test public void build() throws Exception {
 		buildSingleRepository();
 //		buildAllRepositories();

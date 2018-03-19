@@ -8,13 +8,14 @@ import org.junit.runner.RunWith;
 import org.ko.generator.conf.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.ko.generator.generator.AbstractMybatisGenerator;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:spring/mbg-context.xml") 
+@SpringBootTest
 public class MyBatisGenerator extends AbstractMybatisGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(MyBatisGenerator.class);
@@ -29,15 +30,19 @@ public class MyBatisGenerator extends AbstractMybatisGenerator {
 		config = ConfigFactory.dbConfig();
 	}
 	
-	@Test public void generator() throws Exception {
+	@Test public void generator() {
 		buildSingleMapper();
 //		buildAllMappers();
 	}
 
-	private void buildSingleMapper() throws Exception {
+	private void buildSingleMapper() {
 		String[] tables = new String[]{"art_link"};
-		generateStubs(tables);
-		generateDomainConstants(tables);
+		try {
+			generateStubs(tables);
+			generateDomainConstants(tables);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void buildAllMappers() throws Exception {

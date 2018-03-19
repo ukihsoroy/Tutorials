@@ -1,9 +1,9 @@
-package org.ko.data.controller;
+package ${rootPackage}.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.ko.data.bean.${domainName};
-import org.ko.data.service.${domainName}Service;
+import ${rootPackage}.bean.${domainName};
+import ${rootPackage}.service.${domainName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Api(value = "连接接口", description = "链接")
 @RestController
-@RequestMapping("${domainName}")
+@RequestMapping("${variableName}")
 public class ${domainName}Controller {
 
     @Autowired private ${domainName}Service ${variableName}Service;

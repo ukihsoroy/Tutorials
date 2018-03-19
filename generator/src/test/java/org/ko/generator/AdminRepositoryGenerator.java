@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.ko.generator.generator.AbstractRepositoryGenerator;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:spring/repository-generator-context.xml") 
 public class AdminRepositoryGenerator extends AbstractRepositoryGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(AdminRepositoryGenerator.class);
@@ -40,6 +39,11 @@ public class AdminRepositoryGenerator extends AbstractRepositoryGenerator {
 		// 自定义输出路径
 		return "d:\\tmp";
 //		return super.getJavaFileOutputFolder();
+	}
+
+	@Override
+	protected void generator() {
+
 	}
 
 	@Test public void build() throws Exception {

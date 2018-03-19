@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Component
+//@Component
 public class Generator {
 
     @Autowired private List<AbstractGenerator> generators;
