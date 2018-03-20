@@ -4,9 +4,10 @@ spring:
   application.name: ko-generator
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url:
-    username:
-    password:
+    url: jdbc:mysql://111.231.224.68:3306/art-prototype?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    name: art-prototype
+    username: root
+    password: tiger
 
 generator:
   moduleName: case-generator

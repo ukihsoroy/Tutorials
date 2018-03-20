@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Properties;
 

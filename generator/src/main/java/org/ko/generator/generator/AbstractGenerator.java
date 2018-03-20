@@ -7,7 +7,9 @@ import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,9 +29,11 @@ public abstract class AbstractGenerator implements ICodeGenerator{
 	protected DBConfig config = ConfigFactory.dbConfig();
 
 	@Value("${generator.tables}") protected String[] tables;
-
 	@Value("${generator.enable}") protected boolean generatorEnable;
-	
+	@Value("${spring.datasource.name}") private String dbName;
+
+	@Autowired private JdbcTemplate jdbcTemplate;
+
 	static{
 		DATA_TYPE_MAP.put("varchar", "String");
 		DATA_TYPE_MAP.put("char", "String");
@@ -53,19 +57,8 @@ public abstract class AbstractGenerator implements ICodeGenerator{
 	}
 
 	protected List<String> getAllTableNames() throws Exception {
-		List<String> tableNames = new ArrayList<>();
-		
-		Class.forName("com.mysql.jdbc.Driver");
-		String connStr = "jdbc:mysql://" + config.getIp() + ":" + config.getPort() + "/information_schema" + "?autoReconnect=true&useUnicode=true&characterEncoding=utf-8";
-		Connection conn = DriverManager.getConnection(connStr, config.getUser(), config.getPassword());
-		PreparedStatement ps = conn.prepareStatement("select table_name from tables where table_schema = '" + config.getDb() + "'");
-		ResultSet rs = ps.executeQuery();
-		while(rs.next()){
-			tableNames.add(rs.getString(1));
-		}
-		ps.close();
-		conn.close();
-		return tableNames;
+		String sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = ?";
+		return jdbcTemplate.queryForList(sql, String.class, dbName);
 	}
 	
 	protected List<String> getColumnNames(List<TableMetaData> data) throws Exception {
