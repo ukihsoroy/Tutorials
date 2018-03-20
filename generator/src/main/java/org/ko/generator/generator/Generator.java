@@ -5,15 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
-//@Component
-public class Generator {
+@Component
+public class Generator implements ICodeGenerator{
 
-    @Autowired private List<AbstractGenerator> generators;
-
+    @Autowired private List<ICodeGenerator> generators;
 
     public void generator () {
         if (CollectionUtils.isNotEmpty(generators)) {
-            generators.forEach(AbstractGenerator::generator);
+            generators.forEach(ICodeGenerator::generator);
         }
     }
 

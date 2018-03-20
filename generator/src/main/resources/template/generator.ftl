@@ -44,7 +44,6 @@
     <#list tables as table>
         <table tableName="${table.name}" domainObjectName="${table.domainName}">
             <property name="selectAllOrderByClause" value="id desc"/>
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="class">
                 <property name="property" value="clazz"/>
             </columnOverride>

@@ -27,32 +27,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import freemarker.template.Template;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
-public abstract class AbstractMybatisGenerator extends AbstractGenerator {
+import static org.ko.generator.constants.GeneratorConstans.MAIN_PATH;
 
-	private static final Logger log = LoggerFactory.getLogger(AbstractMybatisGenerator.class);
+@Component
+public class MybatisGenerator extends AbstractGenerator {
+
+	private static final Logger log = LoggerFactory.getLogger(MybatisGenerator.class);
 	
 	private static final String TEMPLATE_NAME = "generator.ftl";
 	
 	private static final String META_TEMPLATE_NAME = "constants.java.ftl";
 
-	private static final String ROOT_PATH = "/src/main/java/";
-	
 	@Autowired private freemarker.template.Configuration freeMarkerConfiguration;
+
+	protected GeneratorConfig generator = ConfigFactory.generatorConfig();
+
+	private String mbgXmlPath = "d:/generator.xml";
 	
-	protected DBConfig config;
-
-	protected GeneratorConfig generator;
-
-	protected abstract String getMBGXmlPath();
-	
-	@Override
-	protected DBConfig getDBConfig() {
-		return config;
-	}
-
 	protected void generateDomainConstants(String...tableNames) throws Exception {
 		if(ArrayUtils.isEmpty(tableNames)){
 			log.info("no table name was specified");
@@ -142,7 +136,7 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 				System.out.println(moduleRoot + " doens't exist");
 			}
 			
-			String javaDir = moduleRoot + ROOT_PATH + GeneratorHelper.converterPackage(generator.getRootPackage()) + "/constants/";
+			String javaDir = moduleRoot + MAIN_PATH + GeneratorHelper.converterPackage(generator.getRootPackage()) + "/constants/";
 			String javaFileName = javaDir + domainName + "Constants.java";
 			
 			String javaFileDir = FilenameUtils.getFullPath(javaFileName);
@@ -166,7 +160,7 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 		
 		makeXml(tableNames);
 		
-		File configFile = new File(getMBGXmlPath());
+		File configFile = new File(mbgXmlPath);
 		List<String> warnings = new ArrayList<>();
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
@@ -210,9 +204,30 @@ public abstract class AbstractMybatisGenerator extends AbstractGenerator {
 		model.put("xmlPackage", generator.getXmlPackage());
 		
 		Template template = freeMarkerConfiguration.getTemplate(TEMPLATE_NAME);
-		Writer out = new OutputStreamWriter(new FileOutputStream(new File(getMBGXmlPath())), "UTF-8");
+		Writer out = new OutputStreamWriter(new FileOutputStream(new File(mbgXmlPath)), "UTF-8");
 		template.process(model, out);
 		out.close();
 	}
 
+	private void buildAllMappers() throws Exception {
+		List<String> tableNames = getAllTableNames();
+		String[] tables = tableNames.toArray(new String[]{});
+
+		generateStubs(tables);
+		generateDomainConstants(tables);
+	}
+
+	@Override
+	public void generator() {
+		try {
+			if (generatorEnable) {
+				buildAllMappers();
+			} else {
+				generateStubs(tables);
+				generateDomainConstants(tables);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

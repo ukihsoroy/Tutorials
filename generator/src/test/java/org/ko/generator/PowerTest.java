@@ -1,4 +1,4 @@
-package org.ko.generator.run;
+package org.ko.generator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;

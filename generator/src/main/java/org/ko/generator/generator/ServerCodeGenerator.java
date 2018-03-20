@@ -1,5 +1,6 @@
 package org.ko.generator.generator;
 
+import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +11,7 @@ import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -23,38 +25,22 @@ import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_RESOURCES;
 
 
 @Component
-public abstract class AbstractCodeGenerator extends AbstractGenerator {
+public class ServerCodeGenerator extends AbstractGenerator {
 
-    private static final Logger _LOGGER = LoggerFactory.getLogger(AbstractCodeGenerator.class);
+    private static final Logger _LOGGER = LoggerFactory.getLogger(ServerCodeGenerator.class);
 
 
-    @Autowired
-    private freemarker.template.Configuration freeMarkerConfiguration;
-
-    protected DBConfig config = ConfigFactory.dbConfig();
+    @Autowired private Configuration freeMarkerConfiguration;
 
     protected GeneratorConfig generator = ConfigFactory.generatorConfig();
 
     protected String moduleName = ConfigFactory.generatorConfig().getModuleName();
 
-    protected boolean withUI = false;
-
-    @Override
-    protected DBConfig getDBConfig() {
-        return config;
-    }
-
-    private static List<String> ELEMENT_UI = Arrays.asList(
-            "detail.html.ftl",
-            "detail.js.ftl",
-            "edit.html.ftl",
-            "edit.js.ftl",
-            "list.html.ftl",
-            "list.js.ftl"
-    );
+    @Value("${java.enable}") private boolean javaEnable;
 
     private static List<String> ENV_JAVA = Arrays.asList(
             "bo.java.ftl",
+            "command.java.ftl",
             "controller.java.ftl",
             "repository.java.ftl",
             "service.java.ftl",
@@ -128,4 +114,21 @@ public abstract class AbstractCodeGenerator extends AbstractGenerator {
         return dirPath + contentName;
     }
 
+    private void buildAllRepositories() throws Exception {
+        List<String> tableNames = getAllTableNames();
+        generateStubs(tableNames.toArray(new String[0]));
+    }
+
+    @Override
+    public void generator() {
+        try {
+            if (generatorEnable) {
+                buildAllRepositories();
+            } else if (javaEnable) {
+                generateStubs(tables);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

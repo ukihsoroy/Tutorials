@@ -15,7 +15,7 @@ public final class ConfigFactory {
 		config.setEmail("you_leet@foxmail.com");
 		config.setModuleName("case-generator");
 		config.setRootPackage("org.ko.generator");
-		config.setDomainPackage("bean");
+		config.setDomainPackage("entity");
 		config.setMapperPackage("dao");
 		config.setXmlPackage("mappers");
 		config.setNodePath("D:/node");

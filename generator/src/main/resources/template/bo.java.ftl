@@ -1,5 +1,7 @@
 package ${rootPackage}.bo;
 
-public class ${domainName}Bo {
+import ${rootPackage}.entity.${domainName};
+
+public class ${domainName}Bo extends ${domainName} {
 
 }

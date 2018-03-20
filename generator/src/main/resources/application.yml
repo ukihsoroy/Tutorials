@@ -4,28 +4,27 @@ spring:
   application.name: ko-generator
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    name:
+    url:
     username:
     password:
+
+generator:
+  moduleName: case-generator
+  tables: art_link
+  enable: false   #开启后生成全库
+
+rootPackage: org.ko.generator
+xmlPackage: mappers
+
+java.enable: true #开启后生成后台代码
+
+view:
+  filePath: D://
+  enable: true    #开启后生成前台代码
+  js:
+  html:
 
 copyProject:
   name: project-name
   path: D://
   enable: false
-
-generator:
-  moduleName: case-generator
-  package: org.ko.generator
-  mybatis:
-    enable: true
-  puncture:
-    enable: true
-    mapperXML: mappers
-  view:
-    enable: true
-    path:
-      root: D://generator-ui
-      js:
-      html:
-
-tables: []

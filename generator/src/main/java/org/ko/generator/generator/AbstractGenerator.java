@@ -3,9 +3,11 @@ package org.ko.generator.generator;
 import org.apache.commons.lang3.StringUtils;
 import org.ko.generator.bean.DBConfig;
 import org.ko.generator.bean.TableMetaData;
+import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,13 +18,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractGenerator {
+public abstract class AbstractGenerator implements ICodeGenerator{
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractGenerator.class);
 	
 	private static final Map<String, String> DATA_TYPE_MAP = new HashMap<>();
-	
-	protected abstract DBConfig getDBConfig();
+
+	protected DBConfig config = ConfigFactory.dbConfig();
+
+	@Value("${generator.tables}") protected String[] tables;
+
+	@Value("${generator.enable}") protected boolean generatorEnable;
 	
 	static{
 		DATA_TYPE_MAP.put("varchar", "String");
@@ -46,12 +52,8 @@ public abstract class AbstractGenerator {
 		return null;
 	}
 
-	protected abstract void generator ();
-
 	protected List<String> getAllTableNames() throws Exception {
 		List<String> tableNames = new ArrayList<>();
-		
-		DBConfig config = getDBConfig();
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		String connStr = "jdbc:mysql://" + config.getIp() + ":" + config.getPort() + "/information_schema" + "?autoReconnect=true&useUnicode=true&characterEncoding=utf-8";
@@ -74,8 +76,6 @@ public abstract class AbstractGenerator {
 	}
 	
 	protected List<TableMetaData> getTableMetaData(String table) throws Exception {
-		DBConfig config = getDBConfig();
-		
 		Class.forName("com.mysql.jdbc.Driver");
 		String connStr = "jdbc:mysql://" + config.getIp() + ":" + config.getPort() + "/" + config.getDb() + "?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false";
 		Connection conn = DriverManager.getConnection(connStr, config.getUser(), config.getPassword());

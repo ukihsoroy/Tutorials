@@ -3,6 +3,7 @@ package org.ko.generator.conf;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.util.HashMap;
@@ -13,27 +14,26 @@ public class GeneratorConfig {
 
     @Value("${generator.moduleName}") private String moduleName;
 
-    @Value("${generator.package}") private String packages;
+    @Value("${rootPackage}") private String rootPackage;
 
-    @Value("${generator.puncture.mapperXML}") private String mapperXML;
+    @Value("${xmlPackage}") private String xmlPackage;
 
-    @Value("${generator.view.path.root}") private String viewPath;
+    @Value("${view.enable}") private boolean viewEnable;
 
-    @Value("${generator.view.path.js}") private String jsPath;
+    @Value("${view.filePath}") private String viewPath;
 
-    @Value("${generator.view.path.html}") private String htmlPath;
+    @Value("${view.js}") private String jsPath;
+
+    @Value("${view.html}") private String htmlPath;
 
     @Bean("params")
     public HashMap<String, String> params() {
         HashMap<String, String> params = new HashMap<>();
         params.put("moduleName", moduleName);
-        params.put("packages", packages);
-        params.put("controller", packages + ".controller");
-        params.put("service", packages + ".service");
-        params.put("repository", packages + ".repository");
-        params.put("mappers", mapperXML);
-        params.put("js", viewPath + "/" + jsPath);
-        params.put("html", viewPath + "/" + htmlPath);
+        params.put("rootPackage", rootPackage);
+        params.put("xmlPackage", xmlPackage);
+        params.put("jsPath", viewPath + "/" + jsPath);
+        params.put("htmlPath", viewPath + "/" + htmlPath);
         return params;
     }
 
