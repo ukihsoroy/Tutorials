@@ -1,21 +1,14 @@
 package org.ko.generator.generator;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import freemarker.template.Template;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.ko.generator.bean.*;
+import org.ko.generator.bean.ColumnValue;
+import org.ko.generator.bean.Table;
+import org.ko.generator.bean.TableMetaData;
 import org.ko.generator.util.GeneratorHelper;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -24,11 +17,15 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import freemarker.template.Template;
 import org.springframework.stereotype.Component;
 
-import static org.ko.generator.constants.GeneratorConstants.MAIN_PATH;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.*;
+
+import static org.ko.generator.constants.GeneratorConstants.MAIN_JAVA;
 import static org.ko.generator.util.GeneratorHelper.formatPath;
 
 @Component
@@ -133,7 +130,7 @@ public class MybatisGenerator extends AbstractGenerator {
 				System.out.println(moduleRoot + " doens't exist");
 			}
 			
-			String javaDir = moduleRoot + MAIN_PATH + GeneratorHelper.converterPackage(config.getRootPackage()) + "/constants/";
+			String javaDir = moduleRoot + MAIN_JAVA + GeneratorHelper.converterPackage(config.getRootPackage()) + "/constants/";
 			String javaFileName = javaDir + domainName + "Constants.java";
 			
 			String javaFileDir = FilenameUtils.getFullPath(javaFileName);

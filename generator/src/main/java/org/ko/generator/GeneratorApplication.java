@@ -1,12 +1,12 @@
 package org.ko.generator;
 
-import org.ko.generator.util.Boot;
+import org.ko.generator.util.GeneratorHelper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class GeneratorApplication {
 
     public static void main(String[] args) {
-        Boot.run(GeneratorApplication.class, args);
+        GeneratorHelper.run(GeneratorApplication.class, args);
     }
 }

@@ -2,7 +2,8 @@ package org.ko.generator.constants;
 
 public class GeneratorConstants {
 
-    public static final String MAIN_PATH = "/src/main/java/";
+    public static final String MAIN_JAVA = "src/main/java/";
+    public static final String MAIN_RESOURCES = "src/main/resources/";
 
     public static final class SchemaColumnName {
         public static final String COLUMN_NAME = "COLUMN_NAME";

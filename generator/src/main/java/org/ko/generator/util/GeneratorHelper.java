@@ -1,17 +1,18 @@
 package org.ko.generator.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.ko.generator.generator.Generator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-
-import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_JAVA;
-import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_RESOURCES;
+import org.springframework.boot.SpringApplication;
 
 public final class GeneratorHelper {
 
     private static final Logger _LOGGER = LoggerFactory.getLogger(GeneratorHelper.class);
+
+    public static void run (Class clazz, String[] args) {
+        SpringApplication.run(clazz, args).getBean(Generator.class).generator();
+    }
 
     public static String buildDomainName(String table){
         String[] elements = StringUtils.split(table, "_");
@@ -78,11 +79,6 @@ public final class GeneratorHelper {
             path.append("/");
         }
         return path.toString();
-    }
-
-    public static final class Constants {
-        public static final String MAIN_JAVA = "src/main/java/";
-        public static final String MAIN_RESOURCES = "src/main/resources/";
     }
 
     private GeneratorHelper() {}

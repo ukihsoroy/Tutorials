@@ -19,8 +19,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.*;
 
-import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_JAVA;
-import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_RESOURCES;
+import static org.ko.generator.constants.GeneratorConstants.MAIN_JAVA;
+import static org.ko.generator.constants.GeneratorConstants.MAIN_RESOURCES;
 import static org.ko.generator.util.GeneratorHelper.formatPath;
 
 
