@@ -1,11 +1,7 @@
 package org.ko.generator;
 
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ko.generator.conf.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,15 +15,26 @@ public class MyBatisGeneratorTests extends MybatisGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(MyBatisGeneratorTests.class);
 	
-	@Test public void generator() {
-		buildSingleMapper();
+	@Test
+	@Override
+	public void generator() {
+		buildSingleMapper("art_link");
+//		buildAllMappers();
 	}
 
-	private void buildSingleMapper() {
-		String[] tables = new String[]{"art_link"};
+	private void buildSingleMapper(String... tables) {
 		try {
 			generateStubs(tables);
 			generateDomainConstants(tables);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void buildAllMappers() {
+		try {
+			super.buildAllMappers();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

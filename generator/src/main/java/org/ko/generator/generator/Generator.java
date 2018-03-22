@@ -10,6 +10,7 @@ public class Generator implements ICodeGenerator{
 
     @Autowired private List<ICodeGenerator> generators;
 
+    @Override
     public void generator () {
         if (CollectionUtils.isNotEmpty(generators)) {
             generators.forEach(ICodeGenerator::generator);

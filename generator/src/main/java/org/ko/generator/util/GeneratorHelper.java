@@ -71,11 +71,18 @@ public final class GeneratorHelper {
         return abbr;
     }
 
-
+    public static String formatPath (String... args) {
+        StringBuilder path = new StringBuilder();
+        for (String arg : args) {
+            path.append(arg);
+            path.append("/");
+        }
+        return path.toString();
+    }
 
     public static final class Constants {
-        public static final String MAIN_JAVA = "/src/main/java/";
-        public static final String MAIN_RESOURCES = "/src/main/resources/";
+        public static final String MAIN_JAVA = "src/main/java/";
+        public static final String MAIN_RESOURCES = "src/main/resources/";
     }
 
     private GeneratorHelper() {}

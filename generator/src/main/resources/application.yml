@@ -4,7 +4,7 @@ spring:
   application.name: ko-generator
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://111.231.224.68:3306/art-prototype?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://111.231.224.68:3306/art-prototype?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
     name: art-prototype
     username: root
     password: tiger
@@ -15,6 +15,8 @@ generator:
   enable: false   #开启后生成全库
 
 rootPackage: org.ko.generator
+domainPackage: entity #数据库域对象包名
+mapperPackage: dao
 xmlPackage: mappers
 
 java.enable: true #开启后生成后台代码

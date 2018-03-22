@@ -1,9 +1,8 @@
 package org.ko.generator.generator;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ko.generator.bean.DBConfig;
+import org.ko.generator.bean.Config;
 import org.ko.generator.bean.TableMetaData;
-import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,28 +10,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.ko.generator.constants.GeneratorConstants.InformationSchemaSql.INFORMATION_SCHEMA_COLUMNS;
+import static org.ko.generator.constants.GeneratorConstants.InformationSchemaSql.INFORMATION_SCHEMA_TABLES;
+import static org.ko.generator.constants.GeneratorConstants.SchemaColumnName.*;
+
 public abstract class AbstractGenerator implements ICodeGenerator{
 
-	private static final Logger log = LoggerFactory.getLogger(AbstractGenerator.class);
+	private static final Logger _LOGGER = LoggerFactory.getLogger(AbstractGenerator.class);
 	
 	private static final Map<String, String> DATA_TYPE_MAP = new HashMap<>();
-
-	protected DBConfig config = ConfigFactory.dbConfig();
 
 	@Value("${generator.tables}") protected String[] tables;
 	@Value("${generator.enable}") protected boolean generatorEnable;
 	@Value("${spring.datasource.name}") private String dbName;
+	@Value("${spring.datasource.url}") protected String url;
+	@Value("${spring.datasource.username}") protected String username;
+	@Value("${spring.datasource.password}") protected String password;
 
 	@Autowired private JdbcTemplate jdbcTemplate;
+	@Autowired protected Config config;
 
 	static{
 		DATA_TYPE_MAP.put("varchar", "String");
@@ -57,59 +58,41 @@ public abstract class AbstractGenerator implements ICodeGenerator{
 	}
 
 	protected List<String> getAllTableNames() throws Exception {
-		String sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = ?";
-		return jdbcTemplate.queryForList(sql, String.class, dbName);
+		return jdbcTemplate.queryForList(INFORMATION_SCHEMA_TABLES, String.class, dbName);
 	}
 	
 	protected List<String> getColumnNames(List<TableMetaData> data) throws Exception {
 		List<String> columns = new ArrayList<>();
 		data.stream().forEach(d -> columns.add(d.getColumnName()));
 		return columns;
-		
+
 	}
 	
 	protected List<TableMetaData> getTableMetaData(String table) throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		String connStr = "jdbc:mysql://" + config.getIp() + ":" + config.getPort() + "/" + config.getDb() + "?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false";
-		Connection conn = DriverManager.getConnection(connStr, config.getUser(), config.getPassword());
-		String sql = "select * from information_schema.columns where table_name='" + table + "' and table_schema='" + config.getDb() + "'";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		ResultSet rs = stmt.executeQuery();
-		
-		List<TableMetaData> list = new ArrayList<>();
-		while(rs.next()){
+		return jdbcTemplate.query(INFORMATION_SCHEMA_COLUMNS, (rs, i) -> {
 			TableMetaData data = new TableMetaData();
-			
-			data.setColumnName(rs.getString("COLUMN_NAME"));
-			data.setComment(StringUtils.trimToEmpty(rs.getString("COLUMN_COMMENT")));
-			data.setDataType(rs.getString("DATA_TYPE").toLowerCase());
-			data.setPrimaryKey("PRI".equalsIgnoreCase(rs.getString("COLUMN_KEY")));
-			
+			data.setColumnName(rs.getString(COLUMN_NAME));
+			data.setComment(StringUtils.trimToEmpty(rs.getString(COLUMN_COMMENT)));
+			data.setDataType(rs.getString(DATA_TYPE).toLowerCase());
+			data.setPrimaryKey(PRI.equalsIgnoreCase(rs.getString(COLUMN_KEY)));
 			String len, scale = null;
 			do {
-				len = rs.getString("CHARACTER_MAXIMUM_LENGTH");
+				len = rs.getString(CHARACTER_MAXIMUM_LENGTH);
 				if(len != null){
 					break;
 				}
-				
-				len = rs.getString("NUMERIC_PRECISION");
+				len = rs.getString(NUMERIC_PRECISION);
 				if(len != null){
-					scale = rs.getString("NUMERIC_SCALE");
+					scale = rs.getString(NUMERIC_SCALE);
 				}
 			} while (false);
-
 			Integer length = GeneratorHelper.convertToInt(len);
 			if(StringUtils.isNotBlank(scale)){
 				length = length + GeneratorHelper.convertToInt(scale) + 1;
 			}
-			
 			data.setLength(length);
-			
-			list.add(data);
-		}
-		stmt.close();
-		conn.close();
-		return list;
+			return data;
+		}, table, dbName);
 	}
 	
 	protected String getJavaTypeName(TableMetaData d){

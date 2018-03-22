@@ -19,8 +19,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://${ip}:${port?c}/${db}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
-                        userId="${user}" password="${pwd}"/>
+                        connectionURL="${connectionUrl}"
+                        userId="${username}" password="${password}"/>
+
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>

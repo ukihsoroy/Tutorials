@@ -16,7 +16,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.*;
-import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -27,15 +26,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import freemarker.template.Template;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static org.ko.generator.constants.GeneratorConstans.MAIN_PATH;
+import static org.ko.generator.constants.GeneratorConstants.MAIN_PATH;
+import static org.ko.generator.util.GeneratorHelper.formatPath;
 
 @Component
 public class MybatisGenerator extends AbstractGenerator {
 
-	private static final Logger log = LoggerFactory.getLogger(MybatisGenerator.class);
+	private static final Logger _LOGGER = LoggerFactory.getLogger(MybatisGenerator.class);
 	
 	private static final String TEMPLATE_NAME = "generator.ftl";
 	
@@ -43,13 +42,11 @@ public class MybatisGenerator extends AbstractGenerator {
 
 	@Autowired private freemarker.template.Configuration freeMarkerConfiguration;
 
-	protected GeneratorConfig generator = ConfigFactory.generatorConfig();
-
 	private String mbgXmlPath = "d:/generator.xml";
 	
 	protected void generateDomainConstants(String...tableNames) throws Exception {
 		if(ArrayUtils.isEmpty(tableNames)){
-			log.info("no table name was specified");
+			_LOGGER.info("no table name was specified");
 			return;
 		}
 		
@@ -62,7 +59,7 @@ public class MybatisGenerator extends AbstractGenerator {
 			
 			Map<String, List<ColumnValue>> values = new HashMap<>();
 			for(TableMetaData d : data){
-				if(d.getComment().contains("#")){
+				if (d.getComment().contains("#")) {
 					// 列名
 					String[] elements = StringUtils.split(d.getColumnName(), "_");
 					String className = "";
@@ -120,13 +117,13 @@ public class MybatisGenerator extends AbstractGenerator {
 			model.put("values", values);
 			model.put("meta", data);
 			model.put("now", DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
-			model.put("rootPackage", generator.getRootPackage());
+			model.put("rootPackage", config.getRootPackage());
 			
 			String dir = new File(this.getClass().getClassLoader().getResource(".").toURI()).getAbsolutePath();
 			
 			int index = dir.indexOf("target");
 			String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
-			moduleRoot += "/" + generator.getModuleName();
+			moduleRoot = formatPath(moduleRoot, config.getModuleName());
 			
 			if(StringUtils.isNotBlank(getJavaFileOutputFolder())){
 				moduleRoot = getJavaFileOutputFolder();
@@ -136,7 +133,7 @@ public class MybatisGenerator extends AbstractGenerator {
 				System.out.println(moduleRoot + " doens't exist");
 			}
 			
-			String javaDir = moduleRoot + MAIN_PATH + GeneratorHelper.converterPackage(generator.getRootPackage()) + "/constants/";
+			String javaDir = moduleRoot + MAIN_PATH + GeneratorHelper.converterPackage(config.getRootPackage()) + "/constants/";
 			String javaFileName = javaDir + domainName + "Constants.java";
 			
 			String javaFileDir = FilenameUtils.getFullPath(javaFileName);
@@ -146,15 +143,15 @@ public class MybatisGenerator extends AbstractGenerator {
 			Writer out = new OutputStreamWriter(new FileOutputStream(new File(javaFileName)), "UTF-8");
 			template.process(model, out);
 			out.close();
-			
-			log.info("generated {}", javaFileName);
+
+			_LOGGER.info("generated {}", javaFileName);
 		}
 		
 	}
 	
 	protected void generateStubs(String...tableNames) throws Exception {
 		if(ArrayUtils.isEmpty(tableNames)){
-			log.info("no table name was specified");
+			_LOGGER.info("no table name was specified");
 			return;
 		}
 		
@@ -167,7 +164,7 @@ public class MybatisGenerator extends AbstractGenerator {
 		DefaultShellCallback callback = new DefaultShellCallback(true);
 		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 		myBatisGenerator.generate(null);
-		log.info("generated done !");
+		_LOGGER.info("mybatis generated done !");
 	}
 	
 	private void makeXml(String...tableNames) throws Exception {
@@ -191,17 +188,15 @@ public class MybatisGenerator extends AbstractGenerator {
 		}
 		
 		Map<String, Object> model = new HashMap<>();
-		model.put("ip", config.getIp());
-		model.put("db", config.getDb());
-		model.put("user", config.getUser());
-		model.put("pwd", config.getPassword());
-		model.put("port", config.getPort());
+		model.put("connectionUrl", url);
+		model.put("username", username);
+		model.put("password", password);
 		model.put("tables", tables);
-		model.put("module", generator.getModuleName());
-		model.put("rootPackage", generator.getRootPackage());
-		model.put("domainPackage", generator.getDomainPackage());
-		model.put("mapperPackage", generator.getMapperPackage());
-		model.put("xmlPackage", generator.getXmlPackage());
+		model.put("module", config.getModuleName());
+		model.put("rootPackage", config.getRootPackage());
+		model.put("domainPackage", config.getDomainPackage());
+		model.put("mapperPackage", config.getMapperPackage());
+		model.put("xmlPackage", config.getXmlPackage());
 		
 		Template template = freeMarkerConfiguration.getTemplate(TEMPLATE_NAME);
 		Writer out = new OutputStreamWriter(new FileOutputStream(new File(mbgXmlPath)), "UTF-8");
@@ -209,7 +204,7 @@ public class MybatisGenerator extends AbstractGenerator {
 		out.close();
 	}
 
-	private void buildAllMappers() throws Exception {
+	protected void buildAllMappers() throws Exception {
 		List<String> tableNames = getAllTableNames();
 		String[] tables = tableNames.toArray(new String[]{});
 

@@ -6,7 +6,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.*;
-import org.ko.generator.conf.ConfigFactory;
 import org.ko.generator.util.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +21,7 @@ import java.util.*;
 
 import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_JAVA;
 import static org.ko.generator.util.GeneratorHelper.Constants.MAIN_RESOURCES;
+import static org.ko.generator.util.GeneratorHelper.formatPath;
 
 
 @Component
@@ -31,10 +31,6 @@ public class ServerCodeGenerator extends AbstractGenerator {
 
 
     @Autowired private Configuration freeMarkerConfiguration;
-
-    protected GeneratorConfig generator = ConfigFactory.generatorConfig();
-
-    protected String moduleName = ConfigFactory.generatorConfig().getModuleName();
 
     @Value("${java.enable}") private boolean javaEnable;
 
@@ -57,7 +53,7 @@ public class ServerCodeGenerator extends AbstractGenerator {
 
         int index = dir.indexOf("target");
         String moduleRoot = new File(dir.substring(0, index)).getParent().toString();
-        moduleRoot += "/" + moduleName;
+        moduleRoot = formatPath(moduleRoot, config.getModuleName());
 
         for (String table : tableNames) {
             //获取表全部字段
@@ -81,13 +77,14 @@ public class ServerCodeGenerator extends AbstractGenerator {
             model.put("meta", meta);
             //生成时间
             model.put("now", DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
-            model.put("rootPackage", generator.getRootPackage());
+            model.put("rootPackage", config.getRootPackage());
             for (String ftl : ENV_JAVA) {
                 Template template = freeMarkerConfiguration.getTemplate(ftl);
-                String path = getFilePath(moduleRoot, domainName, ftl);
-                Writer out = new OutputStreamWriter(new FileOutputStream(new File(path)), "UTF-8");
+                String fileName = getFilePath(moduleRoot, domainName, ftl);
+                Writer out = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
                 template.process(model, out);
                 out.close();
+                _LOGGER.info("generated {}", fileName);
             }
 
         }
@@ -98,10 +95,10 @@ public class ServerCodeGenerator extends AbstractGenerator {
         String dirPath;
         switch (ary[1]) {
             case "java":
-                dirPath = moduleRoot + MAIN_JAVA + GeneratorHelper.converterPackage(generator.getRootPackage()) + "/" + ary[0] + "/";
+                dirPath = moduleRoot + MAIN_JAVA + GeneratorHelper.converterPackage(config.getRootPackage()) + "/" + ary[0] + "/";
                 break;
             case "xml":
-                dirPath = moduleRoot + MAIN_RESOURCES + GeneratorHelper.converterPackage(generator.getXmlPackage()) + "/";
+                dirPath = moduleRoot + MAIN_RESOURCES + GeneratorHelper.converterPackage(config.getXmlPackage()) + "/";
                 break;
             default:
                 throw new RuntimeException("happen error");

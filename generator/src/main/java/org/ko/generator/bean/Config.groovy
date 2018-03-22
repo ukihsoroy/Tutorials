@@ -1,12 +1,6 @@
 package org.ko.generator.bean
 
-class GeneratorConfig {
-
-    String author
-
-    String email
-
-    String mobile
+class Config {
 
     String moduleName
 
@@ -18,10 +12,9 @@ class GeneratorConfig {
 
     String xmlPackage
 
-    String nodePath
+    String jsPath
 
-    String html
+    String htmlPath
 
-    String js;
 
 }
