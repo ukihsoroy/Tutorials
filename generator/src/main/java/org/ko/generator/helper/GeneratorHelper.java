@@ -1,4 +1,4 @@
-package org.ko.generator.util;
+package org.ko.generator.helper;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ko.generator.generator.Generator;

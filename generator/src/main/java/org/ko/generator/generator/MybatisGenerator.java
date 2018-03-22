@@ -9,7 +9,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.ColumnValue;
 import org.ko.generator.bean.Table;
 import org.ko.generator.bean.TableMetaData;
-import org.ko.generator.util.GeneratorHelper;
+import org.ko.generator.helper.GeneratorHelper;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
@@ -26,7 +26,7 @@ import java.io.Writer;
 import java.util.*;
 
 import static org.ko.generator.constants.GeneratorConstants.MAIN_JAVA;
-import static org.ko.generator.util.GeneratorHelper.formatPath;
+import static org.ko.generator.helper.GeneratorHelper.formatPath;
 
 @Component
 public class MybatisGenerator extends AbstractGenerator {

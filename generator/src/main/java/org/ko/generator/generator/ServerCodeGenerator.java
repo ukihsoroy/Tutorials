@@ -6,7 +6,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.ko.generator.bean.*;
-import org.ko.generator.util.GeneratorHelper;
+import org.ko.generator.helper.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.*;
 
 import static org.ko.generator.constants.GeneratorConstants.MAIN_JAVA;
 import static org.ko.generator.constants.GeneratorConstants.MAIN_RESOURCES;
-import static org.ko.generator.util.GeneratorHelper.formatPath;
+import static org.ko.generator.helper.GeneratorHelper.formatPath;
 
 
 @Component

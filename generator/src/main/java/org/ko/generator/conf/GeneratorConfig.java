@@ -8,7 +8,7 @@ import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.util.Properties;
 
-import static org.ko.generator.util.GeneratorHelper.formatPath;
+import static org.ko.generator.helper.GeneratorHelper.formatPath;
 
 @Configuration
 public class GeneratorConfig {

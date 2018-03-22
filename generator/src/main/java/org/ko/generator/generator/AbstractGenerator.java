@@ -3,7 +3,7 @@ package org.ko.generator.generator;
 import org.apache.commons.lang3.StringUtils;
 import org.ko.generator.bean.Config;
 import org.ko.generator.bean.TableMetaData;
-import org.ko.generator.util.GeneratorHelper;
+import org.ko.generator.helper.GeneratorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

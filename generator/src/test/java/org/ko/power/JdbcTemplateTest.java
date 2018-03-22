@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ko.generator.bean.Config;
 import org.ko.generator.bean.TableMetaData;
-import org.ko.generator.util.GeneratorHelper;
+import org.ko.generator.helper.GeneratorHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
