@@ -1,0 +1,88 @@
+{
+  "properties": [
+    {
+      "name": "spring.datasource.ip",
+      "type": "java.lang.String",
+      "description": "数据库IP."
+    },
+    {
+      "name": "spring.datasource.port",
+      "type": "java.lang.String",
+      "description": "数据库端口."
+    },
+    {
+      "name": "generator.moduleName",
+      "type": "java.lang.String",
+      "description": "生成的模块名称."
+    },
+    {
+      "name": "generator.tables",
+      "type": "java.lang.String",
+      "description": "需要生成的表名称, 逗号分割."
+    },
+    {
+      "name": "generator.enable",
+      "type": "java.lang.Boolean",
+      "description": "开启后自动生成全库."
+    },
+    {
+      "name": "rootPackage",
+      "type": "java.lang.String",
+      "description": "生成java文件根目录."
+    },
+    {
+      "name": "domainPackage",
+      "type": "java.lang.String",
+      "description": "mybatis数据库域对象包名称."
+    },
+    {
+      "name": "mapperPackage",
+      "type": "java.lang.String",
+      "description": "mybatis 接口包名称."
+    },
+    {
+      "name": "xmlPackage",
+      "type": "java.lang.String",
+      "description": "mybatis xml包名称."
+    },
+    {
+      "name": "java.enable",
+      "type": "java.lang.Boolean",
+      "description": "自动生成java后台文件."
+    },
+    {
+      "name": "view.filePath",
+      "type": "java.lang.String",
+      "description": "前台文件根目录."
+    },
+    {
+      "name": "view.enable",
+      "type": "java.lang.Boolean",
+      "description": "自动生成前台文件."
+    },
+    {
+      "name": "view.js",
+      "type": "java.lang.String",
+      "description": "js文件相对路径."
+    },
+    {
+      "name": "view.html",
+      "type": "java.lang.String",
+      "description": "html文件相对路径."
+    },
+    {
+      "name": "copyProject.name",
+      "type": "java.lang.String",
+      "description": "拷贝工程名."
+    },
+    {
+      "name": "copyProject.path",
+      "type": "java.lang.String",
+      "description": "输出路径."
+    },
+    {
+      "name": "copyProject.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启拷贝."
+    }
+  ] }

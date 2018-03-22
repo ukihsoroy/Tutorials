@@ -4,14 +4,16 @@ spring:
   application.name: ko-generator
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://111.231.224.68:3306/art-prototype?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
+    ip: 111.231.224.68
+    port: 3306
     name: art-prototype
     username: root
     password: tiger
+    url: jdbc:mysql://${spring.datasource.ip}:${spring.datasource.port}/${spring.datasource.name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
 
 generator:
   moduleName: case-generator
-  tables: art_link
+  tables: art_link, art_region
   enable: false   #开启后生成全库
 
 rootPackage: org.ko.generator
