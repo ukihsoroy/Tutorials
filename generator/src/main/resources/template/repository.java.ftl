@@ -9,4 +9,5 @@ import ${rootPackage}.dao.${domainName}Mapper;
 public interface ${domainName}Repository extends ${domainName}Mapper{
 
 
+
 }
