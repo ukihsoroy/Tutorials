@@ -6,6 +6,8 @@ class TableMetaData {
 
     String columnName
 
+    String name
+
     String comment
 
     String dataType

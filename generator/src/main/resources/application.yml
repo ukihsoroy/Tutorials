@@ -24,10 +24,10 @@ xmlPackage: mappers
 java.enable: true #开启后生成后台代码
 
 view:
-  filePath: D://
+  filePath: D://case-html
   enable: true    #开启后生成前台代码
-  js:
-  html:
+  js: js
+  html: module
 
 copyProject:
   name: project-name

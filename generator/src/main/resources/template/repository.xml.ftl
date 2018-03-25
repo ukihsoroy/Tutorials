@@ -11,14 +11,10 @@
     <insert id="insertList">
         INSERT INTO ${table}
           (
-        <#list meta as m>
-            <#if m_index!=0>,</#if>${m.columnName}
-        </#list>
+        <#list meta as m><#if m_index!=0>,</#if>${m.columnName}</#list>
           )
         <foreach collection="${variableName}s" item="${abbr}" open="VALUES (" separator="), (" close=")">
-          <#list meta as m>
-            <#if m_index!=0>,</#if>#${r'{'}${m.columnName},jdbcType=INTEGER${r'}'}
-          </#list>
+          <#list meta as m><#if m_index!=0>,</#if>#${r'{'}${m.fieldName},jdbcType=INTEGER${r'}'}</#list>
         </foreach>
     </insert>
 </mapper>
