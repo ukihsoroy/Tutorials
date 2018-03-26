@@ -1,7 +1,7 @@
 # java 教程
 
 ### **样例列表** 
-- `activiti-modeler`: activiti流程引擎-动态部署
+- `activiti-deploy`: activiti流程引擎-动态部署
 - `apache-mina`: Apache NIO框架
 - `apache-poi`: Excel, Word, PPT 导入导出
 - `apache-shiro`: Apache 轻量级安全框架
