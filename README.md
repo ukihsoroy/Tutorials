@@ -8,7 +8,6 @@
 - `apache-zookeeper`: Apache 高性能协调服务
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
-- `case-generator`: 生成工具测试
 - `fastDFS`: 文件断点续传
 - `generator`: 快速开发生成工具(html, css, js, mvc)
 - `jackson`: json序列化工具
