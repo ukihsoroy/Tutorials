@@ -1,2 +1,10 @@
 server:
   port: 1337
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///art-prototype?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
+    username: ko
+    password: tiger
+
