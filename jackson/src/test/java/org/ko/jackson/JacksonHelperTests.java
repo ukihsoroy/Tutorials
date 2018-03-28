@@ -55,4 +55,17 @@ public class JacksonHelperTests {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void formatJson () {
+        City city = new City();
+        city.setCity("11");
+        city.setCityPath("222");
+        try {
+            String json = JacksonHelper.parseJson(city);
+            System.out.println(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

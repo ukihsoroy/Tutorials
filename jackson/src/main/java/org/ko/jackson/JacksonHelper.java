@@ -19,6 +19,10 @@ public final class JacksonHelper {
         return _MAPPER.readValue(file, _MAPPER.getTypeFactory().constructParametricType(List.class, clazz));
     }
 
+    public static String parseJson (Object res) throws IOException {
+        return _MAPPER.writeValueAsString(res);
+    }
+
 
     private JacksonHelper () {}
 }
