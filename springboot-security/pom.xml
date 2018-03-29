@@ -6,8 +6,8 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.9.RELEASE</version>
-    <relativePath/>
+    <version>2.0.0.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>org.ko</groupId>
@@ -20,6 +20,7 @@
 
   <modules>
     <module>security1-login</module>
+    <module>security2-db</module>
   </modules>
 
 </project>

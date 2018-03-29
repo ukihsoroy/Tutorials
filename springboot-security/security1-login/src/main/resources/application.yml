@@ -4,7 +4,7 @@ spring:
 server:
   session:
     timeout: 3600 #session 超时时间 (秒)
-  port: 8080  #端口号
+  port: 1337  #端口号
 logging:
   level: info
 
