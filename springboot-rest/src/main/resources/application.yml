@@ -1,0 +1,10 @@
+server:
+  port: 1337
+
+spring:
+  application.name: springboot-rest
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: tiger
+    url: jdbc:mysql://111.231.224.68:3306/art-prototype?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
