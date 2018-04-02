@@ -6,6 +6,8 @@ public class Result<T> {
 
     private T data;
 
+    private Long count;
+
     public boolean isSuccess() {
         return success;
     }
@@ -20,5 +22,13 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 }

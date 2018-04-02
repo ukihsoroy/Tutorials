@@ -1,6 +1,7 @@
 package org.ko.api.service;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.ko.api.bo.PlanBo;
 import org.ko.api.command.PlanCommand;
 import org.ko.api.entity.Plan;
@@ -30,6 +31,7 @@ public class PlanService {
         List<PlanBo> serviceApplies = planRepository.queryList(command);
         result.setSuccess(true);
         result.setData(serviceApplies);
+        result.setCount(new PageInfo(serviceApplies).getTotal());
         return result;
     }
 
