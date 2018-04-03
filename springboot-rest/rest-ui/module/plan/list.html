@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/node_modules/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
-    <div id="_list">
+    <div id="_plan">
         <!--查询区域-->
         <el-form ref="form" :model="params" :inline="true" label-width="80px">
             <el-row :gutter="20">
@@ -49,8 +49,9 @@
                 </el-form-item>
             </el-row>
         </el-form>
-        <el-button @click="query" type="primary" icon="el-icon-plus">新建计划</el-button>
+        <el-button @click="add" type="primary" icon="el-icon-plus">新建计划</el-button>
         <div style="height: 20px"></div>
+        <!--表格区域-->
         <template>
             <el-table :data="rows" border stripe>
                 <el-table-column type="index" label="序号" width="50px"></el-table-column>
@@ -67,6 +68,7 @@
             </el-table>
         </template>
         <div style="height: 20px"></div>
+        <!--分页区域-->
         <template>
             <div style="text-align:center">
                 <el-pagination
@@ -81,9 +83,9 @@
             </div>
         </template>
     </div>
+    <script src="/lib/vue.min.js"></script>
+    <script src="/lib/vue-resource.min.js"></script>
+    <script src="/node_modules/element-ui/lib/index.js"></script>
+    <script src="/js/plan/list.js"></script>
 </body>
-<script src="/lib/vue.min.js"></script>
-<script src="/lib/vue-resource.min.js"></script>
-<script src="/node_modules/element-ui/lib/index.js"></script>
-<script src="/js/plan/list.js"></script>
 </html>

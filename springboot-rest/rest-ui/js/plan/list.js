@@ -1,7 +1,8 @@
-
-Vue.use(window.ELEMENT);
-var _plan = new Vue({
-    el: '#_list',
+/**
+ * 计划列表页
+ */
+var _planVue = new Vue({
+    el: '#_plan',
     data: {
         params: {},
         rows: [{
@@ -27,6 +28,10 @@ var _plan = new Vue({
     methods: {
         query: function () {
             debugger;
+        },
+        add: function () {
+            debugger;
+            window.location.href = 'edit.html';
         },
         findSuggest: function (a, b, c) {
         },
