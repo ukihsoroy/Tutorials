@@ -52,6 +52,7 @@
         <module>springboot-jdbc</module>
         <module>springboot-mybatis-annotation</module>
         <module>springboot-mybatis-xml</module>
+        <module>springboot-rest</module>
         <module>springboot-mybatis-multi-ds</module>
         <module>springboot-data-jpa</module>
         <module>springboot-data-mongo</module>
