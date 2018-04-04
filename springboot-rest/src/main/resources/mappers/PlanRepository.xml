@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.ko.api.repository.PlanRepository">
 
-    <select id="queryList" resultType="org.ko.generator.bo.PlanBo">
+    <select id="queryList" resultType="org.ko.api.bo.PlanBo">
         SELECT
             *
         FROM art_plan p
@@ -16,12 +16,12 @@
         <if test="endTime != null">
             AND p.submit_dt &lt;= #{endTime}
         </if>
-        <if test="status != null and status != ''toString()">
+        <if test="status != null and status != ''.toString()">
             AND p.status = #{status}
         </if>
     </select>
 
-    <select id="queryDetail" resultType="org.ko.generator.bo.PlanBo">
+    <select id="queryDetail" resultType="org.ko.api.bo.PlanBo">
         SELECT * FROM art_plan p WHERE p.id = #{id}
     </select>
 
