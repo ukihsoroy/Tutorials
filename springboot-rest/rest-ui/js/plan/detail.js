@@ -54,19 +54,8 @@ var _planVue = new Vue({
                 };
             }
         },
-        submitForm: function (formName) {
-            this.$refs[formName].validate(function(valid){
-                if (valid) {
-                    debugger;
-                    alert('submit!');
-                } else {
-                    console.log('error submit!!');
-                    return false;
-                }
-            });
-        },
-        resetForm: function (formName) {
-            this.$refs[formName].resetFields();
+        back: function () {
+            window.location.href = 'list.html';
         }
     }
 })

@@ -1,11 +1,11 @@
 /**
  * 计划新建/编辑页面
  */
-
+Vue.http.options.emulateJSON = true;
 var _planVue = new Vue({
     el: '#_plan',
     data: {
-        id: '1',
+        id: '21e2d4697eef46308be9c6f06e135977',
         form: {
             planCode: '',
             planName: '',
@@ -39,33 +39,41 @@ var _planVue = new Vue({
     methods: {
         editPage: function () {
             if (this.id) {
-                this.form = {
-                    planCode: '111',
-                    planName: '111',
-                    submitDt: '2018-03-05 12:00:00',
-                    submitUser: '111',
-                    planStatus: '1',
-                    deleteI: 'N',
-                    versionN: '1',
-                    createUserId: '111',
-                    createDt: '2017-03-11 12:00:00',
-                    modifyUserId: '123',
-                    modifyDt: '2017-03-11 12:00:00'
-                };
+                const _ = this;
+                const url = 'http://localhost:3342/rest/plan/' + _.id;
+                _.$http.get(url)
+                    .then(function (r) {
+                        if (r.ok && r.body.success) {
+                            _.form = r.body.data;
+                        }
+                    })
             }
         },
-        submitForm: function (formName) {
+        submit: function (formName) {
+            const _ = this;
             this.$refs[formName].validate(function(valid){
                 if (valid) {
-                    debugger;
-                    alert('submit!');
-                } else {
-                    console.log('error submit!!');
-                    return false;
+                    _.$http({
+                        url: 'http://localhost:3342/rest/plan',
+                        method: _.id ? 'PUT' : 'POST',
+                        body: JSON.stringify(_.form)
+                    }).then(function (r) {
+                        if (r.ok && r.body.success) {
+                            _.$message({
+                                message: _.id ? '更新完成' : '新增完成',
+                                type: 'success',
+                                center: true,
+                                showClose: true,
+                                onClose: function () {
+                                    window.location.href = 'list.html';
+                                }
+                            })
+                        }
+                    });
                 }
             });
         },
-        resetForm: function (formName) {
+        reset: function (formName) {
             this.$refs[formName].resetFields();
         }
     }

@@ -42,7 +42,6 @@
                     </template>
                 </el-col>
             </el-form-item>
-            <el-form-item label="逻辑删除" prop="deleteI">
                 <el-radio-group v-model="form.deleteI" disabled>
                     <el-radio label="Y">是</el-radio>
                     <el-radio label="N">否</el-radio>
@@ -82,8 +81,7 @@
                 </el-date-picker>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitForm('form')">立即创建</el-button>
-                <el-button @click="resetForm('form')">重置</el-button>
+                <el-button type="warning" @click="back">返回</el-button>
             </el-form-item>
         </el-form>
     </div>
