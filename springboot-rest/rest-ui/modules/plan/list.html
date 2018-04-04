@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>列表页</title>
-    <link rel="stylesheet" href="/node_modules/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/node_modules/._element-ui@2.3.2@element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
     <div id="_plan">
         <!--查询区域-->
-        <el-form ref="form" :model="params" :inline="true" label-width="80px">
+        <el-form ref="params" :model="params" :inline="true" label-width="80px">
             <el-row :gutter="20">
                 <el-form-item label="计划编号">
                     <el-autocomplete
@@ -37,7 +37,7 @@
                 </el-form-item>
             </el-row>
             <el-row :gutter="20">
-                <el-form-item label="活动时间">
+                <el-form-item label="计划时间">
                     <el-date-picker
                             v-model="params.time"
                             type="datetimerange"
@@ -55,10 +55,18 @@
         <template>
             <el-table :data="rows" border stripe>
                 <el-table-column type="index" label="序号" width="50px"></el-table-column>
-                <el-table-column prop="date" label="日期"></el-table-column>
-                <el-table-column prop="name" label="姓名"></el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
-                <el-table-column label="操作">
+                <el-table-column prop="planCode" label="计划编码"></el-table-column>
+                <el-table-column prop="planName" label="计划名称"></el-table-column>
+                <el-table-column prop="submitUser" label="提交人"></el-table-column>
+                <el-table-column prop="submitDt" label="提交时间"></el-table-column>
+                <el-table-column prop="planStatus" label="计划状态"></el-table-column>
+                <el-table-column prop="deleteI" label="逻辑删除"></el-table-column>
+                <el-table-column prop="versionN" label="版本号"></el-table-column>
+                <el-table-column prop="createUserId" label="创建人"></el-table-column>
+                <el-table-column prop="createDt" label="创建时间"></el-table-column>
+                <el-table-column prop="modifyUserId" label="更新人"></el-table-column>
+                <el-table-column prop="modifyDt" label="更新时间"></el-table-column>
+                <el-table-column label="操作" width="220px">
                     <template slot-scope="scope">
                         <el-button size="mini" @click="edit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="mini" @click="detail(scope.$index, scope.row)">详情</el-button>
@@ -85,7 +93,7 @@
     </div>
     <script src="/lib/vue.min.js"></script>
     <script src="/lib/vue-resource.min.js"></script>
-    <script src="/node_modules/element-ui/lib/index.js"></script>
+    <script src="/node_modules/._element-ui@2.3.2@element-ui/lib/index.js"></script>
     <script src="/js/plan/list.js"></script>
 </body>
 </html>

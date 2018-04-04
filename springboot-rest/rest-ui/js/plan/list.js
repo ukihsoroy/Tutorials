@@ -6,21 +6,53 @@ var _planVue = new Vue({
     data: {
         params: {},
         rows: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            planCode: 'plan001',
+            planName: '王小虎',
+            submitUser: '王小虎',
+            submitDt: '2018-03-04',
+            planStatus: '1',
+            deleteI: 'N',
+            versionN: 1,
+            createUserId: '001',
+            createDt: '2018-03-03',
+            modifyUserId: '002',
+            modifyDt: '2018-03-04'
         }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
+            planCode: 'plan001',
+            planName: '王小虎',
+            submitUser: '王小虎',
+            submitDt: '2018-03-04',
+            planStatus: '1',
+            deleteI: 'N',
+            versionN: 1,
+            createUserId: '001',
+            createDt: '2018-03-03',
+            modifyUserId: '002',
+            modifyDt: '2018-03-04'
         }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
+            planCode: 'plan001',
+            planName: '王小虎',
+            submitUser: '王小虎',
+            submitDt: '2018-03-04',
+            planStatus: '1',
+            deleteI: 'N',
+            versionN: 1,
+            createUserId: '001',
+            createDt: '2018-03-03',
+            modifyUserId: '002',
+            modifyDt: '2018-03-04'
         }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
+            planCode: 'plan001',
+            planName: '王小虎',
+            submitUser: '王小虎',
+            submitDt: '2018-03-04',
+            planStatus: '1',
+            deleteI: 'N',
+            versionN: 1,
+            createUserId: '001',
+            createDt: '2018-03-03',
+            modifyUserId: '002',
+            modifyDt: '2018-03-04'
         }],
         page: 1,
         count: 100,
@@ -39,13 +71,13 @@ var _planVue = new Vue({
             console.log(a)
         },
         edit: function (index, row) {
-            
+            window.location.href = 'edit.html?id=1';
         },
         remove: function (index, row) {
             
         },
         detail: function (index, row) {
-            
+            window.location.href = 'detail.html';
         },
         handleSizeChange: function(val) {
             console.log('每页 ${val} 条');
