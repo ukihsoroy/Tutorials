@@ -10,8 +10,10 @@ spring:
 
 #MyBatis配置
 mybatis:
-  typeAliasesPackage: org.ko.web.dao.domain
-  mapperLocations: classpath:mappers/*.xml
+  typeAliasesPackage: org.ko.web.dao.domain #小名
+  mapperLocations: classpath:mappers/*.xml  #mapper扫描
+  configuration:
+    mapUnderscoreToCamelCase: true #开始下划线转驼峰
 
 #服务配置
 server:

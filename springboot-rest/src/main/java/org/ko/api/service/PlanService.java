@@ -2,6 +2,7 @@ package org.ko.api.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.panhai.sys.utils.UUIDUtil;
 import org.ko.api.bo.PlanBo;
 import org.ko.api.command.PlanCommand;
 import org.ko.api.entity.Plan;
@@ -55,7 +56,7 @@ public class PlanService {
     public Result save (PlanBo planBo) {
         Plan plan = new Plan();
         BeanUtils.copyProperties(planBo, plan);
-
+        plan.setId(UUIDUtil.getUUID());
         int ret = planRepository.insert(plan);
         if (ret == 0) {
             throw new RuntimeException("Happen error.");
