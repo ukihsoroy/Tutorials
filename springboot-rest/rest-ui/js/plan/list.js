@@ -59,7 +59,10 @@ var _planVue = new Vue({
     },
     methods: {
         query: function () {
-            debugger;
+            const _ = this;
+            _.$http.get('', _.params).then(function (r) {
+                
+            })
         },
         add: function () {
             debugger;
