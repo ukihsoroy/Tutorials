@@ -5,67 +5,25 @@ var _planVue = new Vue({
     el: '#_plan',
     data: {
         params: {},
-        rows: [{
-            planCode: 'plan001',
-            planName: '王小虎',
-            submitUser: '王小虎',
-            submitDt: '2018-03-04',
-            planStatus: '1',
-            deleteI: 'N',
-            versionN: 1,
-            createUserId: '001',
-            createDt: '2018-03-03',
-            modifyUserId: '002',
-            modifyDt: '2018-03-04'
-        }, {
-            planCode: 'plan001',
-            planName: '王小虎',
-            submitUser: '王小虎',
-            submitDt: '2018-03-04',
-            planStatus: '1',
-            deleteI: 'N',
-            versionN: 1,
-            createUserId: '001',
-            createDt: '2018-03-03',
-            modifyUserId: '002',
-            modifyDt: '2018-03-04'
-        }, {
-            planCode: 'plan001',
-            planName: '王小虎',
-            submitUser: '王小虎',
-            submitDt: '2018-03-04',
-            planStatus: '1',
-            deleteI: 'N',
-            versionN: 1,
-            createUserId: '001',
-            createDt: '2018-03-03',
-            modifyUserId: '002',
-            modifyDt: '2018-03-04'
-        }, {
-            planCode: 'plan001',
-            planName: '王小虎',
-            submitUser: '王小虎',
-            submitDt: '2018-03-04',
-            planStatus: '1',
-            deleteI: 'N',
-            versionN: 1,
-            createUserId: '001',
-            createDt: '2018-03-03',
-            modifyUserId: '002',
-            modifyDt: '2018-03-04'
-        }],
+        rows: [],
         page: 1,
-        count: 100,
+        count: 100
+    },
+    mounted: function () {
+        this.query();
     },
     methods: {
         query: function () {
             const _ = this;
-            _.$http.get('', _.params).then(function (r) {
-                
-            })
+            _.$http.get('http://localhost:3342/rest/plan/', _.params)
+                .then(function (r) {
+                    if (r.ok && r.body.success) {
+                        _.rows = r.body.data;
+                        _.count = r.body.count;
+                    }
+                })
         },
         add: function () {
-            debugger;
             window.location.href = 'edit.html';
         },
         findSuggest: function (a, b, c) {
