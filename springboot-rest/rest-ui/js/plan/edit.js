@@ -5,7 +5,7 @@ Vue.http.options.emulateJSON = true;
 var _planVue = new Vue({
     el: '#_plan',
     data: {
-        id: '21e2d4697eef46308be9c6f06e135977',
+        id: T.p('id'),
         form: {
             planCode: '',
             planName: '',
