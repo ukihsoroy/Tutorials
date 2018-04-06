@@ -7,8 +7,8 @@
             *
         FROM art_plan p
         WHERE p.delete_i = 'N'
-        <if test="likeCode != null and likeCode != ''.toString()">
-            AND p.plan_name LIKE CONCAT('%', #{likeCode}, '%')
+        <if test="name != null and name != ''.toString()">
+            AND p.plan_name LIKE CONCAT('%', #{name}, '%')
         </if>
         <if test="startTime != null">
             AND p.submit_dt &gt;= #{startTime}

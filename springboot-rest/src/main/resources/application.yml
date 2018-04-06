@@ -20,3 +20,12 @@ mybatis:
   mapperLocations: classpath:mappers/*.xml
   configuration:
     mapUnderscoreToCamelCase: true #开始下划线转驼峰
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+file.local.root: D://tmp/resources/
