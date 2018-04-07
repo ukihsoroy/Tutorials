@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Hello, Demo2.</h1>
-    <iframe th:each="url:${urls}" th:url="${url}" width="0px" height="0px" style="display: none;"></iframe>
+    <div th:each="url:${urls}">
+        <iframe th:src="#{url}" width="0px" height="0px" style="display: none;"></iframe>
+    </div>
 </body>
 </html>

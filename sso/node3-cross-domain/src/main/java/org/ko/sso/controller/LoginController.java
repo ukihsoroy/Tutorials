@@ -1,6 +1,5 @@
 package org.ko.sso.controller;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.assertj.core.util.Arrays;
 import org.ko.sso.util.SSOCheck;
 import org.springframework.stereotype.Controller;
@@ -18,8 +17,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -29,7 +28,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String login (String username, String password, HttpServletResponse response) throws IOException {
         boolean check = SSOCheck.checkLogin(username, password);
         String result = "0";
@@ -73,7 +72,7 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("demo1/login")
+    @PostMapping("demo1/login")
     public String demo1Login (String username, String password, ModelMap map) {
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
@@ -81,8 +80,8 @@ public class LoginController {
         String result = doGet("http://www.check.com:8081/login", params);
         if ("1".equals(result)) {
             List<String> urls = java.util.Arrays.asList(
-                    "www.demo1.com:8081/demo1/add",
-                    "www.demo2.com:8081/demo2/add"
+                    "http://www.demo1.com:8081/demo1/add",
+                    "http://www.demo2.com:8081/demo2/add"
             );
             map.addAttribute("urls", urls);
             return "demo1";
@@ -118,7 +117,7 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("demo2/login")
+    @PostMapping("demo2/login")
     public String demo2Login (String username, String password, ModelMap map) {
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
@@ -126,8 +125,8 @@ public class LoginController {
         String result = doGet("http://www.check.com:8081/login", params);
         if ("1".equals(result)) {
             List<String> urls = java.util.Arrays.asList(
-                    "www.demo1.com:8081/demo1/add",
-                    "www.demo2.com:8081/demo2/add"
+                    "http://www.demo1.com:8081/demo1/add",
+                    "http://www.demo2.com:8081/demo2/add"
             );
             map.addAttribute("urls", urls);
             return "demo2";
