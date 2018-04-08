@@ -5,3 +5,13 @@ spring:
     username: root
     password: tiger
     url: jdbc:mysql://111.231.224.68:3306/security?autoReconnect=true;useUnicode=true;characterEncoding=utf-8;useSSL=false
+  session:
+    store-type: none #取消spring session管理
+
+
+server:
+  port: 1337
+
+security:
+  basic:
+    enabled: false #关掉security boot 默认配置
