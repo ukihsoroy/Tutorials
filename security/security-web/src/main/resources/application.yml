@@ -1,0 +1,7 @@
+spring:
+  application.name: ko-generator
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: tiger
+    url: jdbc:mysql://111.231.224.68:3306/security?autoReconnect=true;useUnicode=true;characterEncoding=utf-8;useSSL=false
