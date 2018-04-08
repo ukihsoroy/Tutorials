@@ -12,11 +12,11 @@ spring:
     url: jdbc:mysql://${spring.datasource.ip}:${spring.datasource.port}/${spring.datasource.name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
 
 generator:
-  moduleName: case-generator
-  tables: art_link, art_region
+  moduleName: springboot-rest
+  tables: art_plan
   enable: false   #开启后生成全库
 
-rootPackage: org.ko.generator
+rootPackage: org.ko.api
 domainPackage: entity #数据库域对象包名
 mapperPackage: dao
 xmlPackage: mappers

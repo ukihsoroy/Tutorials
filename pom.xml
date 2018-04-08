@@ -84,5 +84,6 @@
         <module>springcloud-zuul</module>
         <module>springcloud-config</module>
         <module>sso</module>
+        <module>security</module>
     </modules>
 </project>
