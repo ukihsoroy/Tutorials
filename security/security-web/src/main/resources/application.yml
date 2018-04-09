@@ -10,7 +10,7 @@ spring:
 
 
 server:
-  port: 1337
+  port: 8010
 
 security:
   basic:
