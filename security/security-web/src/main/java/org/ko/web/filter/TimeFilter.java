@@ -23,7 +23,7 @@ public class TimeFilter implements Filter {
         long startTime = new Date().getTime();
         filterChain.doFilter(servletRequest, servletResponse);
         System.out.println("time: " + (new Date().getTime() - startTime));
-        System.out.println("time filter ent.");
+        System.out.println("time filter end.");
     }
 
     @Override

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * 拦截器拿不到Http request, response对象
+ */
 @Aspect
 @Component
 public class TimeAspect {
