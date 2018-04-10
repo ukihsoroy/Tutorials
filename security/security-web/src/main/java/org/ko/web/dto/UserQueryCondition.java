@@ -1,11 +1,16 @@
 package org.ko.web.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class UserQueryCondition {
 
+    @ApiModelProperty("用户名")
     private String username;
 
+    @ApiModelProperty("用户年龄起始值")
     private int age;
 
+    @ApiModelProperty("用户名年龄终止值")
     private int ageTo;
 
     public String getUsername() {

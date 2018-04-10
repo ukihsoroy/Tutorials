@@ -1,6 +1,9 @@
 package org.ko.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.ko.exception.UserNotExistException;
@@ -18,10 +21,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("user")
+@Api("用户服务")
 public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
+    @ApiOperation("用户查询列表")
     public List<User> query(UserQueryCondition condition,
                             @PageableDefault(page = 1, size = 15, sort = "username,asc") Pageable pageable) {
         System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
@@ -37,7 +42,8 @@ public class UserController {
 
     @GetMapping("{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User getInfo (@PathVariable String id) {
+    @ApiOperation("用户详细查询")
+    public User getInfo (@ApiParam("用户ID") @PathVariable String id) {
 //        throw new UserNotExistException("1");
         System.out.println("getInfo---");
         User user = new User();

@@ -10,8 +10,8 @@ import java.util.Date;
 /**
  * 拦截器拿不到Http request, response对象
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class TimeAspect {
 
     @Around("execution(* org.ko.web.controller.UserController.*(..))")

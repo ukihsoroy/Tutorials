@@ -22,6 +22,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.version>1.0.0-SNAPSHOT</project.version>
+        <swagger.version>2.8.0</swagger.version>
+        <wiremock.version>2.16.0</wiremock.version>
     </properties>
 
     <dependencyManagement>
