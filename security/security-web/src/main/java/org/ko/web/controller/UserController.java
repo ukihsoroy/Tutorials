@@ -11,9 +11,14 @@ import org.ko.web.dto.User;
 import org.ko.web.dto.UserQueryCondition;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -23,6 +28,21 @@ import java.util.List;
 @RequestMapping("user")
 @Api("用户服务")
 public class UserController {
+
+    /**
+     *
+     * @param authentication spring mvc 会自动将Authentication用户认证信息注入
+     * @param userDetails 只要和用户有关的信息
+     * @return
+     */
+    @GetMapping("/me")
+    public Object getCurrentUser (Authentication authentication,
+                                  @AuthenticationPrincipal UserDetails userDetails) {
+        //获取用户信息
+//        return SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getPrincipal());
+        return userDetails;
+    }
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)

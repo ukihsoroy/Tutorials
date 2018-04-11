@@ -15,3 +15,7 @@ server:
 #security:
 #  basic:
 #    enabled: false #关掉security boot 默认配置
+
+
+#ko.security.browser.loginPage: /ko-login.html
+ko.security.browser.loginType: REDIRECT
