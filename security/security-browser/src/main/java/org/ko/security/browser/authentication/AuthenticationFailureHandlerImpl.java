@@ -2,6 +2,7 @@ package org.ko.security.browser.authentication;
 
 import org.apache.http.HttpStatus;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.ko.security.browser.support.SimpleResponse;
 import org.ko.security.core.properties.LoginType;
 import org.ko.security.core.properties.SecurityProperties;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFai
         if (LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
             response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(exception));
+            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
         } else {
             super.onAuthenticationFailure(request, response, exception);
         }

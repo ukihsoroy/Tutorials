@@ -38,4 +38,9 @@ e=>end: End
     - `SecurityContextPersisitenceFilter`: 在整个过滤器链的最前面, request进来检查Session中是否有SecurityContext如果有放到`SecurityContextHolder`没有空过, response回来检查`SecurityContextHolder`是否有`SecurityContext`, 如果有放置到Session中, 没有空过;  
 
 3. 获取认证用户信息
+    - SecurityContextHolder.getContext().getAuthentication(): 静态方法获取
+    - Controller接口方法参数: Authentication authentication Spring mvc会自动注入
+    - @AuthenticationPrincipal UserDetails userDetails： 使用朱姐@AuthenticationPrincipal UserDetails 只注入用户信息
+    
+
 

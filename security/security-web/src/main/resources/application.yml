@@ -18,4 +18,4 @@ server:
 
 
 #ko.security.browser.loginPage: /ko-login.html
-ko.security.browser.loginType: REDIRECT
+#ko.security.browser.loginType: REDIRECT
