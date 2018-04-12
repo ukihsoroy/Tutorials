@@ -43,4 +43,13 @@ e=>end: End
     - @AuthenticationPrincipal UserDetails userDetails： 使用朱姐@AuthenticationPrincipal UserDetails 只注入用户信息
     
 
+**3.记住我功能**
+
+    - 浏览器发起认证请求, 当认证成功会调用`RemeberMeService`, 在`RemeberMeService`中有`TokenRepository`, `RemeberMeService`会生成一个Token并写到Cookie中, 而`TokenRepository`会把Token存到数据库中, Token会一一对应;
+    - 当用户第二天在登录, RemeberMeAuthenticationFilter会读取Cookie中的Token, 交给`RemeberMeService`在由`TokenRepository`去数据库中看有没有用户名, 有的话会把用户名交给UserDetailsService, 由其完成权限动作;
+    - RemeberMeService.onLoginSuccess()--->生成Token 入库, 写cookie
+    
+**4.添加验证码**
+
+**5.手机验证码登录**
 

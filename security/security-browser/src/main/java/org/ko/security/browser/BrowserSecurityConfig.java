@@ -9,9 +9,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -29,11 +34,26 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
      */
     @Autowired private AuthenticationFailureHandlerImpl authenticationFailureHandlerImpl;
 
+    @Autowired private DataSource dataSource;
+
+    @Autowired private UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         //使用security默认的加密规则
         return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * 记住我功能的实现,
+     * @return
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository () {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+//        tokenRepository.setCreateTableOnStartup(true);
+        return tokenRepository;
     }
 
 
@@ -43,15 +63,27 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
         ValidateCodeFilter filter = new ValidateCodeFilter();
         //设置失败处理器
         filter.setAuthenticationFailureHandler(authenticationFailureHandlerImpl);
+        //设置全局配置
+        filter.setSecurityProperties(securityProperties);
+        //调取初始化方法
+        filter.afterPropertiesSet();
+
+
 //          http.httpBasic() //默认认证方式
         http
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class) //添加过滤器在账号密码验证之前
                 .formLogin() //表单登录
-//            .loginPage("/ko-login.html") //返回登录页
-            .loginPage("/authentication/require")
-                .loginProcessingUrl("/authentication/form")//用usernamePasswordFilter来处理请求
-                .successHandler(authenticationSuccessHandlerImpl)
-                .failureHandler(authenticationFailureHandlerImpl)
+                    .loginPage("/authentication/require")
+                //            .loginPage("/ko-login.html") //返回登录页
+                    .loginProcessingUrl("/authentication/form")//用usernamePasswordFilter来处理请求
+                    .successHandler(authenticationSuccessHandlerImpl)
+                    .failureHandler(authenticationFailureHandlerImpl)
+                //记住我功能配置
+                .and()
+                    .rememberMe()
+                    .tokenRepository(persistentTokenRepository())
+                    .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+                    .userDetailsService(userDetailsService)
             .and()
                 .authorizeRequests()//下面的请求
                 .antMatchers("/authentication/require",

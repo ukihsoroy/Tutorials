@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: tiger
-    url: jdbc:mysql://111.231.224.68:3306/security?autoReconnect=true;useUnicode=true;characterEncoding=utf-8;useSSL=false
+    url: jdbc:mysql://111.231.224.68:3306/security?useUnicode=true&characterEncoding=utf-8&useSSL=false
   session:
     store-type: none #取消spring session管理
 
@@ -19,3 +19,6 @@ server:
 
 #ko.security.browser.loginPage: /ko-login.html
 #ko.security.browser.loginType: REDIRECT
+#ko.security.code.image.length: 6
+#ko.security.code.image.width: 100
+#ko.security.code.image.url: /user, /user/*
