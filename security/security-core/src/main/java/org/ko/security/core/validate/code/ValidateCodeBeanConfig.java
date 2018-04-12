@@ -19,7 +19,7 @@ public class ValidateCodeBeanConfig {
     /**
      * 如果Spring容器中有 这个imageCodeGenerator名字的bean就不在初始化下面的了
      */
-    @ConditionalOnMissingBean(IValidateCodeGenerator.class)
+    @ConditionalOnMissingBean(name = "imageCodeGenerator")
     @Bean
     public IValidateCodeGenerator imageCodeGenerator () {
         ImageCodeGenerator codeGenerator = new ImageCodeGenerator();

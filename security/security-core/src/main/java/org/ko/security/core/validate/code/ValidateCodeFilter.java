@@ -82,8 +82,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     }
 
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
-        ImageCode codeInSession = ImageCode.class.cast(sessionStrategy.getAttribute(request,
-                ValidateCodeController.SESSION_KEY));
+        ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(request,
+                ValidateCodeProcessor.SESSION_KEY_PREFIX+"IMAGE");
 
         String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
 

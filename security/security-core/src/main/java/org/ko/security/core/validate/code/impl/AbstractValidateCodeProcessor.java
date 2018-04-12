@@ -2,6 +2,7 @@ package org.ko.security.core.validate.code.impl;
 
 import org.apache.commons.lang.StringUtils;
 import org.ko.security.core.validate.code.IValidateCodeGenerator;
+import org.ko.security.core.validate.code.ValidateCode;
 import org.ko.security.core.validate.code.ValidateCodeProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
@@ -10,7 +11,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 import java.util.Map;
 
-public abstract class AbstractValidateCodeProcessor<C> implements ValidateCodeProcessor{
+public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor{
 
     /**
      * 操作session的工具类
@@ -29,13 +30,28 @@ public abstract class AbstractValidateCodeProcessor<C> implements ValidateCodePr
         send(request, validateCode);
     }
 
-    protected abstract void save(ServletWebRequest request, C validateCode);
+    /**
+     * 保存校验码
+     * @param request
+     * @param validateCode
+     */
+    private void save(ServletWebRequest request, C validateCode) {
+        sessionStrategy.setAttribute(request, SESSION_KEY_PREFIX + getProcessorType(request).toUpperCase(),
+                validateCode);
+    }
 
+    /**
+     * 生成校验码
+     * @param request
+     * @return
+     */
+    @SuppressWarnings("unchecked")
     private C generate(ServletWebRequest request) {
         String type = getProcessorType(request);
-        IValidateCodeGenerator generator = validateCodeGenerators.get(type + "CodeGenerator");
-        return (C) generator.generatorCode(request);
+        IValidateCodeGenerator validateCodeGenerator = validateCodeGenerators.get(type + "CodeGenerator");
+        return (C) validateCodeGenerator.generatorCode(request);
     }
+
 
     /**
      * 发送校验码, 由子类实现
