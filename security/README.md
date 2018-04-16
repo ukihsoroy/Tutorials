@@ -53,3 +53,44 @@ e=>end: End
 
 **5.手机验证码登录**
 
+**6.OAuth协议**
+
+    - OAuth协议要解决的问题
+        - 可以获取所有权限
+        - 只能修改密码才能收回授权
+        - 密码泄漏可能性大大提高
+    - OAuth中的各种角色
+        - 服务提供商(Provider): 提供令牌
+            - 认证服务器(Authoriaztion Server): 生成Token
+            - 资源服务器(Resource Server): 存放资源, 验证令牌
+        - 资源所有者(Resource Owner): 用户
+        - 第三方应用(Client): 
+    - OAuth协议运行流程
+        0. 用户访问第三方应用
+        1. 请求用户授权
+        2. 同意授权
+            - 授权码模式(authorization code)
+            - 密码模式(resource owner password credentials)
+            - 客户端模式(client credentials)
+            - 简化模式(implicit)
+        3. 申请令牌
+        4. 发放令牌
+        5. 申请资源
+        6. 开放资源
+        
+    - 授权码模式实现步骤(特点: 1.用户同意授权是在认证服务器上完成的, 2.接受到的是授权码(要求第三方应用必须有服务器))
+        1. 将用户导向认证服务器
+        2. 用户统一授权
+        3. 返回Client并携带授权码
+        4. 用授权码申请令牌(客户端后台服务器)
+        5. 认证服务器检查授权码, 发放令牌
+        
+**7. Spring Social基本原理**
+
+    1. ServiceProvider: 服务提供商接口
+        - AbstractOAuth2ServiceProvider: Spring实现了一些通用的逻辑
+        - OAuth2Operations(OAuth2Template): OAuth协议相关操作
+        - API(AbstractOAuth2ApiBinding): 自己实现获取用户信息的接口
+        - Connection(OAuth2Connection): 封装前面获取的用户信息
+        - ConnectionFactory(OAuth2ConnectionFactory): 创建连接对象工厂. 包含ServiceProvider, ApiAdapter(做不同用户信息适配)
+        - UsersConnectionRepository(JdbcUsersConnectionRepository): 将用户信息和连接保存在数据库UserConnection表
