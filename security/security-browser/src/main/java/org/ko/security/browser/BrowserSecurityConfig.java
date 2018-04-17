@@ -5,6 +5,7 @@ import org.ko.security.browser.authentication.AuthenticationSuccessHandlerImpl;
 import org.ko.security.core.properties.SecurityProperties;
 import org.ko.security.core.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -34,9 +36,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
      */
     @Autowired private AuthenticationFailureHandlerImpl authenticationFailureHandlerImpl;
 
+    @Qualifier("dataSource")
     @Autowired private DataSource dataSource;
 
     @Autowired private UserDetailsService userDetailsService;
+
+    @Autowired private SpringSocialConfigurer springSocialConfigurer;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -71,6 +76,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 
 //          http.httpBasic() //默认认证方式
         http
+                .apply(springSocialConfigurer) //往过滤器链添加过滤器
+                .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class) //添加过滤器在账号密码验证之前
                 .formLogin() //表单登录
                     .loginPage("/authentication/require")

@@ -22,3 +22,5 @@ server:
 #ko.security.code.image.length: 6
 #ko.security.code.image.width: 100
 #ko.security.code.image.url: /user, /user/*
+ko.seucrity.social.qq.app-id:
+ko.seucrity.social.qq.app-secret:
