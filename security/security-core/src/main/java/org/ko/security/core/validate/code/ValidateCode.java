@@ -1,8 +1,9 @@
 package org.ko.security.core.validate.code;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ValidateCode {
+public class ValidateCode implements Serializable{
 
     /**
      * 验证码生产构造函数

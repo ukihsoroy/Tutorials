@@ -86,6 +86,12 @@ public class BrowserSecurityController {
         userInfo.setNickname(connection.getDisplayName());
         userInfo.setAvator(connection.getImageUrl());
         return userInfo;
-
     }
+
+    @GetMapping("session/invalid")
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
+    public SimpleResponse sessionInvalid () {
+        return new SimpleResponse("session失效");
+    }
+
 }

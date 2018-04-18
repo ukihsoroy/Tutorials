@@ -6,8 +6,10 @@ spring:
     password: tiger
     url: jdbc:mysql://111.231.224.68:3306/security?useUnicode=true&characterEncoding=utf-8&useSSL=false
   session:
-    store-type: none #取消spring session管理
-
+    store-type: redis #取消spring session管理
+#  redis:
+#    host:
+#    port:
 
 server:
   port: 8010

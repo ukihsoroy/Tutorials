@@ -2,6 +2,7 @@ package org.ko.security.browser;
 
 import org.ko.security.browser.authentication.AuthenticationFailureHandlerImpl;
 import org.ko.security.browser.authentication.AuthenticationSuccessHandlerImpl;
+import org.ko.security.browser.session.ExpiredSessionStrategyImpl;
 import org.ko.security.core.properties.SecurityProperties;
 import org.ko.security.core.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,12 +92,20 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                     .userDetailsService(userDetailsService)
-            .and()
+                .and()
+                .sessionManagement()
+                .invalidSessionUrl("/session/invalid")
+                .maximumSessions(1) //同时存在最大session数为1
+//                .maxSessionsPreventsLogin(true) 当session达到最大数量后 阻止后面用户登录
+                .expiredSessionStrategy(new ExpiredSessionStrategyImpl()) //实现谁踢掉后记录, 有个事件
+                .and()
+                .and()
                 .authorizeRequests()//下面的请求
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getSingUpUrl(),
                         securityProperties.getBrowser().getLoginPage(),
                 "/user/register",
+                "/session/invalid",
                 "/code/*").permitAll()//放过这个URL-直接放行
                 .anyRequest()   //所有的请求
                 .authenticated() //都需要认证
