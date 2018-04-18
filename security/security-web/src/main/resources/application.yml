@@ -24,3 +24,4 @@ server:
 #ko.security.code.image.url: /user, /user/*
 ko.seucrity.social.qq.app-id:
 ko.seucrity.social.qq.app-secret:
+ko.security.browser.loginPage: /signUp.html

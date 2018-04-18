@@ -94,7 +94,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
                 .authorizeRequests()//下面的请求
                 .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getSingUpUrl(),
                         securityProperties.getBrowser().getLoginPage(),
+                "/user/register",
                 "/code/*").permitAll()//放过这个URL-直接放行
                 .anyRequest()   //所有的请求
                 .authenticated() //都需要认证
