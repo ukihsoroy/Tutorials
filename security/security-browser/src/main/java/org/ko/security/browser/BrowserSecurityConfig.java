@@ -100,6 +100,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
                 .expiredSessionStrategy(new ExpiredSessionStrategyImpl()) //实现谁踢掉后记录, 有个事件
                 .and()
                 .and()
+                .logout()
+                .logoutUrl("/signOut")
+                .logoutSuccessUrl("/ko-logout.html")
+                .and()
                 .authorizeRequests()//下面的请求
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getSingUpUrl(),
