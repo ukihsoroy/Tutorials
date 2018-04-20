@@ -212,11 +212,11 @@ public class MybatisGenerator extends AbstractGenerator {
 	@Override
 	public void generator() {
 		try {
-			if (generatorEnable) {
+			if (properties.isEnable()) {
 				buildAllMappers();
 			} else {
-				generateStubs(tables);
-				generateDomainConstants(tables);
+				generateStubs(properties.getTables());
+				generateDomainConstants(properties.getTables());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

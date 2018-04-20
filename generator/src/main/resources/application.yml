@@ -11,25 +11,23 @@ spring:
     password: tiger
     url: jdbc:mysql://${spring.datasource.ip}:${spring.datasource.port}/${spring.datasource.name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
 
-generator:
+# 生成工具配置
+ko.generator:
   moduleName: springboot-rest
   tables: art_plan
-  enable: false   #开启后生成全库
+  java:
+    rootPackage: org.ko.api
+    mybatis:
+      domain: entity
+      mapper: dao
+      xml: mappers
+  view:
+    path: d://
+    js: js
+    html: module
+  generator:
+    project:
+      enable: false
+      name: ko
+      path: d://
 
-rootPackage: org.ko.api
-domainPackage: entity #数据库域对象包名
-mapperPackage: dao
-xmlPackage: mappers
-
-java.enable: true #开启后生成后台代码
-
-view:
-  filePath: D://case-html
-  enable: true    #开启后生成前台代码
-  js: js
-  html: module
-
-copyProject:
-  name: project-name
-  path: D://
-  enable: false

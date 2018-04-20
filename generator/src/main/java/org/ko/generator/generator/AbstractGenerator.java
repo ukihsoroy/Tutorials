@@ -1,9 +1,11 @@
 package org.ko.generator.generator;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.ko.generator.bean.Config;
 import org.ko.generator.bean.TableMetaData;
 import org.ko.generator.helper.GeneratorHelper;
+import org.ko.generator.properties.GeneratorProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,8 @@ public abstract class AbstractGenerator implements ICodeGenerator{
 	
 	private static final Map<String, String> DATA_TYPE_MAP = new HashMap<>();
 
-	@Value("${generator.tables}") protected String[] tables;
-	@Value("${generator.enable}") protected boolean generatorEnable;
+	@Autowired GeneratorProperties properties;
+
 	@Value("${spring.datasource.name}") private String dbName;
 	@Value("${spring.datasource.url}") protected String url;
 	@Value("${spring.datasource.username}") protected String username;
@@ -94,7 +96,7 @@ public abstract class AbstractGenerator implements ICodeGenerator{
 			return data;
 		}, table, dbName);
 	}
-	
+
 	protected String getJavaTypeName(TableMetaData d){
 		String type = DATA_TYPE_MAP.get(StringUtils.lowerCase(d.getDataType()));
 		if(d.getComment().contains("#") && "json".equalsIgnoreCase(d.getDataType())){

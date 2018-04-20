@@ -38,8 +38,6 @@ public class ViewCodeGenerator extends AbstractGenerator {
     @Autowired
     private Configuration freeMarkerConfiguration;
 
-    @Value("${view.enable}") private boolean viewEnable;
-
     protected void generateViews(String...tableNames) throws Exception {
         if(ArrayUtils.isEmpty(tableNames)){
             _LOGGER.info("no table name was specified");
@@ -110,10 +108,10 @@ public class ViewCodeGenerator extends AbstractGenerator {
     @Override
     public void generator() {
         try {
-            if (generatorEnable) {
+            if (properties.isEnable()) {
                 buildAllViews();
-            } else if (viewEnable) {
-                generateViews(tables);
+            } else if (properties.getView().isEnable()) {
+                generateViews(properties.getTables());
             }
         } catch (Exception e) {
             e.printStackTrace();

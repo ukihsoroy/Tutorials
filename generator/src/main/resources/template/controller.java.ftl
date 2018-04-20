@@ -10,11 +10,15 @@ import ${rootPackage}.service.${domainName}Service;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
-@Api(value = "${domainName}Controller", description = "")
+@Api("${domainName}Controller")
+@Validated
 @RestController
 @RequestMapping("${variableName}")
 public class ${domainName}Controller {
@@ -23,39 +27,47 @@ public class ${domainName}Controller {
 
     @GetMapping
     @ApiOperation("查询列表")
-    public Result<List<${domainName}>> list (
-        @ApiParam("查询列表参数") @ModelAttribute ${domainName}Command command,
-        @ApiParam(value = "页数") @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-        @ApiParam(value = "条数") @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
-        return ${variableName}Service.list(command, page, limit);
+    public Result<List<${domainName}Bo>> query (
+            @ApiParam("查询列表参数") @ModelAttribute ${domainName}Command condition,
+            @ApiParam("页数") @RequestParam(required = false, defaultValue = "1") int page,
+            @ApiParam("条数") @RequestParam(required = false, defaultValue = "10") int limit) {
+        return ${variableName}Service.query(condition, page, limit);
     }
 
     @GetMapping("{id}")
     @ApiOperation("通过ID获取详情")
     public Result<${domainName}> detail (
-        @ApiParam("申报单ID") @PathVariable("id") String id) {
+            @ApiParam("申报单ID") @PathVariable String id) {
         return ${variableName}Service.detail(id);
     }
 
     @PostMapping
     @ApiOperation("新增")
-    public Result save (
-        @ApiParam("申报单业务对象") @RequestBody ${domainName}Bo ${variableName}Bo) {
+    public Result<${domainName}> save (
+            @ApiParam("申报单业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
         return ${variableName}Service.save(${variableName}Bo);
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     @ApiOperation("更新")
-    public Result update (
-        @ApiParam("申报单业务对象") @RequestBody ${domainName}Bo ${variableName}Bo) {
-        return ${variableName}Service.update(${variableName}Bo);
+    public Result<${domainName}> update (
+            @ApiParam("申报单ID") @PathVariable String id,
+            @ApiParam("申报单业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
+        return ${variableName}Service.update(id, ${variableName}Bo);
     }
 
     @DeleteMapping("{id}")
     @ApiOperation("通过ID删除")
-    public Result remove (
-        @ApiParam("申报单ID") @PathVariable("id") String id) {
+    public Result<String> remove (
+            @ApiParam("申报单ID") @PathVariable String id) {
         return ${variableName}Service.remove(id);
+    }
+
+    @GetMapping("export")
+    @ApiOperation("导出Excel")
+    public void export (
+            @ApiParam("查询列表参数") @ModelAttribute ${domainName}Command condition, ServletWebRequest request) {
+        acceptInfoService.export(condition, request);
     }
 
 }

@@ -32,8 +32,6 @@ public class ServerCodeGenerator extends AbstractGenerator {
 
     @Autowired private Configuration freeMarkerConfiguration;
 
-    @Value("${java.enable}") private boolean javaEnable;
-
     private static List<String> ENV_JAVA = Arrays.asList(
             "bo.java.ftl",
             "command.java.ftl",
@@ -78,6 +76,11 @@ public class ServerCodeGenerator extends AbstractGenerator {
             //生成时间
             model.put("now", DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
             model.put("rootPackage", config.getRootPackage());
+            //mybatis实体
+            model.put("domainPackage", config.getDomainPackage());
+            model.put("mapperPackage", config.getMapperPackage());
+
+
             for (String ftl : ENV_JAVA) {
                 Template template = freeMarkerConfiguration.getTemplate(ftl);
                 String fileName = getFilePath(moduleRoot, domainName, ftl);
@@ -119,10 +122,10 @@ public class ServerCodeGenerator extends AbstractGenerator {
     @Override
     public void generator() {
         try {
-            if (generatorEnable) {
+            if (properties.isEnable()) {
                 buildAllRepositories();
-            } else if (javaEnable) {
-                generateStubs(tables);
+            } else if (properties.getJava().getBasic().isEnable()) {
+                generateStubs(properties.getTables());
             }
         } catch (Exception e) {
             e.printStackTrace();
