@@ -9,17 +9,21 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.ko.exception.UserNotExistException;
 import org.ko.web.dto.User;
 import org.ko.web.dto.UserQueryCondition;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.ServletWebRequest;
 import sun.plugin.liveconnect.SecurityContextHelper;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,8 @@ import java.util.List;
 @RequestMapping("user")
 @Api("用户服务")
 public class UserController {
+
+    @Autowired private ProviderSignInUtils providerSignInUtils;
 
     /**
      *
@@ -42,6 +48,13 @@ public class UserController {
 //        return SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
         return userDetails;
+    }
+
+    @PostMapping("register")
+    public void register (User user, HttpServletRequest request) {
+        System.out.println("注册用户");
+        String userId = user.getUsername();
+        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
     }
 
     @GetMapping

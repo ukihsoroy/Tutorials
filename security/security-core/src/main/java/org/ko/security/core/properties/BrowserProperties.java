@@ -8,6 +8,11 @@ public class BrowserProperties {
     private String loginPage = "/ko-login.html";
 
     /**
+     * 注册页面
+     */
+    private String singUpUrl = "/ko-signUp.html";
+
+    /**
      * security success/failure handler 处理方式 默认使用json处理
      * redirect/json
      */
@@ -23,6 +28,14 @@ public class BrowserProperties {
 
     public void setLoginPage(String loginPage) {
         this.loginPage = loginPage;
+    }
+
+    public String getSingUpUrl() {
+        return singUpUrl;
+    }
+
+    public void setSingUpUrl(String singUpUrl) {
+        this.singUpUrl = singUpUrl;
     }
 
     public LoginType getLoginType() {
