@@ -2,8 +2,8 @@ package org.ko.security.browser.controller;
 
 
 import org.apache.commons.lang.StringUtils;
-import org.ko.security.browser.support.SimpleResponse;
-import org.ko.security.browser.support.SocialUserInfo;
+import org.ko.security.core.support.SimpleResponse;
+import org.ko.security.core.support.SocialUserInfo;
 import org.ko.security.core.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

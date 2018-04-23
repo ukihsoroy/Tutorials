@@ -44,12 +44,6 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired private SpringSocialConfigurer springSocialConfigurer;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        //使用security默认的加密规则
-        return new BCryptPasswordEncoder();
-    }
-
     /**
      * 记住我功能的实现,
      * @return

@@ -1,4 +1,4 @@
-package org.ko.security.browser.authentication;
+package org.ko.security.app.authentication;
 
 import org.apache.http.HttpStatus;
 import org.codehaus.jackson.map.ObjectMapper;

@@ -1,4 +1,4 @@
-package org.ko.security.browser.support;
+package org.ko.security.core.support;
 
 public class SimpleResponse {
 

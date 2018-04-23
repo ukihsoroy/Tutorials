@@ -57,6 +57,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, SocialUserDet
                 userId,
                 password,
                 true, true, true, true,
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN, ROLE_USER"));
     }
 }

@@ -27,3 +27,8 @@ server:
 ko.seucrity.social.qq.app-id:
 ko.seucrity.social.qq.app-secret:
 ko.security.browser.loginPage: /signUp.html
+security:
+  oauth2:
+    client:
+      client-id: ko
+      client-secret: ko-secret

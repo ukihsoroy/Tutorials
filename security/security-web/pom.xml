@@ -20,9 +20,15 @@
     </properties>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.ko</groupId>-->
+            <!--<artifactId>security-browser</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>org.ko</groupId>
-            <artifactId>security-browser</artifactId>
+            <artifactId>security-app</artifactId>
             <version>${project.version}</version>
         </dependency>
 
