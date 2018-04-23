@@ -35,29 +35,29 @@ public class ${domainName}Controller {
     }
 
     @GetMapping("{id}")
-    @ApiOperation("通过ID获取详情")
+    @ApiOperation("通过业务主键获取详情")
     public Result<${domainName}> detail (
-            @ApiParam("申报单ID") @PathVariable String id) {
+            @ApiParam("业务主键") @PathVariable String id) {
         return ${variableName}Service.detail(id);
     }
 
     @PostMapping
-    @ApiOperation("新增")
+    @ApiOperation("新增资源")
     public Result<${domainName}> save (
-            @ApiParam("申报单业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
+            @ApiParam("业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
         return ${variableName}Service.save(${variableName}Bo);
     }
 
     @PutMapping("{id}")
-    @ApiOperation("更新")
+    @ApiOperation("更新资源")
     public Result<${domainName}> update (
-            @ApiParam("申报单ID") @PathVariable String id,
-            @ApiParam("申报单业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
+            @ApiParam("业务主键") @PathVariable String id,
+            @ApiParam("业务对象") @Valid @RequestBody ${domainName}Bo ${variableName}Bo) {
         return ${variableName}Service.update(id, ${variableName}Bo);
     }
 
     @DeleteMapping("{id}")
-    @ApiOperation("通过ID删除")
+    @ApiOperation("删除资源")
     public Result<String> remove (
             @ApiParam("申报单ID") @PathVariable String id) {
         return ${variableName}Service.remove(id);
@@ -67,7 +67,7 @@ public class ${domainName}Controller {
     @ApiOperation("导出Excel")
     public void export (
             @ApiParam("查询列表参数") @ModelAttribute ${domainName}Command condition, ServletWebRequest request) {
-        acceptInfoService.export(condition, request);
+        ${variableName}Service.export(condition, request);
     }
 
 }

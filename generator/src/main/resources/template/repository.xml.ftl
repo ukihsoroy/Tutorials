@@ -4,8 +4,10 @@
 
     <select id="queryList" resultType="${rootPackage}.bo.${domainName}Bo">
         SELECT
-            *
-        FORM ${table}
+        <#list meta as m>
+            ${abbr}.${m.columnName}<#if m_has_next>,</#if>
+        </#list>
+        FROM ${table} ${abbr}
     </select>
 
     <insert id="insertList">
