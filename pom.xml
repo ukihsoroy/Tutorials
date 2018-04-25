@@ -85,5 +85,6 @@
         <module>springcloud-config</module>
         <module>sso</module>
         <module>security</module>
+        <module>apache-hadoop</module>
     </modules>
 </project>

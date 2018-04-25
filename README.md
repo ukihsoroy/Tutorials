@@ -6,6 +6,7 @@
 - `apache-poi`: Excel, Word, PPT 导入导出
 - `apache-shiro`: Apache 轻量级安全框架
 - `apache-zookeeper`: Apache 高性能协调服务
+- `apache-hadoop`: Apache 大数据存储
 - `asm`: 字节码生成工具
 - `core-java-concurrency`: java并发包
 - `fastDFS`: 文件断点续传
