@@ -19,6 +19,7 @@
   <url>http://maven.apache.org</url>
 
   <modules>
+    <module>security1</module>
     <module>security1-login</module>
     <module>security2-db</module>
   </modules>
