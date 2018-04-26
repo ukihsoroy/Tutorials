@@ -1,4 +1,4 @@
-# java 教程
+# practice-drafts 练习草稿
 
 ### **样例列表** 
 - `activiti-deploy`: activiti流程引擎-动态部署
@@ -16,6 +16,7 @@
 - `jdbc`: java database connection(数据库连接)
 - `jexcel`: java excel API 适合数据量较大的excel操作, 没有POI功能强大, 对JVM内存利用率比较高
 - `jvm`: Java虚拟机(JVM)调优练习
+- `leetcode`: leetcode题库练习
 - `socket`: socket 网络编程
 - `security`: spring security练习项目
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
