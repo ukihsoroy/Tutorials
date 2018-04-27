@@ -20,6 +20,7 @@
         <module>apache-shiro</module>
         <module>apache-zookeeper</module>
         <module>asm</module>
+        <module>core-java8</module>
         <module>core-java-concurrency</module>
         <module>fastDFS</module>
         <module>generator</module>

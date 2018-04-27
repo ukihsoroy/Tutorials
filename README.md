@@ -8,6 +8,7 @@
 - `apache-zookeeper`: Apache 高性能协调服务
 - `apache-hadoop`: Apache 大数据存储
 - `asm`: 字节码生成工具
+- `core-java8`: Java8新功能-API等
 - `core-java-concurrency`: java并发包
 - `fastDFS`: 文件断点续传
 - `generator`: 快速开发生成工具(html, css, js, mvc)
