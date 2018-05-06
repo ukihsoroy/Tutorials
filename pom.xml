@@ -89,5 +89,7 @@
         <module>sso</module>
         <module>security</module>
         <module>apache-hadoop</module>
+        <module>lombok</module>
+        <module>algorithm</module>
     </modules>
 </project>
