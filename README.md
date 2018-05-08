@@ -1,7 +1,14 @@
-# practice-drafts 练习草稿
+# practice-drafts
 
-### **样例列表** 
+## 前言
+`practice-drafts`: 项目创建于2017年8月20日, 打算打造成个人代码库, 顺便可以为新人带来一些方向!
+
+## 项目介绍
+    项目包含java, python等主流技术(big data, ai)和框架(spring, apache), 个人练习和整理, 有很多可能不是很完全, 会慢慢补充!
+
+## **样例列表** 
 - `activiti-deploy`: activiti流程引擎-动态部署
+- `algorithm`: 算法相关
 - `apache-mina`: Apache NIO框架
 - `apache-poi`: Excel, Word, PPT 导入导出
 - `apache-shiro`: Apache 轻量级安全框架
@@ -10,6 +17,7 @@
 - `asm`: 字节码生成工具
 - `core-java8`: Java8新功能-API等
 - `core-java-concurrency`: java并发包
+- `data-structure`: 一些简单java数据结构
 - `fastDFS`: 文件断点续传
 - `generator`: 快速开发生成工具(html, css, js, mvc)
 - `jackson`: json序列化工具
