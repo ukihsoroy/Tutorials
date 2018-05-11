@@ -1,0 +1,12 @@
+server:
+  port: 8081
+  servlet-path: /rest
+mybatis:
+  mapper-locations: mappers/*
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.100.131.21:3306/dmdb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: dm
+    password: Panhai@1234
+
