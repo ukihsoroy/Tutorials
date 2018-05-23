@@ -34,6 +34,7 @@
 - `spring-webmvc-simple`: Spring #WebMVC #简单手写实现
 - `mybatis`: #MyBatis 基础
 - `mybatis-simple`: MyBatis #简单手写实现
+- `mybatis-common-mapper`: MyBatis通用Mapper 单标增删改查
 - `spring-ioc`: Spring IOC控制反转
 - `spring-aop`: Spring AOP切面
 - `spring-security`: Spring 安全框架
