@@ -36,8 +36,8 @@ def read_lines(client):
 
 
 if __name__ == '__main__':
-    host = 'http://111.231.224.68'
-    port = 9000
+    host = 'http://192.168.58.128'
+    port = 8020
     HDFS_client = HDFileSystem(host=host, port=port)
 
     file_exists(HDFS_client)
