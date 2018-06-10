@@ -97,7 +97,7 @@ class HDFSApplicationTests {
      */
     @Test void copyFromLocalFile () throws Exception {
         Path localPath = new Path("D:/tmp/hadoop.txt");
-        Path hdfsPath = new Path("/hdfsapi/test");
+        Path hdfsPath = new Path("/");
         fileSystem.copyFromLocalFile(localPath, hdfsPath);
     }
 
