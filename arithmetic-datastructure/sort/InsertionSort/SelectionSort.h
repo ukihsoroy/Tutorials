@@ -1,16 +1,15 @@
 //
-// Created by K.O on 2018/6/3.
+// Created by K.O on 2018/6/11.
 //
-
-#ifndef ARITHMETIC_DATASTRUCTURE_SELECTIONSORT_H
-#define ARITHMETIC_DATASTRUCTURE_SELECTIONSORT_H
-
 #include <iostream>
+#ifndef INSERTIONSORT_SELECTIONSORT_H
+#define INSERTIONSORT_SELECTIONSORT_H
 
 using namespace std;
 
 /**
  * 选择排序
+ * @tparam T
  * @param ary
  * @param n
  */
@@ -31,8 +30,7 @@ void selectionSort (T ary[], int n)
         }
         //3. 交换值
         swap(ary[i], ary[minIndex]);
-
     }
 }
 
-#endif //ARITHMETIC_DATASTRUCTURE_SELECTIONSORT_H
+#endif //INSERTIONSORT_SELECTIONSORT_H
