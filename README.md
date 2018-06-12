@@ -19,6 +19,7 @@
 - `core-java-concurrency`: java并发包
 - `data-structure`: 一些简单java数据结构
 - `fastDFS`: 文件断点续传
+- `flowable`: Flowable BPMN流程引擎
 - `generator`: 快速开发生成工具(html, css, js, mvc)
 - `jackson`: json序列化工具
 - `jboss-netty`: Jboss NIO框架
