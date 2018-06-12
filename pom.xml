@@ -19,6 +19,8 @@
         <module>apache-poi</module>
         <module>apache-shiro</module>
         <module>apache-zookeeper</module>
+        <module>apache-hadoop</module>
+        <module>apache-wicket</module>
         <module>asm</module>
         <module>core-java8</module>
         <module>core-java-concurrency</module>
@@ -89,9 +91,9 @@
         <module>springcloud-config</module>
         <module>sso</module>
         <module>security</module>
-        <module>apache-hadoop</module>
         <module>lombok</module>
         <module>algorithm</module>
         <module>mybatis-common-mapper</module>
+        <module>flowable</module>
     </modules>
 </project>
