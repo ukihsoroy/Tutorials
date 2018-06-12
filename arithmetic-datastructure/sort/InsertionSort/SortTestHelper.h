@@ -33,6 +33,28 @@ namespace SortTestHelper
     }
 
     /**
+     * 生成一个近乎有序的数组
+     * @param n
+     * @param swapTimes
+     * @return
+     */
+    int* generateNearlyOrderedArray (int n, int swapTimes) {
+        int *ary = new int[n];
+        for (int i = 0; i < n; i ++) {
+            ary[i] = i;
+        }
+
+        srand(time(NULL));
+        for (int j = 0; j < swapTimes; j ++) {
+            int posX = rand() % n;
+            int posY = rand() % n;
+            swap(ary[posX], ary[posY]);
+        }
+
+        return ary;
+    }
+
+    /**
      * 打印排序后的数组结果
      * @tparam T
      * @param ary
@@ -86,6 +108,18 @@ namespace SortTestHelper
         //5. 输出时间
         cout << sortName << " : " << double(endTime - startTime) / CLOCKS_PER_SEC << " s" << endl;
         return;
+    }
+
+    /**
+     * 复制一个整形数组
+     * @param a
+     * @param n
+     * @return
+     */
+    int* copyIntArray (int a[], int n) {
+        int* ary = new int[n];
+        copy(a, a + n, ary);
+        return ary;
     }
 
 }

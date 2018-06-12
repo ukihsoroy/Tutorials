@@ -1,2 +1,2 @@
-## 插入排序 Insertion Sort
+## 插入排序 Insertion Sort (O(n^2))
 
