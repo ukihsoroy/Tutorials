@@ -39,6 +39,7 @@
 - `spring-ioc`: Spring IOC控制反转
 - `spring-aop`: Spring AOP切面
 - `spring-security`: Spring 安全框架
+- `spring-hadoop`: Spring Hadoop处理
 - `spring-simple`: Spring #简单手写实现
 - `springboot`：Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
 - `springboot-webflux`：Spring Boot #2.0.0 web flux 工程
