@@ -95,6 +95,6 @@
         <module>algorithm</module>
         <module>mybatis-common-mapper</module>
         <module>flowable</module>
-        <module>spring-hadoop</module>
+        <module>springboot-hadoop</module>
     </modules>
 </project>
