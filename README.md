@@ -1,7 +1,7 @@
-# practice-drafts
+# tutorials教程
 
 ## 前言
-`practice-drafts`: 项目创建于2017年8月20日, 打算打造成个人代码库, 顺便可以为新人带来一些方向!
+`tutorials`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎
 
 ## 项目介绍
     项目包含java, python等主流技术(big data, ai)和框架(spring, apache), 个人练习和整理, 有很多可能不是很完全, 会慢慢补充!
@@ -85,4 +85,3 @@
 - `springcloud-zuul`：Spring Cloud #Zuul网关，Filter请求过滤
 - `springcloud-config`：Spring Cloud #Config 全局配置中心
 - `sso`: SSO单点登录
-> 这个项目一点点练习积累起来的, 勤能补拙, 希望可以帮到大家!
