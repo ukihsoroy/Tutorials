@@ -1,7 +1,7 @@
 # tutorials教程
 
 ## 前言
-`tutorials`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎
+`tutorials`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎fork or star!
 
 ## 项目介绍
     项目包含java, python等主流技术(big data, ai)和框架(spring, apache), 个人练习和整理, 有很多可能不是很完全, 会慢慢补充!
