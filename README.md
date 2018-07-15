@@ -1,4 +1,4 @@
-# code-repository代码仓库
+# kayo-repo代码仓库
 
 ## 前言
 `code-repository`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎fork or star!
