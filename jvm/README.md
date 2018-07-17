@@ -127,8 +127,96 @@ javap -c class cp.txt
     - 异常
     - 数组的使用
  - JVM规范
+    - Java语言规范定义了什么是Java语言
+    - Java语言和JVM相对独立
+        - Groovy
+        - Clojure
+        - Scala
+    - JVM主要定义二进制class文件和JVM指令集等
+    - Class 文件格式
+    - 数字的内部表示和存储
+    - Byte  -128 to 127 (-27 to 27 - 1)
+    - returnAddress 数据类型定义
+    - 指向操作码的指针。不对应Java数据类型，不能在运行时修改。Finally实现需要
+    - 定义PC
+    - 堆
+    - 栈
+    - 方法区
     - Class文件类型
     - 运行时数据
     - 帧栈
     - 虚拟机的启动
     - 虚拟机的指令集
+    - 整数的表达
+        - 原码：第一位为符号位（0为正数，1为负数）
+        - 反码：符号位不动，原码取反
+        - 负数补码：符号位不动，反码加1
+        - 正数补码：和原码相同
+        - 打印整数的二进制表示
+            ```java
+            class Test {
+                public static void main(String[] args){
+                    int a=-6;
+                    for(int i=0;i<32;i++){
+                        int t=(a & 0x80000000>>>i)>>>(31-i);
+                        System.out.print(t);
+                    }
+                }        
+            }
+            ```
+        - 为什么要用补码？
+            - 计算0的表述：首尾是0就是整数, 首尾是1就是负数!
+            - 0就是全0, 就是补码, 补码也会参与计算机运算
+    - Float的表示与定义
+        - 支持 IEEE 754
+        - s eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm
+        -   指数位:8  尾数:23
+        - s 表示符号位
+        - e全0 尾数附加位为0 否则尾数附加位为1
+        - s * m 2 ^ (e - 127)
+    - 一些特殊的方法
+        - <clinit>
+        - <init>
+    - VM指令集
+        - 类型转化
+            - l2i 长整形转成整形
+        - 出栈入栈操作
+            - aload astore
+        - 运算
+            - iadd isub
+        - 流程控制
+            - ifeq ifne
+        - 函数调用
+            - invokevirtual invokeinterface invokespecial invokestatic
+        - JVM需要对Java Library 提供一下支持
+            - 反射 java.lang,reflect
+            - ClassLoader
+            - 初始化class和interface
+            - 安全相关 java.security
+            - 多线程
+            - 弱引用
+        - JVM的编译
+            - 源码到JVM指令的对应格式
+            - Javap
+            - JVM反汇编的格式
+                - <index> <opcode> [ <operand1> [ <operand2>... ]] [<comment>]
+            ```
+            //java
+            void spin() {
+                int i; 
+                for (i = 0; i < 100; i++) { ;
+                    // Loop body is empty
+                }
+            }
+            
+            //class指令    
+            0   iconst_0       // Push int constant 0
+            1   istore_1       // Store into local variable 1 (i=0)
+            2   goto 8         // First time through don't increment
+            5   iinc 1 1       // Increment local variable 1 by 1 (i++)
+            8   iload_1        // Push local variable 1 (i)
+            9   bipush 100     // Push int constant 100
+            11  if_icmplt 5    // Compare and loop if less than (i < 100)
+            14  return         // Return void when done
+            ```
+

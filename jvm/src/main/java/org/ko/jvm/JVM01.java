@@ -16,7 +16,7 @@ public class JVM01 {
 
 class Value { int val; }
 
-class Test {
+class Test1 {
     public static void main(String[] args) {
         int i1 = 3;
         int i2 = i1;
@@ -29,5 +29,15 @@ class Test {
         v2.val = 6;
         System.out.print("v1.val==" + v1.val);
         System.out.println(" and v2.val==" + v2.val);
+    }
+}
+
+class Test2 {
+    public static void main(String[] args){
+        int a=-6;
+        for(int i=0;i<32;i++){
+            int t=(a & 0x80000000>>>i)>>>(31-i);
+            System.out.print(t);
+        }
     }
 }
