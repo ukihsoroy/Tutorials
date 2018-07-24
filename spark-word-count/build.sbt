@@ -1,4 +1,4 @@
-name := "scala-wordcount"
+name := "spark-word-count"
 
 version := "1.0"
 

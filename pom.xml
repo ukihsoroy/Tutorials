@@ -26,6 +26,7 @@
         <module>core-java-concurrency</module>
         <module>data-structure</module>
         <module>fastDFS</module>
+        <module>fast-json</module>
         <module>generator</module>
         <module>jackson</module>
         <module>jboss-netty</module>
