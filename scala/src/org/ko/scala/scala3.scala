@@ -1,5 +1,8 @@
 package org.ko.scala
 
+/**
+  * 基本function
+  */
 object scala3 {
 
   def main(args: Array[String]): Unit = {
