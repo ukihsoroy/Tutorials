@@ -11,9 +11,9 @@ org.ko.scala
 --| scala7 匿名函数
 --| scala8 函数柯里化
 --| scala9 递归函数
---| scala10
---| scala11
---| scala12
+--| scala10 函数高阶, 柯里化, 递归例子
+--| scala11 List集合
+--| scala12 List高级特性
 --| scala13
 --| scala14
 --| scala15
