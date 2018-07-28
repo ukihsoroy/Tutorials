@@ -20,6 +20,27 @@ object scala12 {
     val d = "99 Red Balloons".toList.takeWhile(x => x != 'B')
     println(d)
 
+    //3. map函数
+    val x = List("x", "y", "z")
+    val y = x.map(x => x.toUpperCase)
+    println(y)
+    val z = x.map(_.toUpperCase)
+    println(z)
+
+    //4. 归约操作 reduceLeft(op: (T, T) => T)
+    val n = List(1, 2, 3)
+    val s1 = n.reduceLeft((x, y) => x + y)
+    println(s1)
+    val s2 = n.reduceLeft(_ + _)
+    println(s2)
+
+    //foldLeft(z: U)(op: (U, T) => U)
+    val s3 = n.foldLeft(0)(_ + _)
+    println(s3)
+
+    val s4 = n.foldLeft(1)(_ * _)
+    println(s4)
+
 
   }
 

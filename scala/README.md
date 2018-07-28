@@ -14,7 +14,8 @@ org.ko.scala
 --| scala10 函数高阶, 柯里化, 递归例子
 --| scala11 List集合
 --| scala12 List高级特性
---| scala13
---| scala14
---| scala15
+--| scala13 Range 和 Stream
+--| scala14 Tuple元组
+--| scala15 Map
+--| scala16 scala实现快排
 ```
