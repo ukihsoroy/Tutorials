@@ -97,5 +97,6 @@
         <module>mybatis-common-mapper</module>
         <module>flowable</module>
         <module>springboot-hadoop</module>
+        <module>apache-hbase</module>
     </modules>
 </project>
