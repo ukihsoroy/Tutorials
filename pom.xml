@@ -98,5 +98,6 @@
         <module>flowable</module>
         <module>springboot-hadoop</module>
         <module>apache-hbase</module>
+        <module>spark-sql</module>
     </modules>
 </project>
