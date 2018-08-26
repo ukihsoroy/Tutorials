@@ -1,7 +1,7 @@
 package org.ko.hadoop.analysis;
 
-import com.kumkee.userAgent.UserAgent;
-import com.kumkee.userAgent.UserAgentParser;
+//import com.kumkee.userAgent.UserAgent;
+//import com.kumkee.userAgent.UserAgentParser;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -34,7 +34,7 @@ public class LogAnalysisApplication {
         /**
          * UserAgentParser 用户信息格式化工具
          */
-        private UserAgentParser userAgentParser;
+//        private UserAgentParser userAgentParser;
 
         /**
          * 初始化
@@ -44,7 +44,7 @@ public class LogAnalysisApplication {
          */
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
-            userAgentParser  = new UserAgentParser();
+//            userAgentParser  = new UserAgentParser();
         }
 
         @Override
@@ -53,10 +53,10 @@ public class LogAnalysisApplication {
             String line = value.toString();
 
             //2. 解析用户信息
-            UserAgent agent = userAgentParser.parse(line);
+//            UserAgent agent = userAgentParser.parse(line);
 
             //3. 通过上下文把Map处理结果输出
-            context.write(new Text(agent.getBrowser()), one);
+//            context.write(new Text(agent.getBrowser()), one);
         }
 
         /**
@@ -67,7 +67,7 @@ public class LogAnalysisApplication {
          */
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
-            userAgentParser = null;
+//            userAgentParser = null;
         }
     }
 

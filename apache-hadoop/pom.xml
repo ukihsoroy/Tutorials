@@ -61,11 +61,11 @@
         </dependency>
 
         <!--添加UserAgent解析的依赖-->
-        <dependency>
-            <groupId>com.kumkee</groupId>
-            <artifactId>UserAgentParser</artifactId>
-            <version>0.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.kumkee</groupId>-->
+            <!--<artifactId>UserAgentParser</artifactId>-->
+            <!--<version>0.0.1</version>-->
+        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
         <dependency>
             <groupId>org.apache.spark</groupId>
