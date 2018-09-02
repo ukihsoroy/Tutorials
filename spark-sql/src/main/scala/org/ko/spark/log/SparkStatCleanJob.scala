@@ -1,6 +1,7 @@
 package org.ko.spark.log
 
 import org.apache.spark.sql.SparkSession
+import org.ko.spark.log.AccessConvertUtils.Access
 
 /**
   * 使用Spark完成我们的数据清洗操作
@@ -19,7 +20,10 @@ object SparkStatCleanJob {
 //    accessRDD.take(10).foreach(println)
 
     //RDD ---> DF;
-    val accessDF = spark.createDataFrame(accessRDD.map(AccessConvertUtils.parseLog), AccessConvertUtils.struct)
+//    val accessDF = spark.createDataFrame(accessRDD.map(AccessConvertUtils.parseLog), AccessConvertUtils.struct)
+
+    import spark.implicits._
+    val accessDF = accessRDD.map(AccessConvertUtils.parseLogByCaseClass).toDF()
 
     accessDF.printSchema()
     accessDF.show(false)
