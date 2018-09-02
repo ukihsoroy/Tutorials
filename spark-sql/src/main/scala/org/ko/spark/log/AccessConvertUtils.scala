@@ -1,5 +1,6 @@
 package org.ko.spark.log
 
+import org.apache.commons.lang3.StringUtils
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.{LongType, StringType, StructField, StructType}
 
@@ -28,7 +29,7 @@ object AccessConvertUtils {
     */
   def parseLog(log: String): Row = {
     try {
-      val splits = log.split(",")
+      val splits = log.split("##")
       val url = splits(1)
       val traffic = splits(2).toLong
       val ip = splits(3)
@@ -40,8 +41,10 @@ object AccessConvertUtils {
       if (urlIndex != -1) {
         val cms = url.substring(url.indexOf(domain) + domain.length)
         val cmsTypeId = cms.split("/")
-        cmsType = cmsTypeId(0)
-        cmsId = cmsTypeId(1).toLong
+        if (cmsTypeId.length > 1) {
+          cmsType = cmsTypeId(0)
+          cmsId = cmsTypeId(1).toLong
+        }
       }
 
       val city = ""
@@ -57,8 +60,8 @@ object AccessConvertUtils {
   }
 
   def parseLogByCaseClass (log: String): Access = {
-    try {
-      val splits = log.split(",")
+//    try {
+      val splits = log.split("##")
       val url = splits(1)
       val traffic = splits(2).toLong
       val ip = splits(3)
@@ -70,8 +73,12 @@ object AccessConvertUtils {
       if (urlIndex != -1) {
         val cms = url.substring(url.indexOf(domain) + domain.length)
         val cmsTypeId = cms.split("/")
-        cmsType = cmsTypeId(0)
-        cmsId = cmsTypeId(1).toLong
+        if (cmsTypeId.length > 1) {
+          cmsType = cmsTypeId(0)
+          if (StringUtils.isNumeric(cmsTypeId(1))) {
+            cmsId = cmsTypeId(1).toLong
+          }
+        }
       }
 
       val city = IpUtils.getCity(ip)
@@ -79,11 +86,11 @@ object AccessConvertUtils {
       val day = time.substring(0, 10).replaceAll("-", "")
 
       Access(url, cmsType, cmsId, traffic, ip, city, time, day)
-    } catch {
-      case e: Exception =>
-        println("-----AccessConvertUtils.parseLog---->", e.getMessage)
-        null
-    }
+//    } catch {
+//      case e: Exception =>
+//        println("-----AccessConvertUtils.parseLog---->", e.getMessage)
+//        null
+//    }
   }
 
   case class Access(

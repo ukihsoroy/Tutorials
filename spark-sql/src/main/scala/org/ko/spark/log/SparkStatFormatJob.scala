@@ -27,7 +27,7 @@ object SparkStatFormatJob {
       val url = splits(11).replaceAll("\"", "")
       val traffic = splits(9)
 //      (ip, DateUtils.parse(time), url, traffic)
-      DateUtils.parse(time) + "," + url + "," + traffic + "," + ip
+      DateUtils.parse(time) + "##" + url + "##" + traffic + "##" + ip
     }).saveAsTextFile("file:/D:/code/java/kayo-repo/spark-sql/output/")
 
 
