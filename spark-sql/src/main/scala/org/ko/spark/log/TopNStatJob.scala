@@ -25,8 +25,11 @@ object TopNStatJob {
 //    accessDF.printSchema()
 //    accessDF.show(false)
 
-    videoAccessTopNStat(spark, accessDF)
+    //最受欢迎的TopN课程
+//    videoAccessTopNStat(spark, accessDF)
 
+    //按照地市进行统计TopN课程
+    cityAccessTopNStat(spark, accessDF)
 
     spark.stop()
   }
@@ -76,6 +79,15 @@ object TopNStatJob {
       case e: Exception => e.printStackTrace()
     }
 
+  }
+
+  def cityAccessTopNStat(spark: SparkSession, accessDF: DataFrame) = {
+    import spark.implicits._
+    val cityAccessTopDF = accessDF.filter($"day" === "20161110" && $"cmsType" === "video")
+      .groupBy("day", "city", "cmsId")
+      .agg(count("cmsId").as("times"))
+          .orderBy($"times".desc)
+    cityAccessTopDF.show(false)
   }
 
 }
