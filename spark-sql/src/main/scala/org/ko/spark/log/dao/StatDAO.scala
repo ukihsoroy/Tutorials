@@ -3,7 +3,7 @@ package org.ko.spark.log.dao
 import java.sql.{Connection, PreparedStatement}
 
 import org.ko.spark.log.MySQLUtils
-import org.ko.spark.log.model.{DayCityAccessStat, DayVideoAccessStat}
+import org.ko.spark.log.model.{DayTrafficsTopNStat, DayVideoAccessStat, DayVideoCityAccessStat}
 
 import scala.collection.mutable.ListBuffer
 
@@ -45,7 +45,7 @@ object StatDAO {
     }
   }
 
-  def insertDayCityAccessStat(list: ListBuffer[DayCityAccessStat]) = {
+  def insertDayVideoCityAccessStat(list: ListBuffer[DayVideoCityAccessStat]) = {
 
     var conn: Connection = null
     var statement: PreparedStatement = null
@@ -54,7 +54,7 @@ object StatDAO {
       conn = MySQLUtils.getConnection()
       conn.setAutoCommit(false) //设置手动提交
 
-      val sql = "INSERT INTO t_day_city_access_topn_stat(day, cms_id, city, times, times_rank) values(?, ?, ?, ?, ?)"
+      val sql = "INSERT INTO t_day_video_city_access_topn_stat(day, cms_id, city, times, times_rank) values(?, ?, ?, ?, ?)"
       statement = conn.prepareStatement(sql)
       list.foreach(target => {
         statement.setString(1, target.day)
@@ -69,6 +69,32 @@ object StatDAO {
       statement.executeBatch()  //执行批量处理
       conn.commit() //手动提交
 
+    } catch {
+      case e: Exception => e.printStackTrace()
+    } finally {
+      MySQLUtils.release(conn, statement)
+    }
+  }
+
+  //t_day_video_traffics_topn_stat
+  def insertDayVideoTrafficsStat(list: ListBuffer[DayTrafficsTopNStat]) = {
+    var conn: Connection = null
+    var statement: PreparedStatement = null
+    try {
+      conn = MySQLUtils.getConnection()
+      conn.setAutoCommit(false) //设置手动提交
+
+      val sql = "INSERT INTO t_day_video_traffics_topn_stat(day, cms_id, traffics) values(?, ?, ?)"
+      statement = conn.prepareStatement(sql)
+      list.foreach(target => {
+        statement.setString(1, target.day)
+        statement.setLong(2, target.cmsId)
+        statement.setLong(3, target.traffics)
+
+        statement.addBatch()
+      })
+      statement.executeBatch()  //执行批量处理
+      conn.commit() //手动提交
     } catch {
       case e: Exception => e.printStackTrace()
     } finally {

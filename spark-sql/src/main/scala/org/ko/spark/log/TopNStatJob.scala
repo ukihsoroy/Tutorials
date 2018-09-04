@@ -4,7 +4,7 @@ import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 import org.ko.spark.log.dao.StatDAO
-import org.ko.spark.log.model.{DayCityAccessStat, DayVideoAccessStat}
+import org.ko.spark.log.model.{DayTrafficsTopNStat, DayVideoAccessStat, DayVideoCityAccessStat}
 
 import scala.collection.mutable.ListBuffer
 
@@ -30,7 +30,10 @@ object TopNStatJob {
 //    videoAccessTopNStat(spark, accessDF)
 
     //按照地市进行统计TopN课程
-    cityAccessTopNStat(spark, accessDF)
+//    cityAccessTopNStat(spark, accessDF)
+
+    //按照流量进行统计
+    videoTrafficsTopNStat(spark, accessDF)
 
     spark.stop()
   }
@@ -101,7 +104,7 @@ object TopNStatJob {
     //将计算结果写入到MySql数据库
     try {
       cityTop3DF.foreachPartition(partitionOfRecords => {
-        val list = new ListBuffer[DayCityAccessStat]
+        val list = new ListBuffer[DayVideoCityAccessStat]
 
         partitionOfRecords.foreach(info => {
           val day = info.getAs[String]("day")
@@ -109,16 +112,42 @@ object TopNStatJob {
           val city = info.getAs[String]("city")
           val times = info.getAs[Long]("times")
           val timesRank = info.getAs[Int]("times_rank")
-          list.append(DayCityAccessStat(day, cmsId, city, times, timesRank))
+          list.append(DayVideoCityAccessStat(day, cmsId, city, times, timesRank))
         })
 
-        StatDAO.insertDayCityAccessStat(list)
+        StatDAO.insertDayVideoCityAccessStat(list)
 
       })
     } catch {
       case e: Exception => e.printStackTrace()
     }
+  }
 
+  def videoTrafficsTopNStat (spark: SparkSession, accessDF: DataFrame) = {
+    import spark.implicits._
+    val trafficsTopDF = accessDF.filter($"day" === "20161110" && $"cmsType" === "video")
+      .groupBy("day", "cmsId")
+      .agg(sum("traffic").as("traffics"))
+      .orderBy($"traffics".desc)
+
+    //将计算结果写入到MySql数据库
+    try {
+      trafficsTopDF.foreachPartition(partitionOfRecords => {
+        val list = new ListBuffer[DayTrafficsTopNStat]
+
+        partitionOfRecords.foreach(info => {
+          val day = info.getAs[String]("day")
+          val cmsId = info.getAs[Long]("cmsId")
+          val traffics = info.getAs[Long]("traffics")
+          list.append(DayTrafficsTopNStat(day, cmsId, traffics))
+        })
+
+        StatDAO.insertDayVideoTrafficsStat(list)
+
+      })
+    } catch {
+      case e: Exception => e.printStackTrace()
+    }
   }
 
 }
