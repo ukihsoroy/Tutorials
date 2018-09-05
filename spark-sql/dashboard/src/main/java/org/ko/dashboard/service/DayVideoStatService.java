@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface DayVideoStatService {
 
-    List<DayVideoAccessTopnStat> findDayVideoAccessStat();
+    List<DayVideoAccessTopnStat> findDayVideoAccessStat(String day);
 
-    List<DayVideoCityAccessTopnStat> findDayVideoCityStat();
+    List<DayVideoCityAccessTopnStat> findDayVideoCityStat(String day);
 
-    List<DayVideoTrafficsTopnStat> findDayVideoTrafficsStat();
+    List<DayVideoTrafficsTopnStat> findDayVideoTrafficsStat(String day);
 }
