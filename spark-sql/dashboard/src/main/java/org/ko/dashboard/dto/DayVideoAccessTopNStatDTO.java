@@ -2,7 +2,7 @@ package org.ko.dashboard.dto;
 
 import org.ko.dashboard.domain.DayVideoAccessTopnStat;
 
-public class DayVideoAccessTopnStatDTO extends DayVideoAccessTopnStat {
+public class DayVideoAccessTopNStatDTO extends DayVideoAccessTopnStat {
 
     private String courseName;
 

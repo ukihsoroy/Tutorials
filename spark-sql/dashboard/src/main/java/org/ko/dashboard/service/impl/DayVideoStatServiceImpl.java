@@ -6,7 +6,7 @@ import org.ko.dashboard.dao.DayVideoAccessTopnStatDAO;
 import org.ko.dashboard.dao.DayVideoCityAccessTopnStatDAO;
 import org.ko.dashboard.dao.DayVideoTrafficsTopnStatDAO;
 import org.ko.dashboard.domain.*;
-import org.ko.dashboard.dto.DayVideoAccessTopnStatDTO;
+import org.ko.dashboard.dto.DayVideoAccessTopNStatDTO;
 import org.ko.dashboard.service.DayVideoStatService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class DayVideoStatServiceImpl implements DayVideoStatService {
         List<DayVideoAccessTopnStat> topnStats = dayVideoAccessTopnStatDAO.selectByExample(example);
         if (!CollectionUtils.isEmpty(topnStats)) {
             return topnStats.stream().map(t -> {
-                DayVideoAccessTopnStatDTO topnStatDTO = new DayVideoAccessTopnStatDTO();
+                DayVideoAccessTopNStatDTO topnStatDTO = new DayVideoAccessTopNStatDTO();
                 BeanUtils.copyProperties(t, topnStatDTO);
                 topnStatDTO.setCourseName(courseNameDao.getCourseName(String.valueOf(t.getCmsId())));
                 return topnStatDTO;
@@ -61,5 +61,10 @@ public class DayVideoStatServiceImpl implements DayVideoStatService {
     @Override
     public List<DayVideoTrafficsTopnStat> findDayVideoTrafficsStat(String day) {
         return dayVideoTrafficsTopnStatDAO.selectByExample(new DayVideoTrafficsTopnStatExample());
+    }
+
+    @Override
+    public List<CityTimes> findDayCityTimes(String day) {
+        return dayVideoCityAccessTopnStatDAO.findCityTimes(day);
     }
 }

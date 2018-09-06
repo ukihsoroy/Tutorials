@@ -1,5 +1,6 @@
 package org.ko.dashboard.service;
 
+import org.ko.dashboard.domain.CityTimes;
 import org.ko.dashboard.domain.DayVideoAccessTopnStat;
 import org.ko.dashboard.domain.DayVideoCityAccessTopnStat;
 import org.ko.dashboard.domain.DayVideoTrafficsTopnStat;
@@ -13,4 +14,6 @@ public interface DayVideoStatService {
     List<DayVideoCityAccessTopnStat> findDayVideoCityStat(String day);
 
     List<DayVideoTrafficsTopnStat> findDayVideoTrafficsStat(String day);
+
+    List<CityTimes> findDayCityTimes(String day);
 }

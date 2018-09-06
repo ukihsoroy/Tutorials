@@ -3,6 +3,7 @@ package org.ko.dashboard.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.ko.dashboard.domain.CityTimes;
 import org.ko.dashboard.domain.DayVideoAccessTopnStat;
 import org.ko.dashboard.domain.DayVideoCityAccessTopnStat;
 import org.ko.dashboard.domain.DayVideoTrafficsTopnStat;
@@ -46,5 +47,12 @@ public class DayVideoStatController {
     public Response<List<DayVideoTrafficsTopnStat>> findDayVideoTrafficsStat(
             @ApiParam("查询天数") @RequestParam("day") String day) {
         return new Response<>(dayVideoStatService.findDayVideoTrafficsStat(day));
+    }
+
+    @GetMapping("city/times")
+    @ApiOperation("统计城市信息")
+    public Response<List<CityTimes>> findDayCityTimes(
+            @ApiParam("查询天数") @RequestParam("day") String day) {
+        return new Response<>(dayVideoStatService.findDayCityTimes(day));
     }
 }

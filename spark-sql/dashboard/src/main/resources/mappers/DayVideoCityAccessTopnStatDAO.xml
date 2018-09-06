@@ -216,4 +216,12 @@
       and cms_id = #{cmsId,jdbcType=BIGINT}
       and city = #{city,jdbcType=VARCHAR}
   </update>
+  <select id="findCityTimes" parameterType="string" resultType="org.ko.dashboard.domain.CityTimes">
+    SELECT
+      t.city name,
+      SUM(t.times) value
+    FROM t_day_video_city_access_topn_stat t
+    WHERE day = #{day}
+    GROUP BY t.city;
+  </select>
 </mapper>
