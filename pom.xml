@@ -99,5 +99,6 @@
         <module>springboot-hadoop</module>
         <module>apache-hbase</module>
         <module>spark-sql</module>
+        <module>spark-streaming</module>
     </modules>
 </project>
