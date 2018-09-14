@@ -1,18 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <artifactId>ko-repo</artifactId>
-        <groupId>org.ko</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+    <groupId>org.ko</groupId>
+    <version>1.0.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spark-streaming</artifactId>
     <inceptionYear>2008</inceptionYear>
     <properties>
-        <scala.version>2.11.8</scala.version>
+        <scala.version>2.12.6</scala.version>
         <kafka.version>2.0.0</kafka.version>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -22,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.11</artifactId>
+            <artifactId>kafka_2.12</artifactId>
             <version>${kafka.version}</version>
             <exclusions>
                 <exclusion>
@@ -39,7 +35,8 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/scala</sourceDirectory>
+        <!--<sourceDirectory>src/main/scala</sourceDirectory>-->
+        <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
             <plugin>
@@ -76,6 +73,14 @@
                         <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
                         <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
                     </classpathContainers>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
