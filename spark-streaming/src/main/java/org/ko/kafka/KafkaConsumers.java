@@ -21,7 +21,7 @@ public class KafkaConsumers {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
         KafkaConsumer<Integer, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Arrays.asList("hello.topic"));
+        consumer.subscribe(Arrays.asList("kafkaTest"));
 
         while (true) {
             ConsumerRecords<Integer, String> records = consumer.poll(100);

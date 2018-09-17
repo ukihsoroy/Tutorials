@@ -6,6 +6,6 @@ package org.ko.kafka;
 public class KafkaClientApp {
 
     public static void main(String[] args) {
-        new KafkaProducers(KafkaProperties.TOPIC).start();
+        new KafkaProduct(KafkaProperties.TOPIC).start();
     }
 }
