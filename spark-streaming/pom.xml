@@ -6,19 +6,54 @@
     <artifactId>spark-streaming</artifactId>
     <inceptionYear>2008</inceptionYear>
     <properties>
-        <scala.version>2.12.6</scala.version>
+        <scala.version>2.11.12</scala.version>
         <kafka.version>2.0.0</kafka.version>
+        <spark.version>2.3.1</spark.version>
+        <hadoop.version>3.1.0</hadoop.version>
+        <hbase.version>2.1.0</hbase.version>
     </properties>
 
     <dependencies>
+        <!--Hadoop 依赖-->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+
+        <!--Spark Streaming 依赖-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--HBase Client 依赖-->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+
+        <!--HBase Server 依赖-->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>-->
+
+        <!--Scala Library-->
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
         </dependency>
+
+        <!--Kafka 依赖-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.12</artifactId>
+            <artifactId>kafka_2.11</artifactId>
             <version>${kafka.version}</version>
             <exclusions>
                 <exclusion>
@@ -33,6 +68,14 @@
             <version>1.1.2.6</version>
         </dependency>
     </dependencies>
+
+    <!--cdh hadoop repository-->
+    <repositories>
+        <repository>
+            <id>cloudera</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+    </repositories>
 
     <build>
         <!--<sourceDirectory>src/main/scala</sourceDirectory>-->
