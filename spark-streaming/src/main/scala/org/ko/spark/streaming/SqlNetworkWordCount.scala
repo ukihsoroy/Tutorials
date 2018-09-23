@@ -6,6 +6,11 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.{Seconds, StreamingContext, Time}
 
+/**
+  * <p>
+  *   Spark Streaming 和 Spark SQL整合使用
+  * </p>
+  */
 object SqlNetworkWordCount {
 
   def main(args: Array[String]): Unit = {
