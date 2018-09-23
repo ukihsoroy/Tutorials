@@ -3,6 +3,9 @@ package org.ko.spark.streaming
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
+/**
+  * 使用Spark Streaming完成有状态统计
+  */
 object StatefulWordCount {
 
   def main(args: Array[String]): Unit = {
