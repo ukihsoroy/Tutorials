@@ -8,9 +8,10 @@
     <properties>
         <scala.version>2.11.12</scala.version>
         <kafka.version>2.0.0</kafka.version>
-        <spark.version>2.3.1</spark.version>
+        <spark.version>2.2.1</spark.version>
         <hadoop.version>3.1.0</hadoop.version>
         <hbase.version>2.1.0</hbase.version>
+        <jackson.version>2.9.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -26,7 +27,6 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming_2.11</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!--HBase Client 依赖-->
@@ -34,6 +34,13 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
+        </dependency>
+
+        <!--Jackson json处理工具包-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-scala_2.11</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!--HBase Server 依赖-->
@@ -60,6 +67,10 @@
                     <groupId>org.xerial.snappy</groupId>
                     <artifactId>snappy-java</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -70,16 +81,15 @@
     </dependencies>
 
     <!--cdh hadoop repository-->
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>cloudera</id>
             <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
         </repository>
-    </repositories>
+    </repositories>-->
 
     <build>
-        <!--<sourceDirectory>src/main/scala</sourceDirectory>-->
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
             <plugin>
