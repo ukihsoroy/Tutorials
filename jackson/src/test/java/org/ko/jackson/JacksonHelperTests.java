@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class JacksonHelperTests {
 
@@ -48,12 +49,8 @@ public class JacksonHelperTests {
 
     @Test
     public void jacksonReadJson () {
-        try {
-            List<City> cities = JacksonHelper.toList(new File("city.json"), City.class);
-            System.out.println(cities.size());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<City> cities = JacksonHelper.toList(new File("city.json"), City.class);
+        System.out.println(cities.size());
     }
 
     @Test
@@ -67,5 +64,18 @@ public class JacksonHelperTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test void whenConverterJsonToMap () {
+        String city = "{\n" +
+                "  \"id\": 1,\n" +
+                "  \"cityPath\": \"中国\",\n" +
+                "  \"city\": \"中国\",\n" +
+                "  \"shorten\": \"cn\",\n" +
+                "  \"createDate\": \"2018-03-08\"\n" +
+                "}";
+        Map map = JacksonHelper.toMap(city);
+        assert map != null;
+        System.out.println(map.get("city"));
     }
 }
