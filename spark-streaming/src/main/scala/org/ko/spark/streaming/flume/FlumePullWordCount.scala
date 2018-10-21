@@ -1,18 +1,18 @@
-package org.ko.spark.streaming
+package org.ko.spark.streaming.flume
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.flume.FlumeUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
-  * Spark Streaming整合Flume的第一种方式
+  * Spark Streaming整合Flume的第二种方式
   */
-object FlumePushWordCount {
+object FlumePullWordCount {
 
   def main(args: Array[String]): Unit = {
 
     if (args.length != 2) {
-      println("Usage: Flume push word count <hostname> <port>")
+      println("Usage: Flume pull word count <hostname> <port>")
       System.exit(1)
     }
 
@@ -22,7 +22,7 @@ object FlumePushWordCount {
     val ssc = new StreamingContext(sparkConf, Seconds(5))
 
     //Todo... 如何使用spark streaming整合flume
-    val flumeStream = FlumeUtils.createStream(ssc, hostname, port.toInt)
+    val flumeStream = FlumeUtils.createPollingStream(ssc, hostname, port.toInt)
 
     flumeStream.map(x => new String(x.event.getBody.array()).trim)
         .flatMap(_.split(" "))

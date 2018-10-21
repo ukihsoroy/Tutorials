@@ -1,4 +1,4 @@
-package org.ko.spark.streaming
+package org.ko.spark.streaming.simple
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}

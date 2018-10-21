@@ -1,4 +1,4 @@
-package org.ko.spark.streaming
+package org.ko.spark.streaming.simple
 
 import java.sql.{Connection, DriverManager}
 
