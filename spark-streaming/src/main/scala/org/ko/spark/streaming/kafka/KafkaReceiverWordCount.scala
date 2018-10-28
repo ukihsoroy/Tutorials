@@ -6,6 +6,8 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
   * Spark Streaming对接Kafka的方式一
+  * 192.168.37.131:2181 test kafka-streaming-topic 1
+  * 要求运行时kafka版本为0.8
   */
 object KafkaReceiverWordCount {
 
