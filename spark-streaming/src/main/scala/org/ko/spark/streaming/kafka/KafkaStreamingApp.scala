@@ -10,7 +10,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   * 192.168.37.131:9092 kafka-streaming-topic
   * 要求运行时kafka版本为0.8Q
   */
-object KafkaDirectWordCount {
+object KafkaStreamingApp {
 
   def main(args: Array[String]): Unit = {
 
@@ -20,7 +20,7 @@ object KafkaDirectWordCount {
     }
 
     val sparkConf = new SparkConf()
-      .setAppName("KafkaDirectWordCount")
+      .setAppName("KafkaStreamingApp")
       .setMaster("local[2]")
 
     val Array(brokers, topics) = args
@@ -37,12 +37,8 @@ object KafkaDirectWordCount {
     val messages = KafkaUtils
       .createDirectStream[String, String, StringDecoder, StringDecoder](ssc, kafkaParams, topicSet)
 
-    messages
-      .map(_._2)
-      .flatMap(_.split(" "))
-      .map((_, 1))
-      .reduceByKey(_ + _)
-      .print()
+    messages.map(_._2).count().print()
+
 
     ssc.start()
     ssc.awaitTermination()
