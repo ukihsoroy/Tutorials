@@ -4,7 +4,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.IntegerSerializer;
+//import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Kafka 生产者
+ * version 2.0
  */
 public class KafkaProduct extends Thread{
 
@@ -35,7 +36,7 @@ public class KafkaProduct extends Thread{
         //内存缓存区大小
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, KafkaProperties.BUFFER_MEMORY_CONFIG);
         //指定消息key序列化方式
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class);
+//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class);
         //指定消息本身的序列化方式
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producer = new KafkaProducer<>(props);
