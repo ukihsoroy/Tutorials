@@ -58,13 +58,15 @@ def sample_status_code():
 
 def generator_log(count=10):
     time_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    f = open("/home/k.o/data/project/logs/access.log", "w+")
     while count >= 1:
-        query_log = "{localTime}\t{url}\t{ip}\t{referer}\t{status}".format(
+        query_log = "{ip}\t{localTime}\t\"GET /{url} HTTP/1.1\"\t{status}\t{referer}".format(
             url=sample_url(),
             ip=sample_ip(),
             referer=sample_referer(),
             status=sample_status_code(),
             localTime=time_str)
+        f.write(query_log + "\n")
         print(query_log)
         count = count - 1
 
