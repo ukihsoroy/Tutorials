@@ -18,9 +18,9 @@ public class HBaseUtils {
     private HBaseUtils() {
         Configuration configuration = HBaseConfiguration.create();
 
-        configuration.set("hbase.zookeeper.quorum", "192.168.37.129");
+        configuration.set("hbase.zookeeper.quorum", "master");
         configuration.set("hbase.zookeeper.property.clientPort", "2181");
-//        configuration.set("hbase.rootdir", "hdfs://192.168.37.129:9000/hbase");
+        configuration.set("hbase.master", "master");
         try {
             connection = ConnectionFactory.createConnection(configuration);
         } catch (IOException e) {
@@ -75,8 +75,16 @@ public class HBaseUtils {
     }
 
     public static void main(String[] args) {
-//        Table table = HBaseUtils.getInstance().getTable("course_clickcount");
-//        System.out.println(table.getName().getNameAsString());
+        Table table = HBaseUtils.getInstance().getTable("course_clickcount");
+        System.out.println(table.getName().getNameAsString());
+        try {
+//            Put put = new Put("11".getBytes());
+//            put.addColumn("info".getBytes(), "name".getBytes(), "K.O".getBytes());
+//            table.put(put);
+            table.get(new Get("first".getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String tableName = "course_clickcount";
         String rowKey = "20181111_08";
