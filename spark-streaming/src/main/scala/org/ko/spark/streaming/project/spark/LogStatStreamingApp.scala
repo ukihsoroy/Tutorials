@@ -4,8 +4,11 @@ import kafka.serializer.StringDecoder
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.ko.spark.streaming.project.domain.ClickLog
+import org.ko.spark.streaming.project.dao.{CourseClickCountDAO, CourseSearchClickCountDAO}
+import org.ko.spark.streaming.project.domain.{ClickLog, CourseClickCount, CourseSearchClickCount}
 import org.ko.spark.streaming.project.utils.DateUtils
+
+import scala.collection.mutable.ListBuffer
 
 /**
   * 192.168.37.131:9092 kafka-streaming-topic
@@ -59,7 +62,47 @@ object LogStatStreamingApp {
       ClickLog(infos(0), DateUtils.parseToMinute(infos(1)), courseId, infos(3).toInt, infos(4))
     }.filter(_.courseId != 0)
 
-    cleanData.print()
+//    cleanData.print()
+
+    //测试步骤三：统计课程点击量
+    cleanData.map(x => {
+      // HBase row key设计: 20171111_88
+      (x.time.substring(0, 8) + "_" + x.courseId, 1)
+    }).reduceByKey(_ + _).foreachRDD(RDD => {
+      RDD.foreachPartition(partitionRecords => {
+        val list = new ListBuffer[CourseClickCount]
+        partitionRecords.foreach(pair => {
+          list.append(CourseClickCount(pair._1, pair._2))
+        })
+        CourseClickCountDAO.save(list)
+      })
+    })
+
+    //测试步骤四：统计从搜索引擎过来的今天到现在为止实战课程的访问量
+    cleanData.map(x => {
+      /**
+        * 1. http://www.sogou.com/web?query=Spark SQL实战
+        *  //替换掉/
+        * 2. http:/www.sogou.com/web?query=Spark SQL实战
+        */
+      val referer = x.referer.replaceAll("//", "/")
+      val refererAry = referer.split("/")
+      var host = ""
+      if (refererAry.length > 2) {
+        host = refererAry(1)
+      }
+      (host, x.courseId, x.time)
+    }).filter(_._1 != "").map(x => {
+      (x._3.substring(0, 8) + "_" + x._1 + "_" + x._2, 1)
+    }).reduceByKey(_ + _).foreachRDD(RDD => {
+      RDD.foreachPartition(partitionRecords => {
+        val list = new ListBuffer[CourseSearchClickCount]
+        partitionRecords.foreach(pair => {
+          list.append(CourseSearchClickCount(pair._1, pair._2))
+        })
+        CourseSearchClickCountDAO.save(list)
+      })
+    })
 
     ssc.start()
     ssc.awaitTermination()

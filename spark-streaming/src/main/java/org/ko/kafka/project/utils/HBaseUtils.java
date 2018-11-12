@@ -30,7 +30,7 @@ public class HBaseUtils {
 
     private static HBaseUtils instance = null;
 
-    private static synchronized HBaseUtils getInstance() {
+    public static synchronized HBaseUtils getInstance() {
         if (null == instance) {
             instance = new HBaseUtils();
         }
