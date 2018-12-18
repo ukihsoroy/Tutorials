@@ -8,6 +8,7 @@
     <inceptionYear>2008</inceptionYear>
     <properties>
         <scala.version>2.11.12</scala.version>
+        <spark.version>2.4.0</spark.version>
     </properties>
 
     <repositories>
@@ -32,6 +33,25 @@
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
         </dependency>
+        <!--引入Spark Core的依赖-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -41,6 +61,7 @@
             <plugin>
                 <groupId>org.scala-tools</groupId>
                 <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.1</version>
                 <executions>
                     <execution>
                         <goals>
