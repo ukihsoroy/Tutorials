@@ -100,5 +100,6 @@
         <module>apache-hbase</module>
         <module>spark-sql</module>
         <module>spark-streaming</module>
+        <module>imooc-concurrency</module>
     </modules>
 </project>
