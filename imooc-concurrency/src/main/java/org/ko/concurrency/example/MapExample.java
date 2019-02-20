@@ -1,4 +1,4 @@
-package org.ko.concurrency.demo;
+package org.ko.concurrency.example;
 
 import com.google.common.collect.Maps;
 

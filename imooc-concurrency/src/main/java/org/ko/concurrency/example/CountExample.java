@@ -1,4 +1,4 @@
-package org.ko.concurrency.demo;
+package org.ko.concurrency.example;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
