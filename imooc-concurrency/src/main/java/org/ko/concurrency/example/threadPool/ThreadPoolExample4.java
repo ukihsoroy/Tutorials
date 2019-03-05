@@ -31,6 +31,6 @@ public class ThreadPoolExample4 {
             public void run() {
                 log.info("time task run!");
             }
-        }, new Date(), 5 * 1000); 
+        }, new Date(), 5 * 1000);
     }
 }
