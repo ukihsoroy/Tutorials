@@ -2,8 +2,7 @@ package org.ko.algorithm;
 
 import org.junit.Test;
 import org.ko.algorithm.sort.*;
-import org.ko.util.KOUtils;
-
+//import org.ko.util.KOUtils;
 public class SortTest {
 	
 	private static final int N = 500;
@@ -26,7 +25,7 @@ public class SortTest {
 	@Test public void test2 () {
 		int[] args = createArray(N);
 		long startTime = System.currentTimeMillis();
- 		SelectionSort.sort(args);
+ 		//SelectionSort.sort(args);
  		long endTime = System.currentTimeMillis();
  		print(args);
  		System.out.println("选择排序" + (endTime - startTime)/1000.0 + "秒！");
@@ -59,7 +58,7 @@ public class SortTest {
 	@Test public void test5 () {
 		int[] args = createArray(N);
 		long startTime = System.currentTimeMillis();
-		HeapSort.heapSort1(args);
+		//HeapSort.heapSort1(args);
  		long endTime = System.currentTimeMillis();
  		print(args);
  		System.out.println("堆排序" + (endTime - startTime)/1000.0 + "秒！");	
@@ -102,7 +101,7 @@ public class SortTest {
 		for (int i = 0; i < x; i++) {
 			int l = (int)(Math.random() * n);
 			int j = (int)(Math.random() * n);
-			KOUtils.swap(args, l, j);
+			//KOUtils.swap(args, l, j);
 		}
 		print(args);
 		return args;
