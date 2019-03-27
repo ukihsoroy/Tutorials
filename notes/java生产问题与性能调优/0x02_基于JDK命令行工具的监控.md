@@ -52,7 +52,67 @@
 
 ## 运行时JVM参数查看
 
+### 直接在java -XX:+PrinfFlagsInitial 查看
+
+- -XX:+PrinfFlagsInitial 查看初始值
+  - = 表示默认值
+  - := 被用户或者JVM修改后的值
+- -XX:+PrintFlagsFinal 查看最终值
+- -XX:+UnlockExperimentalVMOptions解锁实验参数
+- -XX:+UnlockDiagnosticVMOptions解锁实验参数
+- -XX:+PrintCommandLineFlags打印命令行参数
+
+### jps 查看进程
+
+### jinfo
+
+```shell
+jinfo -flag [JVM参数] [进程号]
+jinfo -flags [进程号]
+```
+
 ## jstat查看虚拟机统计信息
+
+- 类加载
+- 垃圾收集
+- JIT编译
+
+### 命令格式
+
+```shell
+jstat -help|-options
+jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
+# options: -class, -compiler, -gc, -printcompilation
+```
+
+#### 类加载
+
+- jstat -class pid 1000 10
+- jstat -class 1378
+
+```log
+Loaded  Bytes     Unloaded  Bytes     Time
+  2692  5338.1        0     0.0       1.76
+```
+
+#### 垃圾回收
+
+- jstat -gc pid 1000 10
+- jstat -gc 1378
+
+```log
+ S0C     S1C    S0U    S1U      EC       EU        OC         OU       MC       MU        CCSC     CCSU     YGC    YGCT    FGC     FGCT     GCT
+1024.0  1024.0  0.0    1.9    8192.0   6021.4   20480.0    14490.3   16640.0   16153.7   2048.0   1819.8     41    0.138    0      0.000    0.138
+```
+
+- S0C, S1C, S0U, S1U: S0和S1的总量与使用量
+- EC, EU: Eden区总量与使用量
+- OC, OU: Old区总量与使用量
+- MC, MU: Metaspace区总量与使用量
+- CCSC, CCSU: 压缩类空间总量与使用量
+- YGC, YGCT: YoungGC的次数与时间
+- FGC, FGCT: FullGC的次数与时间
+- GCT: 总的GC时间
 
 ## jmap + MAT实战内存溢出
 
