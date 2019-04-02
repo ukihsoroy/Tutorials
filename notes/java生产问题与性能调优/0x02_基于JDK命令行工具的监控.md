@@ -114,6 +114,121 @@ Loaded  Bytes     Unloaded  Bytes     Time
 - FGC, FGCT: FullGC的次数与时间
 - GCT: 总的GC时间
 
+#### JVM内存结构
+
+![JVM内存结构](./images/j1.png)
+
+#### 查看JIT编译信息
+
+- -compiler, -printcompilation
+
 ## jmap + MAT实战内存溢出
+
+### 实现两种内存溢出（heap/Metaspace）
+
+```java
+package org.ko.web.chapter2;
+
+import org.ko.web.chapter2.asm.Metaspace;
+import org.ko.web.chapter2.bean.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * 内存溢出
+ */
+@RestController
+public class MemoryController {
+
+    private List<User> users = new ArrayList<>();
+    private List<Class<?>> classes = new ArrayList<>();
+
+    /**
+     * -Xmx32M  -Xms32M
+     * @return
+     */
+    @GetMapping("heap")
+    public String heap() {
+        int i = 0;
+        for (;;) {
+            users.add(new User(i++, UUID.randomUUID().toString()));
+        }
+    }
+
+    /**
+     * -XX:MetaspaceSize=32M -XX:MaxMetaspaceSize=32M
+     * @return
+     */
+    @GetMapping("nonheap")
+    public String nonheap() {
+        for (;;) {
+            classes.addAll(Metaspace.createClasses());
+        }
+    }
+
+}
+
+```
+
+```java
+package org.ko.web.chapter2.asm;
+
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Metaspace extends ClassLoader{
+
+    public static List<Class<?>> createClasses () {
+        //类持有
+        List<Class<?>> classes = new ArrayList<>();
+        //循环1000w次生产1000w个不同的类
+        for (int i = 0; i < 10000000; ++i) {
+            ClassWriter cw = new ClassWriter(0);
+            //定义一个类名称为Class[i], 他的访问域为public, 父类为java.lang.Object，不实现任何接口
+            cw.visit(Opcodes.V1_1, Opcodes.ACC_PUBLIC, "Class" + i, null,
+                    "java/lang/Object", null);
+            //定义构造函数<init>方法
+            MethodVisitor mw = cw.visitMethod(Opcodes.ACC_PUBLIC, "<init>", "()V",
+                    null, null);
+            //第一个指定为加载this
+            mw.visitVarInsn(Opcodes.ALOAD, 0);
+            //第二个指令为调用父类Object的构造函数
+            mw.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Object",
+                    "<init>", "()V");
+            //第三条指令为return
+            mw.visitInsn(Opcodes.RETURN);
+            mw.visitMaxs(1, 1);
+            mw.visitEnd();
+            Metaspace metaspace = new Metaspace();
+            byte[] code = cw.toByteArray();
+            //定义类
+            Class<?> exampleClass = metaspace.defineClass("Class" + i, code, 0, code.length);
+            classes.add(exampleClass);
+        }
+        return classes;
+    }
+}
+
+```
+
+### 如何导出内存映像文件
+
+- 内存溢出自动导出
+  - -XX:+HeapDumpOnOutOfMemoryError
+  - -XX:HeapDumpPath=./
+- 使用jmap命令手动导出
+  - jmap -dump:format=b,file=heap.hprof 8368
+
+### MIT
+
+- 下载：[https://www.eclipse.org/mat/downloads.php](https://www.eclipse.org/mat/downloads.php)
 
 ## jstack实战死循环与死锁
