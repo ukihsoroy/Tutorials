@@ -5,7 +5,10 @@
     <groupId>org.ko</groupId>
     <artifactId>jvm</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>monitor_tuning</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>jvm</name>
     <url>http://maven.apache.org</url>
