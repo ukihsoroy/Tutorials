@@ -28,7 +28,11 @@ import com.aliyun.openservices.ons.api.MessageListener;
 public class MessageListenerImpl implements MessageListener {
     @Override
     public Action consume(Message message, ConsumeContext consumeContext) {
-        System.out.println(new Date() + " Receive message, Topic is:" + message.getTopic() + ", MsgId is:" + message.getMsgID());
+        System.out.println(new Date()
+                + " Receive message, Topic is:"
+                + message.getTopic()
+                + ", MsgId is:" + message.getMsgID()
+                + ", Message Body is: " + new String(message.getBody()));
         //如果想测试消息重投的功能,可以将Action.CommitMessage 替换成Action.ReconsumeLater
         return Action.CommitMessage;
     }

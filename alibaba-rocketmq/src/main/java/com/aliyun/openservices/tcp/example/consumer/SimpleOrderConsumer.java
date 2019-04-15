@@ -39,7 +39,6 @@ public class SimpleOrderConsumer {
         consumerProperties.setProperty(PropertyKeyConst.NAMESRV_ADDR, MqConfig.NAMESRV_ADDR);
         OrderConsumer consumer = ONSFactory.createOrderedConsumer(consumerProperties);
         consumer.subscribe(MqConfig.ORDER_TOPIC, MqConfig.TAG,  new MessageOrderListener() {
-
             @Override
             public OrderAction consume(final Message message, final ConsumeOrderContext context) {
                 System.out.println(message);

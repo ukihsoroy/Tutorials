@@ -2,6 +2,7 @@ package com.aliyun.openservices.tcp.example.producer;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.Scanner;
 
 import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.ONSFactory;
@@ -29,9 +30,10 @@ public class SimpleTransactionProducer {
         TransactionProducer transactionProducer = ONSFactory.createTransactionProducer(tranProducerProperties, localTransactionChecker);
         transactionProducer.start();
 
-        Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, "mq send transaction message test".getBytes());
-
-        for (int i = 0; i < 10; i++) {
+        Scanner scan = new Scanner(System.in);
+        for (;;) {
+            System.out.print("请输入消息：");
+            Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, scan.next().getBytes());
            try{
                SendResult sendResult = transactionProducer.send(message, new LocalTransactionExecuter() {
                    @Override
@@ -41,13 +43,12 @@ public class SimpleTransactionProducer {
                    }
                }, null);
                assert sendResult != null;
-           }catch (ONSClientException e){
+           } catch (ONSClientException e){
                // 消息发送失败，需要进行重试处理，可重新发送这条消息或持久化这条数据进行补偿处理
                System.out.println(new Date() + " Send mq message failed! Topic is:" + MqConfig.TOPIC);
                e.printStackTrace();
            }
+            System.out.println("Send transaction message success.");
         }
-
-        System.out.println("Send transaction message success.");
     }
 }

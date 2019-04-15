@@ -17,6 +17,7 @@ package com.aliyun.openservices.tcp.example.producer;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.Scanner;
 
 import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.ONSFactory;
@@ -39,11 +40,12 @@ public class MQTimerProducer {
         Producer producer = ONSFactory.createProducer(producerProperties);
         producer.start();
         System.out.println("Producer Started");
-
+        Scanner scan = new Scanner(System.in);
         for (int i = 0; i < 10; i++) {
-            Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, "mq send timer message test".getBytes());
+            System.out.print("请输入消息，网络卡可能会慢：");
+            Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, scan.next().getBytes());
             // 延时时间单位为毫秒（ms），指定一个时刻，在这个时刻之后才能被消费，这个例子表示 3秒 后才能被消费
-            long delayTime = 3000;
+            long delayTime = 30000;
             message.setStartDeliverTime(System.currentTimeMillis() + delayTime);
             try {
                 SendResult sendResult = producer.send(message);

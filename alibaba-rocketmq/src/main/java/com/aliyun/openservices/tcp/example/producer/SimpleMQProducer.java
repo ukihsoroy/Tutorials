@@ -17,6 +17,7 @@ package com.aliyun.openservices.tcp.example.producer;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.Scanner;
 
 import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.ONSFactory;
@@ -41,9 +42,10 @@ public class SimpleMQProducer {
         Producer producer = ONSFactory.createProducer(producerProperties);
         producer.start();
         System.out.println("Producer Started");
-
-        for (int i = 0; i < 10; i++) {
-            Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, "mq send transaction message test".getBytes());
+        Scanner scan = new Scanner(System.in);
+        for (;;) {
+            System.out.print("input send message: ");
+            Message message = new Message(MqConfig.TOPIC, MqConfig.TAG, scan.next().getBytes());
             try {
                 SendResult sendResult = producer.send(message);
                 assert sendResult != null;
