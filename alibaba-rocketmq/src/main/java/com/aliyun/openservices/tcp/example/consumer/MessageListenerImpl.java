@@ -28,7 +28,7 @@ import com.aliyun.openservices.ons.api.MessageListener;
 public class MessageListenerImpl implements MessageListener {
     @Override
     public Action consume(Message message, ConsumeContext consumeContext) {
-        System.out.println(new Date()
+        System.out.println(new Date() + " " + Thread.currentThread().getName()
                 + " Receive message, Topic is:"
                 + message.getTopic()
                 + ", MsgId is:" + message.getMsgID()

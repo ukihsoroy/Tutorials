@@ -21,22 +21,19 @@ import com.aliyun.openservices.ons.api.Consumer;
 import com.aliyun.openservices.ons.api.ONSFactory;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.tcp.example.MqConfig;
+import com.aliyun.openservices.ons.api.PropertyValueConst;
 
 /**
  * MQ 接收消息示例 Demo
  */
-public class SimpleMQConsumer {
+public class SimpleMQConsumer implements Runnable{
 
     public static void main(String[] args) {
-        Properties consumerProperties = new Properties();
-        consumerProperties.setProperty(PropertyKeyConst.GROUP_ID, MqConfig.GROUP_ID);
-        consumerProperties.setProperty(PropertyKeyConst.AccessKey, MqConfig.ACCESS_KEY);
-        consumerProperties.setProperty(PropertyKeyConst.SecretKey, MqConfig.SECRET_KEY);
-        consumerProperties.setProperty(PropertyKeyConst.NAMESRV_ADDR, MqConfig.NAMESRV_ADDR);
-        Consumer consumer = ONSFactory.createConsumer(consumerProperties);
-        consumer.subscribe(MqConfig.TOPIC, MqConfig.TAG, new MessageListenerImpl());
-        consumer.start();
-        System.out.println("Consumer start success.");
+        int i = 0;
+        while (i < 10) {
+            new Thread(new SimpleMQConsumer()).start();
+            i ++;
+        }
 
         //等待固定时间防止进程退出
         try {
@@ -44,5 +41,19 @@ public class SimpleMQConsumer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void run() {
+        Properties consumerProperties = new Properties();
+        consumerProperties.setProperty(PropertyKeyConst.GROUP_ID, MqConfig.GROUP_ID);
+        consumerProperties.setProperty(PropertyKeyConst.AccessKey, MqConfig.ACCESS_KEY);
+        consumerProperties.setProperty(PropertyKeyConst.SecretKey, MqConfig.SECRET_KEY);
+        consumerProperties.setProperty(PropertyKeyConst.NAMESRV_ADDR, MqConfig.NAMESRV_ADDR);
+//        consumerProperties.setProperty(PropertyKeyConst.MessageModel, PropertyValueConst.BROADCASTING);
+        Consumer consumer = ONSFactory.createConsumer(consumerProperties);
+        consumer.subscribe(MqConfig.TOPIC, MqConfig.TAG, new MessageListenerImpl());
+        consumer.start();
+        System.out.println(Thread.currentThread().getName() + " Consumer start success.");
     }
 }
