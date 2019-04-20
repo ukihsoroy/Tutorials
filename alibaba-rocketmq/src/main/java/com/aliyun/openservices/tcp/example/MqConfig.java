@@ -26,8 +26,8 @@ public class MqConfig {
     public static final String GROUP_ID = "GID_ko_topic_group";
     public static final String ORDER_TOPIC = "ko_topic_test";
     public static final String ORDER_GROUP_ID = "GID_ko_topic_group";
-    public static final String ACCESS_KEY = "";
-    public static final String SECRET_KEY = "";
+    public static final String ACCESS_KEY = "LTAIgL85hfUJ9O62";
+    public static final String SECRET_KEY = "7xQWGDQmgdmKG4IEMYXD7N7285aNZQ";
     public static final String TAG = "mq_test_tag";
 
     /**

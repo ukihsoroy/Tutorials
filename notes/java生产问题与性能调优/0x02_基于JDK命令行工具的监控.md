@@ -232,3 +232,10 @@ public class Metaspace extends ClassLoader{
 - 下载：[https://www.eclipse.org/mat/downloads.php](https://www.eclipse.org/mat/downloads.php)
 
 ## jstack实战死循环与死锁
+
+jstack pid > pid.txt
+
+top -p pid -H 打印所有线程，查看cup占用率
+printf "%x" pid 转换成16进制
+
+jstack pid > pid.txt 可以直接输出死锁信息
