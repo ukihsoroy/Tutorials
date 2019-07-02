@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.ko</groupId>
-    <artifactId>sigma-jwheel</artifactId>
+    <artifactId>sigma-java</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>sigma-jwheel</name>
+    <name>sigma-java</name>
     <packaging>pom</packaging>
 
     <properties>
@@ -41,6 +41,7 @@
         <module>spring-webmvc-simple</module>
         <module>mybatis</module>
         <module>mybatis-simple</module>
+        <module>mybatis-plus-samples</module>
         <module>spring-aop</module>
         <module>spring-ioc</module>
         <module>spring-security</module>
@@ -104,6 +105,6 @@
         <module>scala-train</module>
         <module>alibaba-edas</module>
         <module>alibaba-rocketmq</module>
-
+        <module>maven</module>
     </modules>
 </project>
