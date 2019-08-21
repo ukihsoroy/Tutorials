@@ -85,3 +85,8 @@
 - `springcloud-zuul`：Spring Cloud #Zuul网关，Filter请求过滤
 - `springcloud-config`：Spring Cloud #Config 全局配置中心
 - `sso`: SSO单点登录
+- `hello-python`: python基础学习
+- `ml-python3`: python3机器学习入门(sklearn学习)
+- `numpy`: numpy练习，学习
+- `pygames`: python game游戏玩耍
+- `spider`: python爬虫基础，数据抓取等
