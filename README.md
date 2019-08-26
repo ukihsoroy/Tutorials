@@ -1,23 +1,31 @@
-# kayo-repo代码仓库
+# Tutorials
 
 ## 前言
-`code-repository`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎fork or star!
+
+`Tutorials`: 项目创建于2017年8月20日, 是个人学习框架和工具的合集, 欢迎fork or star!
 
 ## 项目介绍
-    项目包含java, python等主流技术和框架, 个人练习和整理, 有些可能不是很完整, 会慢慢补充!
+
+项目包含java, python等主流技术和框架, 个人练习和整理, 有些可能不是很完整, 会慢慢补充!
 
 ## **样例列表** 
-- `activiti-deploy`: activiti流程引擎-动态部署
+
+### basic
+
 - `algorithm`: 算法相关
-- `apache-mina`: Apache NIO框架
-- `apache-poi`: Excel, Word, PPT 导入导出
-- `apache-shiro`: Apache 轻量级安全框架
-- `apache-zookeeper`: Apache 高性能协调服务
-- `apache-hadoop`: Apache 大数据存储
+- `data-structure`: 一些简单java数据结构
+- `leetcode`: leetcode题库练习
+- `jvm`: Java虚拟机(JVM)调优练习
 - `asm`: 字节码生成工具
 - `core-java8`: Java8新功能-API等
 - `core-java-concurrency`: java并发包
-- `data-structure`: 一些简单java数据结构
+
+### web
+
+- `activiti-deploy`: activiti流程引擎-动态部署
+- `apache-mina`: Apache NIO框架
+- `apache-poi`: Excel, Word, PPT 导入导出
+- `apache-shiro`: Apache 轻量级安全框架
 - `fastDFS`: 文件断点续传
 - `flowable`: Flowable BPMN流程引擎
 - `generator`: 快速开发生成工具(html, css, js, mvc)
@@ -25,8 +33,6 @@
 - `jboss-netty`: Jboss NIO框架
 - `jdbc`: java database connection(数据库连接)
 - `jexcel`: java excel API 适合数据量较大的excel操作, 没有POI功能强大, 对JVM内存利用率比较高
-- `jvm`: Java虚拟机(JVM)调优练习
-- `leetcode`: leetcode题库练习
 - `socket`: socket 网络编程
 - `security`: spring security练习项目
 - `spring-webmvc`: [Spring #WebMVC 简单初始化](https://www.jianshu.com/p/86e3c8015ee5)
@@ -41,7 +47,6 @@
 - `spring-security`: Spring 安全框架
 - `spring-simple`: Spring #简单手写实现
 - `springboot`: Spring Boot #基础项目构建-引入web模块，添加了一个简单的Rest API
-- `springboot-hadoop`: Spring Boot #快速开发Hadoop程序
 - `springboot-webflux`：Spring Boot #2.0.0 web flux 工程
 - `springboot-webmvc-application`：Spring Boot #随机数 多环境等配置文件详解
 - `springboot-webmvc-rest`：Spring Boot #构建一个较为复杂的web mvc
@@ -85,8 +90,19 @@
 - `springcloud-zuul`：Spring Cloud #Zuul网关，Filter请求过滤
 - `springcloud-config`：Spring Cloud #Config 全局配置中心
 - `sso`: SSO单点登录
+
+### bigdata
+
+- `apache-zookeeper`: Apache 高性能协调服务
+- `apache-hadoop`: Apache 大数据存储
+- `springboot-hadoop`: Spring Boot #快速开发Hadoop程序
+
+### python, ml, dl
+
 - `hello-python`: python基础学习
 - `ml-python3`: python3机器学习入门(sklearn学习)
 - `numpy`: numpy练习，学习
 - `pygames`: python game游戏玩耍
 - `spider`: python爬虫基础，数据抓取等
+
+
