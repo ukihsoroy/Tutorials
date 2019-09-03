@@ -1,0 +1,36 @@
+{
+  "name": "{{name}}",
+  "title": "",
+  "description": "",
+  "category": "add-on",
+  "icon": {
+    "default": "./static/default.png"
+  },
+  "definition": {
+    "props": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "on": {
+      "type": "object",
+      "properties": {
+      }
+    },
+    "methods": {
+    }
+  },
+  "main": "./index.js",
+  "mainDesignTime": "./design-time/index.js",
+  "dnd": {
+    "cname": "{{name}}",
+    "dname": "{{name}}-design",
+    "ctype": "Control",
+    "displayName": "",
+    "selectable": true,
+    "targetable": true,
+    "draggable": true,
+    "deletable": true,
+    "wholeRow": true
+  }
+}

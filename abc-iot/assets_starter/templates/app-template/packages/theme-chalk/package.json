@@ -1,0 +1,16 @@
+{
+  "name": "theme-chalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "magno theme --serve",
+    "build": "magno theme --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "poi": "^12.6.8"
+  }
+}
