@@ -1,0 +1,89 @@
+.lyt_cont_div {
+    overflow: visible;
+  }
+  
+  .sk-ui-layout-grid .sk-ui-layout-grid-cell {
+    overflow: visible;
+  }
+  
+  #AlarmController {
+    position: relative;
+  }
+  
+  #AlarmController .toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    background-color: #0c121d;
+    color: white;
+  }
+  
+  #AlarmController .toolbar .left {
+    margin-top: 3px;
+  }
+  
+  #AlarmController .toolbar .right {
+  }
+  
+  #AlarmController .toolbar .right .menu {
+    padding: 0 5px;
+    cursor: pointer;
+  }
+  
+  #AlarmController .toolbar .right .menu:hover{
+    color: #a5b9cf;
+  }
+  
+  #AlarmController .toolbar .right .menu.selected {
+    color: #016ada;
+  }
+  
+  #AlarmController .custom-alarm-cont {
+    background: #1a252f;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 500px;
+    height: calc(100vh - 50px);
+    box-sizing: border-box;
+    border: solid 2px #246db3;
+    border-right: none;
+    border-bottom: none;
+    z-index: 2000;
+  }
+  
+  #AlarmController .custom-alarm-cont .el-form {
+    padding: 30px 50px;
+  }
+  
+  #AlarmController .el-input__inner {
+    background-color: #111923;
+    border-color: #3d4248;
+    color: #bfbfbf;
+  }
+  
+  #AlarmController .el-button {
+    border-color: #409EFF;
+    border-radius: 15px;
+    padding: 7px 20px;
+  }
+  
+  #AlarmController .el-button--default {
+    background-color: transparent;
+    color: #bfbfbf;
+  }
+  
+  #AlarmController .el-form-item {
+    margin-bottom: 24px;
+  }
+  
+  #AlarmController .el-form .el-form-item:nth-last-child(2) {
+    margin-bottom: 34px;
+  }
+  
+  #Map_Module .box-module-gisMap {
+    height: calc(100% - 40px) !important;
+  }

@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>chapter1-discovery</module>
+        <module>chapter2-config</module>
     </modules>
 
     <properties>

@@ -1,0 +1,13 @@
+{
+  "name": "mango_widget_demo",
+  "version": "1.0.0",
+  "description": "",
+  "author": "m00361589",
+  "private": true,
+  "scripts": {
+    "dev": "magno widget --serve"
+  },
+  "devDependencies": {
+    "theme-chalk": "^1.0.0"
+  }
+}

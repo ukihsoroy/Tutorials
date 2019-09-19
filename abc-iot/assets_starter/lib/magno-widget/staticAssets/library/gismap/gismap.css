@@ -1,0 +1,109 @@
+/*百度定制infoWindow样式*/
+.infoBox {
+	box-sizing: border-box;
+	border-radius: 4px;
+	padding: 10px;
+	color: #fff;
+}
+
+.infoBox img {
+	width: 14px !important;
+	height: 14px !important;
+	background: url("./img/close.png") no-repeat center center;
+}
+
+.infoBox::after {
+	content: "";
+	position: absolute;
+	background: url("./img/dialog-bottom.png") no-repeat center center;
+	background-size: contain;
+	width: 28px;
+	height: 28px;
+	bottom: -28px;
+	left: 50%;
+}
+
+/*高德定制infoWindow样式*/
+.custom-infowin-box {
+	background-color:rgba(32,42,53,.9);
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+	display: flex;
+    flex-direction: column;
+}
+
+.custom-infowin-box::after {
+	content: "";
+	position: absolute;
+	background: url("./img/dialog-bottom.png") no-repeat center center;
+	background-size: contain;
+	width: 28px;
+	height: 28px;
+	bottom: -28px;
+	left: 50%;
+}
+
+.custom-infowin-top {
+    display: flex;
+	width:100%;
+	justify-content: flex-end;
+}
+
+.custom-infowin-close {
+	height: 14px;
+    width: 14px;
+    background: url("./img/close.png") no-repeat center center;
+	cursor: pointer;
+}
+
+/*Google定制infoWindow样式*/
+.google-infowin-box {
+	background-color:rgba(32,42,53,.9);
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+	display: flex;
+    flex-direction: column;
+	/*very important*/
+	position:absolute;  
+}
+
+.google-infowin-after {
+	content: "";
+	position: absolute;
+	background: url("./img/dialog-bottom.png") no-repeat center center;
+	background-size: contain;
+	width: 28px;
+	height: 28px;
+	bottom: -28px;
+	left: 0px;
+}
+
+.google-infowin-top {
+    display: flex;
+	width:100%;
+	justify-content: flex-end;
+}
+
+.google-infowin-close {
+	height: 14px;
+    width: 14px;
+    background: url("./img/close.png") no-repeat center center;
+	cursor: pointer;
+}
+
+.amap-marker-label {
+    background-color: rgba(32,42,53,.8);
+    padding: 2px 5px;
+    color: white;
+    border-radius: 2px;
+	border:none;
+}
+
+/*高德地图map type控件样式*/
+
+.amap-maptypecontrol {
+    top: 84px;
+    right: 18px;
+}

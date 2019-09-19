@@ -1,0 +1,49 @@
+{
+    "config": [{
+            "type": "text",
+            "name": "textProperty",
+            "label": "Text Property",
+            "value": "text"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkProperty",
+            "label": "Check Property",
+            "value": "true"
+        },
+        {
+            "type": "text",
+            "name": "numberProperty",
+            "label": "Number Property",
+            "value": "30"
+        },
+        {
+            "type": "text",
+            "name": "arrayProperty",
+            "label": "Array Property",
+            "value": "1;2;3"
+        },
+        {
+            "type": "select",
+            "name": "selectProperty",
+            "label": "Select Property",
+            "options": [{
+                    "label": "option1",
+                    "value": "option1",
+                    "selected": "true"
+                },
+                {
+                    "label": "option2",
+                    "value": "option2"
+                }
+            ]
+        },
+        {
+            "type": "connectorV2",
+            "name": "bridgeProperty",
+            "model": "ViewModel",
+            "label": "Widget Bridge",
+            "value": ""
+        }
+    ]
+}
