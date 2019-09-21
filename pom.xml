@@ -107,5 +107,6 @@
         <module>alibaba-rocketmq</module>
         <module>maven</module>
         <module>springcloud-alibaba</module>
+        <module>flink</module>
     </modules>
 </project>
