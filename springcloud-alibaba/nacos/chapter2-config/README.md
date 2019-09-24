@@ -1,5 +1,10 @@
 # Nacos Config Example
 
+## 添加内容
+
+1. 按照下面文档是ok的，不需要像以前config需要refresh一下，更改完properties后就直接生效。
+2. 本来打算使用swagger，通过文档直接添加properties到nacos里面，但是出现`%0A`无法识别，直接就连行了。（**没有解决**）
+
 ## 项目说明
 
 本项目演示如何使用 Nacos Config Starter 完成 Spring Cloud 应用的配置管理。
