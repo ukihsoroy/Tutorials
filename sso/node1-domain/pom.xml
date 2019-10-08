@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>node1-same-area</artifactId>
+    <artifactId>node1-domain</artifactId>
     <packaging>jar</packaging>
 
-    <name>node1-same-area</name>
+    <name>node1-domain</name>
     <url>http://maven.apache.org</url>
 
     <properties>

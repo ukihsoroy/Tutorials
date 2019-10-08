@@ -13,4 +13,4 @@ spring:
 server:
   session:
     timeout: 3600 #session 超时时间 (秒)
-  port: 8081  #端口号
+  port: 8082  #端口号
