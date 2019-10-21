@@ -20,6 +20,10 @@
 - `core-java8`: Java8新功能-API等
 - `core-java-concurrency`: java并发包
 
+### mid
+
+- id-generator: id生成器
+
 ### web
 
 - `activiti-deploy`: activiti流程引擎-动态部署
@@ -96,6 +100,7 @@
 - `apache-zookeeper`: Apache 高性能协调服务
 - `apache-hadoop`: Apache 大数据存储
 - `springboot-hadoop`: Spring Boot #快速开发Hadoop程序
+- `flink`: flink 流式框架
 
 ### python, ml, dl
 

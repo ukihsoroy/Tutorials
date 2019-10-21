@@ -14,17 +14,39 @@
     </properties>
 
     <modules>
+        <!--basic-->
+        <module>asm</module>
+        <module>core-java8</module>
+        <module>core-java-concurrency</module>
+        <module>data-structure</module>
+        <module>jvm</module>
+        <module>leetcode</module>
+        <module>algorithm</module>
+
+        <!--big data-->
+        <module>apache-hadoop</module>
+        <module>springboot-hadoop</module>
+        <module>apache-hbase</module>
+        <module>spark-sql</module>
+        <module>spark-streaming</module>
+        <module>flink</module>
+        <module>scala-train</module>
+
+        <!--plugin-->
+        <module>lombok</module>
+        <module>maven</module>
+
+        <!--mid-->
+        <module>id-generator</module>
+
+        <!--web-->
         <module>activiti-deploy</module>
         <module>apache-mina</module>
         <module>apache-poi</module>
         <module>apache-shiro</module>
         <module>apache-zookeeper</module>
-        <module>apache-hadoop</module>
         <module>apache-wicket</module>
-        <module>asm</module>
-        <module>core-java8</module>
-        <module>core-java-concurrency</module>
-        <module>data-structure</module>
+        <module>flowable</module>
         <module>fastDFS</module>
         <module>fast-json</module>
         <module>generator</module>
@@ -32,8 +54,6 @@
         <module>jboss-netty</module>
         <module>jdbc</module>
         <module>jexcel</module>
-        <module>jvm</module>
-        <module>leetcode</module>
         <module>socket</module>
         <module>spring-webmvc</module>
         <module>spring-webmvc-annotation</module>
@@ -42,6 +62,7 @@
         <module>mybatis</module>
         <module>mybatis-simple</module>
         <module>mybatis-plus-samples</module>
+        <module>mybatis-common-mapper</module>
         <module>spring-aop</module>
         <module>spring-ioc</module>
         <module>spring-security</module>
@@ -91,22 +112,12 @@
         <module>springcloud-feign</module>
         <module>springcloud-zuul</module>
         <module>springcloud-config</module>
+        <module>springcloud-alibaba</module>
         <module>sso</module>
         <module>security</module>
-        <module>lombok</module>
-        <module>algorithm</module>
-        <module>mybatis-common-mapper</module>
-        <module>flowable</module>
-        <module>springboot-hadoop</module>
-        <module>apache-hbase</module>
-        <module>spark-sql</module>
-        <module>spark-streaming</module>
         <module>imooc-concurrency</module>
-        <module>scala-train</module>
         <module>alibaba-edas</module>
         <module>alibaba-rocketmq</module>
-        <module>maven</module>
-        <module>springcloud-alibaba</module>
-        <module>flink</module>
+
     </modules>
 </project>
