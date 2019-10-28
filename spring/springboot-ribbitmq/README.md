@@ -21,6 +21,7 @@
     rabbitmqctl.bat  set_permissions  -p / .* .* .*
 ```
 - 访问管理界面: [http://127.0.0.1:15672/](http://127.0.0.1:15672/)
+- 创建队列`ko-queue`，添加name其他默认即可。
 
 ### 2.配置工程
 
