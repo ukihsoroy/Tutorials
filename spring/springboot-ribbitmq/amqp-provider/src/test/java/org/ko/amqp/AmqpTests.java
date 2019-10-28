@@ -17,7 +17,7 @@ public class AmqpTests {
     @Test
     public void sendTest () {
         for (int i = 1; i < 100; i++) {
-            amqpSenderService.send("message" + i);
+            amqpSenderService.send("中文测试" + i);
         }
     }
 

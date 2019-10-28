@@ -5,6 +5,9 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 定义消息队列协议
  */
@@ -13,7 +16,10 @@ public class AmqpConfig {
 
     @Bean
     public Queue queue () {
-        return new Queue("ko-queue");
+        Map<String, Object> args = new HashMap<>();
+// // set the queue with a dead letter feature
+        args.put("x-queue-type", "classic");
+        return new Queue("ko-queue", true, false, false, args);
     }
 
     @Bean

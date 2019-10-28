@@ -18,7 +18,7 @@
     <!--2.赋予角色-->
     rabbitmqctl.bat  set_user_tags  tiger  administrator
     <!--3.设置权限-->
-    rabbitmqctl.bat  set_permissions  -p / .* .* .*
+    rabbitmqctl.bat  set_permissions -p / tiger .* .* .*
 ```
 - 访问管理界面: [http://127.0.0.1:15672/](http://127.0.0.1:15672/)
 - 创建队列`ko-queue`，添加name其他默认即可。
