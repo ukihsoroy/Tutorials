@@ -5,16 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ko</groupId>
-    <artifactId>fast-json</artifactId>
+    <artifactId>json</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <!--阿里巴巴JSON序列化工具-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-    </dependencies>
-
+    <modules>
+        <module>fastjson</module>
+        <module>jackson</module>
+    </modules>
 </project>
