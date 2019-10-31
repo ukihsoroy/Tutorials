@@ -1,8 +1,0 @@
-{
-  "name": "mango_vue_widget_demo",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "theme-chalk": "^1.0.0"
-  }
-}
