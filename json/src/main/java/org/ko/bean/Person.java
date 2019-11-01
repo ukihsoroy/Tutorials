@@ -1,4 +1,4 @@
-package org.ko.fast.json;
+package org.ko.bean;
 
 import java.util.Date;
 

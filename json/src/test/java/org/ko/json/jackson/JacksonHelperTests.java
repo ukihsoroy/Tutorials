@@ -1,11 +1,8 @@
-package org.ko.jackson;
+package org.ko.json.jackson;
 
-import org.codehaus.jackson.map.MappingIterator;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectReader;
-import org.codehaus.jackson.map.type.ArrayType;
-import org.codehaus.jackson.type.JavaType;
 import org.junit.jupiter.api.Test;
+import org.ko.util.JdbcHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +46,8 @@ public class JacksonHelperTests {
 
     @Test
     public void jacksonReadJson () {
-        List<City> cities = JacksonHelper.toList(new File("city.json"), City.class);
-        System.out.println(cities.size());
+//        List<City> cities = JacksonHelper.toList(new File("city.json"), City.class);
+//        System.out.println(cities.size());
     }
 
     @Test
@@ -58,12 +55,8 @@ public class JacksonHelperTests {
         City city = new City();
         city.setCity("11");
         city.setCityPath("222");
-        try {
-            String json = JacksonHelper.parseJson(city);
-            System.out.println(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String json = JacksonHelper.obj2String(city);
+        System.out.println(json);
     }
 
     @Test void whenConverterJsonToMap () {
@@ -74,7 +67,7 @@ public class JacksonHelperTests {
                 "  \"shorten\": \"cn\",\n" +
                 "  \"createDate\": \"2018-03-08\"\n" +
                 "}";
-        Map map = JacksonHelper.toMap(city);
+        Map map = JacksonHelper.string2Map(city);
         assert map != null;
         System.out.println(map.get("city"));
     }

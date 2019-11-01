@@ -1,4 +1,4 @@
-package org.ko.jackson;
+package org.ko.json.jackson;
 
 
 import org.apache.commons.lang3.StringUtils;

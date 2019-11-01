@@ -1,4 +1,4 @@
-package org.ko.jackson;
+package org.ko.util;
 
 import java.sql.*;
 
