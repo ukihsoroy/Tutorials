@@ -8,7 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.ko.poi.excel.annotation.ExcelColumn;
+import org.ko.poi.excel.annotation.ExcelHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -246,7 +246,6 @@ public final class ExcelHelper {
 		String value = "";
 		
 		if(cell != null){
-
 			switch (cell.getCellTypeEnum()) {
 				case STRING:
 					value = cell.getStringCellValue();
@@ -312,7 +311,7 @@ public final class ExcelHelper {
 		LinkedHashMap<String, Field> fieldMap = new LinkedHashMap<>();
 		//取出Excel所有字段
 		for (Field field : fields) {
-			ExcelColumn column = field.getAnnotation(ExcelColumn.class);
+			ExcelHeader column = field.getAnnotation(ExcelHeader.class);
 			if (Objects.nonNull(column)) {
 				fieldMap.put(column.index(), field);
 			}
@@ -320,13 +319,13 @@ public final class ExcelHelper {
 		return fieldMap;
 	}
 
-	private static List<String> excelHeader (Class clazz) {
+	public static List<String> excelHeader (Class clazz) {
 		Field[] fields = clazz.getDeclaredFields();
 		String[] contains = new String[fields.length + 1];
 		contains[0] = "序号";
 		//取出Excel所有字段
 		for (Field field : fields) {
-			ExcelColumn column = field.getAnnotation(ExcelColumn.class);
+			ExcelHeader column = field.getAnnotation(ExcelHeader.class);
 			if (Objects.nonNull(column)) {
 				contains[Integer.parseInt(column.index())] = column.name();
 			}

@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class ExcelColumnTests {
+public class ExcelHeaderTests {
 
     private static String FILE_NAME = "city.xlsx";
 
     @Test
     public void excelHeader () {
         List<String> header = ExcelHelper.excelHeader(City.class);
-        System.out.println(header.toArray());
+        header.forEach(System.out::println);
     }
 
     @Test
