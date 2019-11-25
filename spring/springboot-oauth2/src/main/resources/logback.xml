@@ -100,7 +100,7 @@
 		</encoder>
 	</appender>
 
- 	<logger name="com.wang.*" value="INFO" />
+ 	<logger name="org.ko.*" value="INFO" />
      
     <!-- root级别   DEBUG -->
 	<root level="info">
