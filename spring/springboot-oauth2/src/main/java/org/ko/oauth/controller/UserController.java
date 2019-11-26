@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
+
     @Autowired
-    private IUserService iUserService;
+    private IUserService userService;
 
 
     @ResponseBody
-    @RequestMapping("bata/hello")
-    public String batahello() {
+    @RequestMapping("ko/hello")
+    public String koHello() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return "Hello World bata";
+        return "Hello World K.O！";
     }
 
     @ResponseBody
     @RequestMapping("user/hello")
-    public String testhello() {
+    public String testHello() {
         return "Hello World test";
     }
 

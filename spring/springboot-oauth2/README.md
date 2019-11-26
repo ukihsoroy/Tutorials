@@ -23,7 +23,7 @@ http://www.baidu.com/?code=kG4F2N&state=b375bc2b-25f7-4dce-9b36-5f9e2d20bda1
 ```
 * 申请access_token
 ```
-curl -X POST http://localhost:8080/oauth/token -H "Accept: application/json" -d "client_id=curl-client&client_secret=client-secret&grant_type=authorization_code&code=rXv2hp&redirect_uri=http://www.baidu.com"
+curl -X POST http://localhost:8080/oauth/token -H "Accept: application/json" -d "client_id=curl-client&client_secret=client-secret&grant_type=authorization_code&code=eaEuLC&redirect_uri=http://www.baidu.com"
 ```
 * 返回access_token
 ```

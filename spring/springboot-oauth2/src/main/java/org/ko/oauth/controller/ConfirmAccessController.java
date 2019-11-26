@@ -18,8 +18,10 @@ import java.util.Map;
 @Controller
 @SessionAttributes("authorizationRequest")
 public class ConfirmAccessController {
+
     @Autowired
     private JdbcClientDetailsService clientDetailsService;
+
     @Autowired
     private ApprovalStore approvalStore;
 

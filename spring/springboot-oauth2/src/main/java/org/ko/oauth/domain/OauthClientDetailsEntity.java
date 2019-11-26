@@ -5,16 +5,27 @@ import javax.persistence.*;
 @Entity
 @Table(name = "oauth_client_details", schema = "oauth2", catalog = "")
 public class OauthClientDetailsEntity {
+
     private String clientId;
+
     private String resourceIds;
+
     private String clientSecret;
+
     private String scope;
+
     private String authorizedGrantTypes;
+
     private String webServerRedirectUri;
+
     private String authorities;
+
     private Integer accessTokenValidity;
+
     private Integer refreshTokenValidity;
+
     private String additionalInformation;
+
     private String autoapprove="false";
 
     @Id
@@ -120,7 +131,7 @@ public class OauthClientDetailsEntity {
     @Basic
     @Column(name = "autoapprove")
     public String getAutoapprove() {
-        return autoapprove;
+        return this.autoapprove;
     }
 
     public void setAutoapprove(String autoapprove) {

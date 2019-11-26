@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/client")
 public class ClientDetailsController {
+
     @Autowired
-    private IClientDetailsService iClientDetailsService;
+    private IClientDetailsService clientDetailsService;
 
     @GetMapping("/ui")
     @ApiOperation(value = "添加客户端detailUi", notes = "添加客户端detailUi")
@@ -27,8 +28,8 @@ public class ClientDetailsController {
     @ResponseBody
     @ApiOperation(value = "添加客户端detail", notes = "添加客户端detail")
     public Response addClient(OauthClientDetailsEntity client) {
-        iClientDetailsService.save(client);
-        return new Response("添加成功");
+        clientDetailsService.save(client);
+        return Response.ok("添加成功");
     }
 
 }

@@ -5,5 +5,5 @@ import org.ko.oauth.domain.UserEntity;
 
 public interface IUserService {
 
-    UserEntity findByname(String username);
+    UserEntity findByName(String username);
 }
