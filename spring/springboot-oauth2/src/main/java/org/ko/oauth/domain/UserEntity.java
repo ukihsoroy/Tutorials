@@ -2,9 +2,6 @@ package org.ko.oauth.domain;
 
 import javax.persistence.*;
 
-/**
- * Created by Administrator on 2017/2/11 0011.
- */
 @Entity
 @Table(name = "user", schema = "oauth2", catalog = "")
 public class UserEntity {

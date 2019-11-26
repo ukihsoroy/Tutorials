@@ -37,14 +37,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	/**
      * We expose the JdbcClientDetailsService because it has extra methods that the Interface does not have. E.g.
      * {@link org.springframework.security.oauth2.provider.client.JdbcClientDetailsService#listClientDetails()} which we need for the
      * admin page.
      */
     @Bean
-    public JdbcClientDetailsService clientDetailsService() {
+    public JdbcClientDetailsService jdbcClientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
     }
 
@@ -75,18 +75,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Bean
     public OAuth2RequestFactory oAuth2RequestFactory() {
-        return new DefaultOAuth2RequestFactory(clientDetailsService());
+        return new DefaultOAuth2RequestFactory(jdbcClientDetailsService());
     }
 	
 	@Bean
 	public UserApprovalHandler userApprovalHandler() {
-		return new BataApprovalHandler(clientDetailsService(),approvalStore(),oAuth2RequestFactory());
+		return new ApprovalHandler(jdbcClientDetailsService(),approvalStore(),oAuth2RequestFactory());
 //		return new DefaultUserApprovalHandler();
 	}
 	
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService());
+        clients.withClientDetails(jdbcClientDetailsService());
     }
 
     @Override

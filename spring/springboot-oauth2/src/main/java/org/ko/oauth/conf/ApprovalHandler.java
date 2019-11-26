@@ -12,17 +12,14 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 
 import java.util.*;
 
-/**
- * Created by Administrator on 2017/4/4 0004.
- */
-public class BataApprovalHandler extends ApprovalStoreUserApprovalHandler {
+public class ApprovalHandler extends ApprovalStoreUserApprovalHandler {
 
     private int approvalExpirySeconds = -1;
 
     @Autowired
     private ApprovalStore approvalStore;
 
-    public BataApprovalHandler(JdbcClientDetailsService clientDetailsService, ApprovalStore approvalStore, OAuth2RequestFactory oAuth2RequestFactory) {
+    public ApprovalHandler(JdbcClientDetailsService clientDetailsService, ApprovalStore approvalStore, OAuth2RequestFactory oAuth2RequestFactory) {
         this.setApprovalStore(approvalStore);
         this.setClientDetailsService(clientDetailsService);
         this.setRequestFactory(oAuth2RequestFactory);

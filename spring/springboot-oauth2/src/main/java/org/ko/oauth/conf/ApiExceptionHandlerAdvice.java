@@ -1,27 +1,30 @@
 package org.ko.oauth.conf;
 
 import com.google.common.base.Throwables;
-import org.ko.oauth.utils.ResultJson;
+import org.ko.oauth.support.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 /**
- * Created by wangxiangyun on 2017/1/24.
+ * 全局异常处理
  */
-@ControllerAdvice(annotations = RestController.class)
+@RestControllerAdvice(annotations = RestController.class)
 public class ApiExceptionHandlerAdvice {
-    Logger logger = LoggerFactory.getLogger(ApiExceptionHandlerAdvice.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(ApiExceptionHandlerAdvice.class);
     /**
      * Handle exceptions thrown by handlers.
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    public ResultJson exception(Exception exception, WebRequest request) {
-        ResultJson errorResult =new ResultJson();
+    public Response exception(Exception exception, WebRequest request) {
+        Response errorResult =new Response();
         errorResult.setMessage(Throwables.getRootCause(exception).getMessage());
         errorResult.setCode(-1);
         logger.error("GlobalException====",exception);

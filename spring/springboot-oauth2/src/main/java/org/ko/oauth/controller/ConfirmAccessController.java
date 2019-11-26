@@ -15,9 +15,6 @@ import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Created by wxy on 2017/4/4 0004.
- */
 @Controller
 @SessionAttributes("authorizationRequest")
 public class ConfirmAccessController {
