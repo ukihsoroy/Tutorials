@@ -6,6 +6,8 @@ import org.ko.zookeeper.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
+
 public class ZkClientCrudTest {
 
     final static Logger logger = LoggerFactory.getLogger(ZkClientCrudTest.class);
@@ -36,8 +38,20 @@ public class ZkClientCrudTest {
         user.setEmail("ko.shen@hotmail.com");
         zkClientCrud.writeData(path, user);
         System.out.println(zkClientCrud.readData(path).getName());;
+    }
 
 
+    @Test void testIsNumber() {
+        System.out.println(isNumber("123a"));
+    }
+
+    private boolean isNumber(String n) {
+        try {
+            new BigDecimal(n);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
 }
