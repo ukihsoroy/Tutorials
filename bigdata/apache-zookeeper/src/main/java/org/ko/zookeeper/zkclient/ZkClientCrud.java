@@ -16,7 +16,7 @@ public class ZkClientCrud<T> {
     public ZkClientCrud(ZkSerializer zkSerializer) {
         logger.info("链接zk开始");
         // zkClient=new ZkClient(ZookeeperUtil.connectString,ZookeeperUtil.sessionTimeout);
-        zkClient = new ZkClient(ZookeeperUtil.connectString,ZookeeperUtil.sessionTimeout,ZookeeperUtil.sessionTimeout, zkSerializer);
+        zkClient = new ZkClient(ZookeeperUtil.connectString, ZookeeperUtil.sessionTimeout, ZookeeperUtil.sessionTimeout, zkSerializer);
     }
 
 
