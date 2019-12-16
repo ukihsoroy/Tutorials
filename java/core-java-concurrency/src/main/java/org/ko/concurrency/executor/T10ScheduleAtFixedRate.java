@@ -1,5 +1,7 @@
 package org.ko.concurrency.executor;
 
+import org.ko.concurrency.utils.ThreadUtils;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +31,8 @@ public class T10ScheduleAtFixedRate {
         executor.scheduleAtFixedRate(task, initialDelay, period, TimeUnit.SECONDS);
 
         //停止
-//        ThreadUtils.destory(executor);
+        ThreadUtils.destory(executor);
+
 
 
     }

@@ -1,6 +1,6 @@
 package org.ko.concurrency.executor;
 
-import org.ko.util.ThreadUtils;
+import org.ko.concurrency.utils.ThreadUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

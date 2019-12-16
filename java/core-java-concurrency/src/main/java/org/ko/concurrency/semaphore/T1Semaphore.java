@@ -1,7 +1,6 @@
 package org.ko.concurrency.semaphore;
 
-import org.ko.util.ThreadUtils;
-import sun.security.krb5.internal.TGSRep;
+import org.ko.concurrency.utils.ThreadUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
