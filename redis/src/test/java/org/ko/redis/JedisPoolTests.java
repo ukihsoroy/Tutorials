@@ -2,7 +2,7 @@ package org.ko.redis;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ko.redis.pool.RedisExecutorService;
+import org.ko.redis.pool.RedisExecutor;
 import redis.clients.jedis.Jedis;
 
 public class JedisPoolTests {
@@ -10,7 +10,7 @@ public class JedisPoolTests {
     private Jedis jedis;
 
     @BeforeEach void setup() {
-        jedis = RedisExecutorService.getJedis();
+        jedis = RedisExecutor.getJedis();
     }
 
     @Test void testPool() {

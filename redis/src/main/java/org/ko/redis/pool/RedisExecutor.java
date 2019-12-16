@@ -4,7 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-public final class RedisExecutorService {
+public final class RedisExecutor {
 
     //Redis服务器IP
     private final static String ADDRESS = "";
