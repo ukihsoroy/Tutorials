@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -26,7 +27,7 @@ public class ResourceServerConfig {
     private DataSource dataSource;
 
     @Bean
-    protected ResourceServerConfiguration BataResources() {
+    protected ResourceServerConfiguration apiResources() {
 
         ResourceServerConfiguration resource =  new ResourceServerConfiguration() {
             // Switch off the Spring Boot @Autowired configurers
@@ -35,12 +36,12 @@ public class ResourceServerConfig {
             }
         };
 
-        resource.setConfigurers(Arrays.<ResourceServerConfigurer>asList(new ResourceServerConfigurerAdapter() {
+        resource.setConfigurers(Collections.singletonList(new ResourceServerConfigurerAdapter() {
 
             @Override
             public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
                 TokenStore tokenStore = new JdbcTokenStore(dataSource);
-                resources.resourceId("bata-services").tokenStore(tokenStore).stateless(true);
+                resources.resourceId("api-resources").tokenStore(tokenStore).stateless(true);
             }
 
             @Override
@@ -49,16 +50,22 @@ public class ResourceServerConfig {
                         .sessionManagement()
                         .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                         .and()
-                        .requestMatchers().antMatchers("/bata/**")
+                        .requestMatchers().antMatchers("/api/**")
                         .and()
                         .authorizeRequests()
-                        .antMatchers(HttpMethod.GET, "/bata/**").access("#oauth2.hasScope('read')")
-                        .antMatchers(HttpMethod.POST, "/bata/**").access("#oauth2.hasScope('write')")
-                        .antMatchers(HttpMethod.PATCH, "/bata/**").access("#oauth2.hasScope('write')")
-                        .antMatchers(HttpMethod.PUT, "/bata/**").access("#oauth2.hasScope('write')")
-                        .antMatchers(HttpMethod.DELETE, "/bata/**").access("#oauth2.hasScope('write')")
+                        .antMatchers(HttpMethod.GET, "/api/**").access("#oauth2.hasScope('read')")
+                        .antMatchers(HttpMethod.POST, "/api/**").access("#oauth2.hasScope('write')")
+                        .antMatchers(HttpMethod.PATCH, "/api/**").access("#oauth2.hasScope('write')")
+                        .antMatchers(HttpMethod.PUT, "/api/**").access("#oauth2.hasScope('write')")
+                        .antMatchers(HttpMethod.DELETE, "/api/**").access("#oauth2.hasScope('write')")
                         .and()
                         .headers().addHeaderWriter(new HeaderWriter() {
+
+                    /**
+                     * 跨域头配置
+                     * @param request
+                     * @param response
+                     */
                     @Override
                     public void writeHeaders(HttpServletRequest request, HttpServletResponse response) {
                         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -78,7 +85,7 @@ public class ResourceServerConfig {
     }
 
     @Bean
-    protected ResourceServerConfiguration UserResources() {
+    protected ResourceServerConfiguration userResources() {
 
         ResourceServerConfiguration resource = new ResourceServerConfiguration() {
             // Switch off the Spring Boot @Autowired configurers
@@ -87,7 +94,7 @@ public class ResourceServerConfig {
             }
         };
 
-        resource.setConfigurers(Arrays.<ResourceServerConfigurer>asList(new ResourceServerConfigurerAdapter() {
+        resource.setConfigurers(Collections.singletonList(new ResourceServerConfigurerAdapter() {
 
             @Override
             public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

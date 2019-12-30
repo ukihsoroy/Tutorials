@@ -25,16 +25,28 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
+/**
+ * 配置鉴权服务器
+ */
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-	
+
+    /**
+     * 数据源
+     */
 	@Autowired
 	private DataSource dataSource;
-	
+
+    /**
+     * 权限管理
+     */
 	@Autowired
     private AuthenticationManager authenticationManager;
-	
+
+    /**
+     * spring security user details service.
+     */
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -48,11 +60,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new JdbcClientDetailsService(dataSource);
     }
 
+    /**
+     * 写入到数据库
+     * @return
+     */
     @Bean
     public TokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
 
+    /**
+     * 写入数据库
+     * @return
+     */
     @Bean
     public ApprovalStore approvalStore() {
         return new JdbcApprovalStore(dataSource);
@@ -97,6 +117,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         	.allowFormAuthenticationForClients();
     }
 
+    /**
+     * 通过数据库的方式配置
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
