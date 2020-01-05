@@ -9,7 +9,7 @@ public class Response<T> {
     /**
      * 返回状态码
      */
-    private int code = 0;
+    private int code;
 
     /**
      * 返回信息

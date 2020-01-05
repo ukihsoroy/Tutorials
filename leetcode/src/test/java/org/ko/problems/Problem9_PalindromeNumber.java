@@ -1,5 +1,10 @@
 package org.ko.problems;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Determine whether an integer is a palindrome. Do this without extra space.
  */
@@ -18,6 +23,43 @@ public class Problem9_PalindromeNumber {
      * @return
      */
     public boolean isPalindrome(int x) {
-        return true;
+        if (x < 0) return false;
+        else if (x == 0) return true;
+        else {
+            List<Integer> lists = new ArrayList<>();
+            int y = x, z;
+            while (y > 9) {
+                z = y % 10;
+                y = y / 10;
+                lists.add(z);
+            }
+            lists.add(y);
+            Integer sum = 0;
+            for (Integer list : lists) {
+                sum = sum * 10 + list;
+            }
+
+            return sum.equals(x);
+        }
+    }
+
+    @Test public void test1() {
+        assert !isPalindrome(123);
+    }
+
+    @Test public void test2() {
+        assert isPalindrome(0);
+    }
+
+    @Test public void test3() {
+        assert isPalindrome(121);
+    }
+
+    @Test public void test4() {
+        assert !isPalindrome(-121);
+    }
+
+    @Test public void test5() {
+        assert !isPalindrome(10);
     }
 }

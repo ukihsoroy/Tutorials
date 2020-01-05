@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-
+    //spring security user details interface.
     @Autowired
     protected UserDetailsService userDetailsService;
 

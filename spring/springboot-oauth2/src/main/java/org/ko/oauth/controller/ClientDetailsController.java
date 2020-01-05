@@ -27,7 +27,7 @@ public class ClientDetailsController {
     @PostMapping("/add")
     @ResponseBody
     @ApiOperation(value = "添加客户端detail", notes = "添加客户端detail")
-    public Response addClient(OauthClientDetailsEntity client) {
+    public Response<String> addClient(OauthClientDetailsEntity client) {
         clientDetailsService.save(client);
         return Response.ok("添加成功");
     }
