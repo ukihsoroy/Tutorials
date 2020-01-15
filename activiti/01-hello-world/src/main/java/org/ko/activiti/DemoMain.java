@@ -109,6 +109,7 @@ public class DemoMain {
     }
 
     private static ProcessEngine getProcessEngine() {
+        //创建了一个单点的基于内存的流程引擎
         ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration();
         ProcessEngine processEngine = cfg.buildProcessEngine();
         String name = processEngine.getName();
