@@ -4,6 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti6unit?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"/>
+        <property name="jdbcDriver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUsername" value="root"/>
+        <property name="jdbcPassword" value="tiger"/>
+        <property name="databaseSchemaUpdate" value="true"/>
     </bean>
 
 </beans>

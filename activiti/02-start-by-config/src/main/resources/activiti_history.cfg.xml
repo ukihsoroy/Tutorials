@@ -4,6 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        <property name="commandInvoker" ref="commandInvoker"/>
     </bean>
+
+    <bean id="commandInvoker" class="org.ko.activiti.interceptor.MDCCommandInvoker"/>
 
 </beans>
