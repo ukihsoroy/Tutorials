@@ -5,10 +5,9 @@
 
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
         <property name="commandInvoker" ref="commandInvoker"/>
-<!--        <property name="history" value="none"/>-->
-<!--        <property name="history" value="activity"/>-->
-<!--        <property name="history" value="audit"/>-->
-        <property name="history" value="full"/>
+        <!--开启 event logging-->
+<!--        <property name="enableDatabaseEventLogging" value="true"/>-->
+        <property name="enableDatabaseEventLogging" value="false"/>
     </bean>
 
     <bean id="commandInvoker" class="org.ko.activiti.interceptor.MDCCommandInvoker"/>
