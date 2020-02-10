@@ -22,4 +22,11 @@
 - 默认为false
 - true后开启event log
 
-## event listen
+## event listener
+
+- 配置事件监听器
+- 事件监听器的类型
+
+## interceptor 拦截器配置
+
+- 拦截器介绍及配置
