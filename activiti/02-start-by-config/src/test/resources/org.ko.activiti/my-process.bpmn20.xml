@@ -11,8 +11,7 @@
 		<startEvent id="start" />
 		<sequenceFlow id="flow1" sourceRef="start" targetRef="someTask" />
 
-<!--		<userTask id="someTask" name="Activiti is awesome!" />-->
-		<serviceTask id="someTask" activiti:class="org.ko.activiti.delegate.MDCErrorDelegate"/>
+		<userTask id="someTask" name="Activiti is awesome!" />
 		<sequenceFlow id="flow2" sourceRef="someTask" targetRef="end" />
 
 		<endEvent id="end" />

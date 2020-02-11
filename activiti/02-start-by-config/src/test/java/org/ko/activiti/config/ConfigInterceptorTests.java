@@ -18,8 +18,8 @@ public class ConfigInterceptorTests {
 
     /**
      * 1. 不写参数，使用默认的
-     * 2. activiti_mdc.cfg.xml，添加了mdc的拦截器，打印树
-     * 3. 基于mdc配置文件，添加了event log配置
+     * 2. activiti_interceptor.cfg.xml，添加了mdc的拦截器，打印树
+     * 3. 拦截器配置
      */
     @Rule
     public ActivitiRule activitiRule = new ActivitiRule("activiti_interceptor.cfg.xml");
