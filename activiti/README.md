@@ -6,3 +6,4 @@
 
 - `01-helloworld`: activiti helloworld小程序，没有web页面，是命令行操作。
 - `02-start-by-config`: 通过配置文件初始化流程引擎与配置文件详解
+- `03-core-api`: activiti 核心api
