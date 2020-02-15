@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * description: IdentityServiceTests <br>
+ * description: 身份管理服务 <br>
  * date: 2020/2/15 15:14 <br>
  *
  * @author K.O <br>
