@@ -20,6 +20,7 @@
     <module>01-hello-world</module>
     <module>02-start-by-config</module>
     <module>03-core-api</module>
+    <module>04-db-entity</module>
   </modules>
 
 
