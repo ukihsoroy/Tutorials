@@ -24,7 +24,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {      
-      S.UI.simulate("Hi 黄雨迪|祝你|生日快乐|暴富 暴瘦|健康 快乐|🎉|🎂|🎁|Happy Birthday");
+      S.UI.simulate("小仙女|祝你|生日快乐|暴富 暴瘦|健康 快乐|Happy Birthday");
     }
 
     S.Drawing.loop(function () {
@@ -724,15 +724,15 @@ S.Shape = (function () {
 
 $(function(){
   setTimeout(function(){
+    $(".math_title").hide()
     var music = document.getElementById('music');
     music.play();
-    $(".math_title").hide()
-    confirm("黄雨迪，生日快乐🎂")
+    confirm("xxx，生日快乐🎂")
     confirm("要更开心💖")
     confirm("要更暴富🤑")
     confirm("要更漂亮👩")
     confirm("要更幸福🎉🎉🎉")
-    confirm("要吃吃吃，玩玩玩🎁🎁🎁")
+    confirm("要吃吃吃，买买买，玩玩玩🎁🎁🎁")
     $("#math").hide()
     $("#birthday").show()
     S.init();
