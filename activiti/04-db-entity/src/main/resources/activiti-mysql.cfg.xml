@@ -9,7 +9,7 @@
         <property name="dataSource" ref="datasource"/>
 
         <!--去掉历史和用户-->
-        <property name="dbHistoryUsed" value="false"/>
+        <property name="dbHistoryUsed" value="true"/>
         <property name="dbIdentityUsed" value="true"/>
     </bean>
 
