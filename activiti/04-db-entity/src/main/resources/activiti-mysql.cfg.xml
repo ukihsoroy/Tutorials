@@ -10,7 +10,7 @@
 
         <!--去掉历史和用户-->
         <property name="dbHistoryUsed" value="false"/>
-        <property name="dbIdentityUsed" value="false"/>
+        <property name="dbIdentityUsed" value="true"/>
     </bean>
 
     <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
