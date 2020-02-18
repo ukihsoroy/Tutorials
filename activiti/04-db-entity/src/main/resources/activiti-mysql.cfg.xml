@@ -11,6 +11,11 @@
         <!--去掉历史和用户-->
         <property name="dbHistoryUsed" value="true"/>
         <property name="dbIdentityUsed" value="true"/>
+
+        <!--开启History日志最高级别为full-->
+        <property name="historyLevel" value="FULL"/>
+        <!--开启数据库event log-->
+        <property name="enableDatabaseEventLogging" value="true"/>
     </bean>
 
     <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
