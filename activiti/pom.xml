@@ -23,7 +23,6 @@
     <module>04-db-entity</module>
     <module>05-bpmn20</module>
     <module>06-springboot</module>
-    <module>07-workflow</module>
   </modules>
 
 
