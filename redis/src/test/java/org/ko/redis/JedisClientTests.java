@@ -14,8 +14,8 @@ public class JedisClientTests {
 
     @BeforeEach
     void setup () {
-        jedis = new Jedis("", 6379);
-        jedis.auth("");
+        jedis = new Jedis("106.12.110.82", 6379);
+        jedis.auth("tiger");
     }
 
     /**
@@ -152,6 +152,11 @@ public class JedisClientTests {
         System.out.println(jedis.sort("num"));
         //但是里面的结果并没有改变，[5, 1, 3, 2]
         System.out.println(jedis.lrange("num", 0, -1));
+    }
+
+    @Test void test1() {
+        String value = jedis.get("h9xg250hp1xilx29c42sgcytq4unxizp");
+        System.out.println(value);
     }
 
 }
