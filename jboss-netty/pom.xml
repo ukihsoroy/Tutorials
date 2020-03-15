@@ -4,7 +4,16 @@
     <groupId>org.ko</groupId>
     <artifactId>jboss-netty</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>ff-netty-5.0</module>
+        <module>01-socket-demo</module>
+        <module>02-netty-demo</module>
+    </modules>
+
 
     <name>jboss-netty</name>
     <url>http://maven.apache.org</url>
@@ -13,12 +22,5 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>5.0.0.Alpha2</version>
-        </dependency>
-    </dependencies>
+
 </project>
