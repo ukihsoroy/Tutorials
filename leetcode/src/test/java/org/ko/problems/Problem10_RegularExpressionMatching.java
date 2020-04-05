@@ -5,34 +5,68 @@ package org.ko.problems;
  */
 public class Problem10_RegularExpressionMatching {
 
-    /**
-     * '.' Matches any single character.
-     '*' Matches zero or more of the preceding element.
+    public boolean isMatch(String s,String p){
+        char[] sCharArray = s.toCharArray();
+        char[] pCharArray = p.toCharArray();
+        //初始化dp表
+        int[][] dp = new int[pCharArray.length+1][sCharArray.length+1];
+        for(int i = 0;i <sCharArray.length+1;i++){
+            dp[pCharArray.length][i] = 2; //false
+        }
+        dp[pCharArray.length][sCharArray.length] = 1;//true
 
-     The matching should cover the entire input string (not partial).
+        //填表
+        boolean flagStar = false; //记录*号
+        int matchedIndex = sCharArray.length;
+        for(int i = pCharArray.length-1; i>-1;i--){
+            if(pCharArray[i] == '*'){
+                flagStar = true;
+                for(int k = 0;k < matchedIndex+1;k++){
+                    dp[i][k] = dp[i+1][k];
+                }
+                continue;
+            }
+            if(flagStar){
+                boolean flagNextMatched = false;
+                for(int j = matchedIndex; j > -1;j--){
+                    if(flagNextMatched == true){
+                        if(pCharArray[i] == '.'){
+                            dp[i][j] = 1;
+                        }else if(pCharArray[i] == sCharArray[j]){
+                            dp[i][j] = 1;
+                        }else{
+                            if(dp[i+1][j] == 1){
+                                flagNextMatched = true;
+                                dp[i][j] = 1;
+                            }else{
+                                flagNextMatched = false;
+                                dp[i][j] = 2;
+                            }
+                        }
+                    }else{
+                        if(dp[i+1][j] == 1){
+                            flagNextMatched = true;
+                            dp[i][j] = 1;
+                        }else{
+                            flagNextMatched = false;
+                            dp[i][j] = 2;
+                        }
+                    }
+                }
+            }else{
+                matchedIndex--;
+                for(int j = matchedIndex; j > -1; j--){
+                    if(dp[i+1][j+1] == 1 &&(pCharArray[i]=='.' || pCharArray[i] == sCharArray[j]) ){
+                        dp[i][j] = 1;
+                    }else{
+                        dp[i][j] = 2;
+                    }
+                }
+            }
+            flagStar = false;
 
-     The function prototype should be:
-     bool isMatch(const char *s, const char *p)
-
-     '' 匹配任何单个字符。
-     '*'匹配零个或多个前面的元素。
-
-     匹配应覆盖整个输入字符串（不是部分）。
-
-     函数原型应该是：
-     bool isMatch（const char * s，const char * p）
-
-     Some examples:
-     isMatch("aa","a") → false
-     isMatch("aa","aa") → true
-     isMatch("aaa","aa") → false
-     isMatch("aa", "a*") → true
-     isMatch("aa", ".*") → true
-     isMatch("ab", ".*") → true
-     isMatch("aab", "c*a*b") → true
-     */
-
-    public boolean isMatch(String s, String p) {
-        return true;
+        }
+        return dp[0][0] == 1 ? true : false;
     }
+
 }
