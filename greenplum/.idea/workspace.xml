@@ -2,22 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e3179a-7dde-4d7b-bf84-ea2667e9886c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_table.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test01_JDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/Goods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/vo/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test02_InsertGoods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test02_InsertOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test02_InsertUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/helper/GreenplumHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test01_JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test01_JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-samples/mybatis-plus-sample-greenplum/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis-plus-samples/mybatis-plus-sample-greenplum/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,6 +29,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1bOPlsxLL2lFxaj5iovnYEkKTwH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,7 +44,77 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../midnight/analysis-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/org/ko/greenplum/helper" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.ko.greenplum" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\code\Tutorials\greenplum\src\main\java\org\ko\greenplum\helper" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Test02_InsertGoods">
+    <configuration name="Test01_JDBC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ko.greenplum.Test01_JDBC" />
+      <module name="greenplum" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ko.greenplum.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test02_InsertGoods" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ko.greenplum.Test02_InsertGoods" />
+      <module name="greenplum" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ko.greenplum.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test02_InsertOrder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ko.greenplum.Test02_InsertOrder" />
+      <module name="greenplum" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ko.greenplum.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test02_InsertUser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ko.greenplum.Test02_InsertUser" />
+      <module name="greenplum" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ko.greenplum.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test02_InsertGoods" />
+        <item itemvalue="Application.Test02_InsertUser" />
+        <item itemvalue="Application.Test02_InsertOrder" />
+        <item itemvalue="Application.Test01_JDBC" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -66,6 +140,8 @@
       <updated>1588500320873</updated>
       <workItem from="1588500323596" duration="140000" />
       <workItem from="1588500660180" duration="2185000" />
+      <workItem from="1588646421678" duration="2674000" />
+      <workItem from="1588649121222" duration="2864000" />
     </task>
     <servers />
   </component>
@@ -77,10 +153,30 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="102" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1588502368155" />
+    <state x="307" y="11" key="CommitChangelistDialog2" timestamp="1588652215071">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="307" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1588652215071" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1588500464615">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1588500464615" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1588651819101">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1588651819101" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1588651819100">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1588651819100" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1588651819100">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1588651819100" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1588651819100">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1588651819100" />
     <state x="568" y="128" key="RollbackChangesDialog" timestamp="1588500810888">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

@@ -1,5 +1,7 @@
 package org.ko.greenplum;
 
+import org.ko.greenplum.helper.GreenplumHelper;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,10 +14,9 @@ import java.sql.Statement;
 public class Test01_JDBC {
     public static void main(String[] args) {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection db = DriverManager.getConnection("jdbc:postgresql://mygpdbpub.gpdb.rds.aliyuncs.com:3432/postgres","mygpdb","mygpdb");
+            Connection db = GreenplumHelper.getInstance().getConnection();
             Statement st = db.createStatement();
-            ResultSet rs = st.executeQuery("select * from gp_segment_configuration;");
+            ResultSet rs = st.executeQuery("select * from sales;");
             while (rs.next()) {
                 System.out.print(rs.getString(1));
                 System.out.print("    |    ");
@@ -25,24 +26,8 @@ public class Test01_JDBC {
                 System.out.print("    |    ");
                 System.out.print(rs.getString(4));
                 System.out.print("    |    ");
-                System.out.print(rs.getString(5));
-                System.out.print("    |    ");
-                System.out.print(rs.getString(6));
-                System.out.print("    |    ");
-                System.out.print(rs.getString(7));
-                System.out.print("    |    ");
-                System.out.print(rs.getString(8));
-                System.out.print("    |    ");
-                System.out.print(rs.getString(9));
-                System.out.print("    |    ");
-                System.out.print(rs.getString(10));
-                System.out.print("    |    ");
-                System.out.println(rs.getString(11));
             }
-            rs.close();
-            st.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            GreenplumHelper.free(rs, st, db);
         } catch (SQLException e) {
             e.printStackTrace();
         }
