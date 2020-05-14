@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e3179a-7dde-4d7b-bf84-ea2667e9886c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_table.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/Test01_JDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/Goods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ko/greenplum/entity/vo/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,18 +55,34 @@
       <option name="presentableId" value="Default" />
       <updated>1588500320873</updated>
       <workItem from="1588500323596" duration="140000" />
-      <workItem from="1588500660180" duration="2185000" />
+      <workItem from="1588500660180" duration="3040000" />
     </task>
+    <task id="LOCAL-00001" summary="#greenplum">
+      <created>1588502863495</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588502863495</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#greenplum" />
+    <option name="LAST_COMMIT_MESSAGE" value="#greenplum" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="102" key="#com.intellij.ide.util.MemberChooser" timestamp="1588502368155">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="102" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1588502368155" />
+    <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1588502862631">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1588502862631" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1588500464615">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -85,5 +91,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="568" y="128" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1588500810888" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1588502915734">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1588502915734" />
   </component>
 </project>
