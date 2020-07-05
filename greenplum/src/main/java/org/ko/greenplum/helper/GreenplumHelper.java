@@ -4,9 +4,9 @@ import java.sql.*;
 
 public final class GreenplumHelper {
 
-    private static final String url = "jdbc:postgresql://gpdb.rds.aliyuncs.com:3432/greenplum";
+    private static final String url = "jdbc:postgresql://gp-2ze06nb5tczrs8r27o.gpdb.rds.aliyuncs.com:3432/greenplum";
     private static final String user = "greenplum";
-    private static final String password = "";
+    private static final String password = "Miao2014";
 
     private static GreenplumHelper instance = null;
 
