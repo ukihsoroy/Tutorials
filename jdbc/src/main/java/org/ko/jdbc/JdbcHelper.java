@@ -4,9 +4,9 @@ import java.sql.*;
 
 public final class JdbcHelper {
 
-    private static final String url = "jdbc:mysql:///art-prototype?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-    private static final String user = "";
-    private static final String password = "";
+    private static final String url = "jdbc:mysql:///sigma_server?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+    private static final String user = "root";
+    private static final String password = "tiger";
 
     private static JdbcHelper instance = null;
 
