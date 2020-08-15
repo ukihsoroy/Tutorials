@@ -1,6 +1,5 @@
 package org.ko.zookeeper.zkclient;
 
-import org.I0Itec.zkclient.serialize.SerializableSerializer;
 import org.junit.jupiter.api.Test;
 import org.ko.zookeeper.User;
 import org.slf4j.Logger;
@@ -14,7 +13,7 @@ public class ZkClientCrudTest {
 
     @Test
     void testZkClientCrud() {
-        ZkClientCrud<User> zkClientCrud = new ZkClientCrud<>(new SerializableSerializer());
+        ZkClientCrud<User> zkClientCrud = new ZkClientCrud<>(new JsonZkSerializer());
         String path="/root";
         zkClientCrud.deleteRecursive(path);
         zkClientCrud.createPersistent(path,"hi");

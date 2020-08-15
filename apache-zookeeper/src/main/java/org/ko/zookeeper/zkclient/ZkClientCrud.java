@@ -1,5 +1,6 @@
 package org.ko.zookeeper.zkclient;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.ZkSerializer;
 import org.slf4j.Logger;
@@ -9,19 +10,24 @@ import java.util.List;
 
 public class ZkClientCrud<T> {
 
-    ZkClient zkClient ;
+    private ObjectMapper mapper = new ObjectMapper();
+
+    ZkClient zkClient;
 
     final static Logger logger = LoggerFactory.getLogger(ZkClientCrud.class);
 
     public ZkClientCrud(ZkSerializer zkSerializer) {
         logger.info("链接zk开始");
-        // zkClient=new ZkClient(ZookeeperUtil.connectString,ZookeeperUtil.sessionTimeout);
-        zkClient = new ZkClient(ZookeeperUtil.connectString, ZookeeperUtil.sessionTimeout, ZookeeperUtil.sessionTimeout, zkSerializer);
+        zkClient = new ZkClient(
+                ZookeeperUtil.connectString,
+                ZookeeperUtil.sessionTimeout,
+                ZookeeperUtil.sessionTimeout,
+                zkSerializer
+        );
     }
 
 
     public void createEphemeral(String path,Object data){
-
         zkClient.createEphemeral(path,data);
     }
 
@@ -59,7 +65,7 @@ public class ZkClientCrud<T> {
         return zkClient.readData(path);
     }
 
-    public  void  writeData(String path,Object data){
+    public void writeData(String path, Object data){
         zkClient.writeData(path,data);
     }
 

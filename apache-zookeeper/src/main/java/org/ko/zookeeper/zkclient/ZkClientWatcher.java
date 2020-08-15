@@ -40,8 +40,6 @@ public class ZkClientWatcher {
 
     //对父节点添加监听数据变化。
     public void subscribe(String path){
-
-
         zkClient.subscribeDataChanges(path, new IZkDataListener() {
             @Override
             public void handleDataChange(String dataPath, Object data) throws Exception {
