@@ -7,13 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 
-public class ZkClientCrudTest {
+public class ZkClientCrudTests {
 
-    final static Logger logger = LoggerFactory.getLogger(ZkClientCrudTest.class);
+    final static Logger logger = LoggerFactory.getLogger(ZkClientCrudTests.class);
 
     @Test
     void testZkClientCrud() {
-        ZkClientCrud<User> zkClientCrud = new ZkClientCrud<>(new JsonZkSerializer());
+        ZkClientCrud<User> zkClientCrud = new ZkClientCrud<>(new SimpleZkSerializer(), User.class);
         String path="/root";
         zkClientCrud.deleteRecursive(path);
         zkClientCrud.createPersistent(path,"hi");
@@ -42,6 +42,15 @@ public class ZkClientCrudTest {
 
     @Test void testIsNumber() {
         System.out.println(isNumber("123a"));
+    }
+
+    @Test
+    public void testWriteZk() {
+        ZkClientCrud<String> zkClientCrud = new ZkClientCrud<>(new SimpleZkSerializer(), String.class);
+        zkClientCrud.writeData("/root/servers/server1", "1");
+        zkClientCrud.writeData("/root/servers/server1", "2");
+        zkClientCrud.deleteRecursive("/root/servers/server1");
+        zkClientCrud.deleteRecursive("/root/servers/server1");
     }
 
     private boolean isNumber(String n) {

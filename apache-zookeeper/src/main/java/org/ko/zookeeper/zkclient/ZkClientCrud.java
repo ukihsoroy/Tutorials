@@ -1,22 +1,27 @@
 package org.ko.zookeeper.zkclient;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.ZkSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class ZkClientCrud<T> {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
-    ZkClient zkClient;
+    private final ZkClient zkClient;
+
+    private final Class<T> clazz;
 
     final static Logger logger = LoggerFactory.getLogger(ZkClientCrud.class);
 
-    public ZkClientCrud(ZkSerializer zkSerializer) {
+    public ZkClientCrud(ZkSerializer zkSerializer, Class<T> clazz) {
         logger.info("链接zk开始");
         zkClient = new ZkClient(
                 ZookeeperUtil.connectString,
@@ -24,8 +29,8 @@ public class ZkClientCrud<T> {
                 ZookeeperUtil.sessionTimeout,
                 zkSerializer
         );
+        this.clazz = clazz;
     }
-
 
     public void createEphemeral(String path,Object data){
         zkClient.createEphemeral(path,data);
@@ -36,8 +41,7 @@ public class ZkClientCrud<T> {
      * @param path
      * @param createParents
      */
-    public void createPersistent(String path,boolean createParents){
-
+    public void createPersistent(String path, boolean createParents){
         zkClient.createPersistent(path,createParents);
     }
 
@@ -62,11 +66,22 @@ public class ZkClientCrud<T> {
     }
 
     public T readData(String path){
-        return zkClient.readData(path);
+        String data = zkClient.readData(path).toString();
+        try {
+            return mapper.readValue(data, clazz);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void writeData(String path, Object data){
-        zkClient.writeData(path,data);
+    public void writeData(String path, Object source){
+        try {
+            String data = mapper.writeValueAsString(source);
+            zkClient.writeData(path, data);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     //递归删除

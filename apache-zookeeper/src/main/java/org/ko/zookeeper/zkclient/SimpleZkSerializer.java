@@ -4,7 +4,7 @@ import com.google.common.base.Charsets;
 import org.I0Itec.zkclient.exception.ZkMarshallingError;
 import org.I0Itec.zkclient.serialize.ZkSerializer;
 
-public class JsonZkSerializer implements ZkSerializer {
+public class SimpleZkSerializer implements ZkSerializer {
 
     /**
      * 序列化，将对象转化为字节数组
