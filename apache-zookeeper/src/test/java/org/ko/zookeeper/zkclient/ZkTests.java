@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ZkTests {
 
-    private ZkClient zk = new ZkClient("39.105.164.165:2181");;
+    private ZkClient zk = new ZkClient("127.0.0.1:2181");;
 
     private String nodeName = "/myApp";
 

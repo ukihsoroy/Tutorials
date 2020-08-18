@@ -51,7 +51,6 @@ public class ZkClientCrud<T> {
      * @param data
      */
     public void createPersistent(String path,Object data){
-
         zkClient.createPersistent(path,data);
     }
 

@@ -47,10 +47,8 @@ public class ZkClientCrudTests {
     @Test
     public void testWriteZk() {
         ZkClientCrud<String> zkClientCrud = new ZkClientCrud<>(new SimpleZkSerializer(), String.class);
-        zkClientCrud.writeData("/root/servers/server1", "1");
-        zkClientCrud.writeData("/root/servers/server1", "2");
-        zkClientCrud.deleteRecursive("/root/servers/server1");
-        zkClientCrud.deleteRecursive("/root/servers/server1");
+        zkClientCrud.createPersistent("/root/servers/service3", "1");
+//        zkClientCrud.createPersistent("/root/servers/service2", "2");
     }
 
     private boolean isNumber(String n) {
