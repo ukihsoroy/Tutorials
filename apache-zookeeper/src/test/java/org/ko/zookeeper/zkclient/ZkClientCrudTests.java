@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ZkClientCrudTests {
 
@@ -49,6 +50,13 @@ public class ZkClientCrudTests {
         ZkClientCrud<String> zkClientCrud = new ZkClientCrud<>(new SimpleZkSerializer(), String.class);
         zkClientCrud.createPersistent("/root/servers/service3", "1");
 //        zkClientCrud.createPersistent("/root/servers/service2", "2");
+    }
+
+    @Test
+    public void testGetChilds() {
+        ZkClientCrud<String> zkClientCrud = new ZkClientCrud<>(new SimpleZkSerializer(), String.class);
+        List<String> children = zkClientCrud.getChildren("/root/servers");
+        children.forEach(System.out::println);
     }
 
     private boolean isNumber(String n) {
