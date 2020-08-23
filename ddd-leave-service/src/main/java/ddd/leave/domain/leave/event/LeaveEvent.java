@@ -8,7 +8,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Data
 public class LeaveEvent extends DomainEvent {
 
     LeaveEventType leaveEventType;
@@ -20,5 +19,13 @@ public class LeaveEvent extends DomainEvent {
         event.setTimestamp(new Date());
         event.setData(JSON.toJSONString(leave));
         return event;
+    }
+
+    public LeaveEventType getLeaveEventType() {
+        return leaveEventType;
+    }
+
+    public void setLeaveEventType(LeaveEventType leaveEventType) {
+        this.leaveEventType = leaveEventType;
     }
 }

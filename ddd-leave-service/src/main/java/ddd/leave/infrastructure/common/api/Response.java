@@ -1,14 +1,5 @@
 package ddd.leave.infrastructure.common.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class Response {
 
     Status status;
@@ -16,15 +7,56 @@ public class Response {
     Object data;
 
     public static Response ok(){
-        return Response.builder().status(Status.SUCCESS).build();
+        Response response = new Response();
+        response.setStatus(Status.SUCCESS);
+        return response;
     }
 
     public static Response ok(Object data){
-        return Response.builder().status(Status.SUCCESS).data(data).build();
+        Response response = new Response();
+        response.setStatus(Status.SUCCESS);
+        response.setData(data);
+        return response;
     }
 
     public static Response failed(String msg){
-        return Response.builder().status(Status.FAILED).msg(msg).build();
+        Response response = new Response();
+        response.setStatus(Status.FAILED);
+        response.msg(msg);
+        return response;
+    }
+
+    public Response(Status status, String msg, Object data) {
+        this.status = status;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public Response() {
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 
     public enum Status{
