@@ -3,7 +3,6 @@ package ddd.leave.domain.rule.entity;
 import ddd.leave.domain.leave.entity.Leave;
 import lombok.Data;
 
-@Data
 public class ApprovalRule {
 
     String personType;
@@ -17,5 +16,37 @@ public class ApprovalRule {
         rule.setLeaveType(leave.getType().toString());
         rule.setDuration(leave.getDuration());
         return rule;
+    }
+
+    public String getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(String personType) {
+        this.personType = personType;
+    }
+
+    public String getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(String leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public int getMaxLeaderLevel() {
+        return maxLeaderLevel;
+    }
+
+    public void setMaxLeaderLevel(int maxLeaderLevel) {
+        this.maxLeaderLevel = maxLeaderLevel;
     }
 }

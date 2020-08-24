@@ -7,7 +7,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
 @Entity
 public class LeaveEventPO {
 
@@ -20,4 +19,44 @@ public class LeaveEventPO {
     Date timestamp;
     String source;
     String data;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LeaveEventType getLeaveEventType() {
+        return leaveEventType;
+    }
+
+    public void setLeaveEventType(LeaveEventType leaveEventType) {
+        this.leaveEventType = leaveEventType;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 }

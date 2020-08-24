@@ -22,7 +22,7 @@ public class Response {
     public static Response failed(String msg){
         Response response = new Response();
         response.setStatus(Status.FAILED);
-        response.msg(msg);
+        response.setMsg(msg);
         return response;
     }
 

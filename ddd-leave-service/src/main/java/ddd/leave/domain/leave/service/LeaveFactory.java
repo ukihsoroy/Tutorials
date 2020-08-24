@@ -34,15 +34,16 @@ public class LeaveFactory {
 
     public Leave getLeave(LeavePO leavePO) {
         Leave leave = new Leave();
-        Applicant applicant = Applicant.builder()
-                .personId(leavePO.getApplicantId())
-                .personName(leavePO.getApplicantName())
-                .build();
+        Applicant applicant = new Applicant();
+        applicant.setPersonId(leavePO.getApplicantId());
+        applicant.setPersonName(leavePO.getApplicantName());
+
         leave.setApplicant(applicant);
-        Approver approver = Approver.builder()
-                .personId(leavePO.getApproverId())
-                .personName(leavePO.getApproverName())
-                .build();
+
+        Approver approver = new Approver();
+        approver.setPersonId(leavePO.getApproverId());
+        approver.setPersonName(leavePO.getApproverName());
+
         leave.setApprover(approver);
         leave.setStartTime(leavePO.getStartTime());
         leave.setStatus(leavePO.getStatus());
@@ -81,11 +82,12 @@ public class LeaveFactory {
     private ApprovalInfo approvalInfoFromPO(ApprovalInfoPO approvalInfoPO){
         ApprovalInfo approvalInfo = new ApprovalInfo();
         approvalInfo.setApprovalInfoId(approvalInfoPO.getApprovalInfoId());
-        Approver approver = Approver.builder()
-                .personId(approvalInfoPO.getApproverId())
-                .personName(approvalInfoPO.getApproverName())
-                .level(approvalInfoPO.getApproverLevel())
-                .build();
+
+        Approver approver = new Approver();
+        approver.setPersonId(approvalInfoPO.getApproverId());
+        approver.setPersonName(approvalInfoPO.getApproverName());
+        approver.setLevel(approvalInfoPO.getApproverLevel());
+
         approvalInfo.setApprover(approver);
         approvalInfo.setMsg(approvalInfoPO.getMsg());
         approvalInfo.setTime(approvalInfoPO.getTime());

@@ -2,13 +2,11 @@ package ddd.leave.domain.rule.repository.po;
 
 import ddd.leave.domain.leave.entity.valueobject.LeaveType;
 import ddd.leave.domain.person.entity.valueobject.PersonType;
-import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
-@Data
 public class ApprovalRulePO {
 
     @Id
@@ -21,4 +19,44 @@ public class ApprovalRulePO {
     PersonType personType;
     long duration;
     String applicantRoleId;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LeaveType getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public PersonType getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public String getApplicantRoleId() {
+        return applicantRoleId;
+    }
+
+    public void setApplicantRoleId(String applicantRoleId) {
+        this.applicantRoleId = applicantRoleId;
+    }
 }
