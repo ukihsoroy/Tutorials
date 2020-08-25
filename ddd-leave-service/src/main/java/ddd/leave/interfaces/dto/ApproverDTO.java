@@ -1,6 +1,5 @@
 package ddd.leave.interfaces.dto;
 
-import lombok.Data;
 
 public class ApproverDTO {
     String personId;

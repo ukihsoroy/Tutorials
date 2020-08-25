@@ -1,7 +1,6 @@
 package ddd.leave.domain.rule.entity;
 
 import ddd.leave.domain.leave.entity.Leave;
-import lombok.Data;
 
 public class ApprovalRule {
 

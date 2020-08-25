@@ -4,7 +4,6 @@ import ddd.leave.domain.leave.entity.Leave;
 import ddd.leave.domain.leave.entity.valueobject.LeaveType;
 import ddd.leave.domain.leave.entity.valueobject.Status;
 import ddd.leave.domain.person.entity.valueobject.PersonType;
-import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

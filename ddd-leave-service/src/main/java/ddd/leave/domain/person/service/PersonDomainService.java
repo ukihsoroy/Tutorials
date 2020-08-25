@@ -1,18 +1,14 @@
 package ddd.leave.domain.person.service;
 
 import ddd.leave.domain.person.entity.Person;
-import ddd.leave.domain.person.entity.valueobject.PersonStatus;
 import ddd.leave.domain.person.repository.facade.PersonRepository;
 import ddd.leave.domain.person.repository.po.PersonPO;
-import ddd.leave.domain.rule.service.ApprovalRuleDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
-@Slf4j
 public class PersonDomainService {
 
     @Autowired

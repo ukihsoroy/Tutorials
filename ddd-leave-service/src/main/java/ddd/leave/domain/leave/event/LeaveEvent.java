@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import ddd.leave.domain.leave.entity.Leave;
 import ddd.leave.infrastructure.common.event.DomainEvent;
 import ddd.leave.infrastructure.util.IdGenerator;
-import lombok.Data;
 
 import java.util.Date;
 

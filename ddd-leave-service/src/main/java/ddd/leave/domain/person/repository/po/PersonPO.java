@@ -2,7 +2,6 @@ package ddd.leave.domain.person.repository.po;
 
 import ddd.leave.domain.person.entity.valueobject.PersonStatus;
 import ddd.leave.domain.person.entity.valueobject.PersonType;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;

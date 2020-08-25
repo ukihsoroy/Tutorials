@@ -6,7 +6,6 @@ import ddd.leave.domain.person.entity.Person;
 import ddd.leave.infrastructure.common.api.Response;
 import ddd.leave.interfaces.assembler.LeaveAssembler;
 import ddd.leave.interfaces.dto.LeaveDTO;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/leave")
-@Slf4j
 public class LeaveApi {
 
     @Autowired

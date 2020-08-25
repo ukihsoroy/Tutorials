@@ -2,7 +2,6 @@ package ddd.leave.domain.leave.entity;
 
 import ddd.leave.domain.leave.entity.valueobject.ApprovalType;
 import ddd.leave.domain.leave.entity.valueobject.Approver;
-import lombok.Data;
 
 public class ApprovalInfo {
 

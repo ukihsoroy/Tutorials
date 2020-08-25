@@ -1,7 +1,6 @@
 package ddd.leave.domain.leave.repository.po;
 
 import ddd.leave.domain.leave.event.LeaveEventType;
-import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
