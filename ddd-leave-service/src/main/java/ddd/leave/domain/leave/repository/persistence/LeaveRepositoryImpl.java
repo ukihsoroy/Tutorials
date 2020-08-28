@@ -25,6 +25,7 @@ public class LeaveRepositoryImpl implements LeaveRepositoryInterface {
     @Autowired
     LeaveEventDao leaveEventDao;
 
+    @Override
     public void save(LeavePO leavePO) {
         //persist leave entity
         leaveDao.save(leavePO);
@@ -33,6 +34,7 @@ public class LeaveRepositoryImpl implements LeaveRepositoryInterface {
         approvalInfoDao.saveAll(leavePO.getHistoryApprovalInfoPOList());
     }
 
+    @Override
     public void saveEvent(LeaveEventPO leaveEventPO){
         leaveEventDao.save(leaveEventPO);
     }

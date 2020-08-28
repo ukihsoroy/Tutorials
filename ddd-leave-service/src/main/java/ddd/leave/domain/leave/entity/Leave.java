@@ -32,8 +32,9 @@ public class Leave {
     }
 
     public Leave addHistoryApprovalInfo(ApprovalInfo approvalInfo) {
-        if (null == historyApprovalInfos)
+        if (null == historyApprovalInfos){
             historyApprovalInfos = new ArrayList<>();
+        }
         this.historyApprovalInfos.add(approvalInfo);
         return this;
     }

@@ -1,5 +1,9 @@
 package ddd.leave.domain.leave.entity.valueobject;
 
 public enum  ApprovalType {
-    AGREE, REJECT
+    //同意
+    AGREE,
+
+    //驳回
+    REJECT
 }
