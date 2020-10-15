@@ -8,6 +8,8 @@ spring:
     username: root
     password: tiger
     url: jdbc:mysql:///automation?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
+  profiles:
+    active: local
 
 automation:
   datasource:
@@ -16,6 +18,6 @@ automation:
       #port:
       username: root
       password: tiger
-    odps:
-      accessId:
-      accessKey:
+#    odps:
+#      accessId:
+#      accessKey:
