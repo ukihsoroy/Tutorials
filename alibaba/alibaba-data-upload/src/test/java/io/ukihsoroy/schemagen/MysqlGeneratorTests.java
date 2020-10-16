@@ -3,7 +3,7 @@ package io.ukihsoroy.schemagen;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import io.ukihsoroy.schemagen.bean.Column;
 import io.ukihsoroy.schemagen.bean.Table;
-import io.ukihsoroy.schemagen.source.mysql.MysqlSource;
+import io.ukihsoroy.schemagen.source.mysql.MysqlSchemagen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,8 +22,8 @@ public class MysqlGeneratorTests {
 
     @Test
     public void mysqlSchema() {
-        MysqlSource mysqlSource = new MysqlSource(mysqlDataSource);
-        Table table = mysqlSource.extractRecord("t_send_code_log");
+        MysqlSchemagen mysqlSchemagen = new MysqlSchemagen(mysqlDataSource);
+        Table table = mysqlSchemagen.extractRecord("t_send_code_log");
         System.out.print(table.getName());
         for (Column column : table.getColumns()) {
             System.out.print("|" + column.getColumnName());

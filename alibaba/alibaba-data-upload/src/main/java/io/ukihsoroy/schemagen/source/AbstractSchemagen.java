@@ -3,7 +3,7 @@ package io.ukihsoroy.schemagen.source;
 import com.google.common.base.CaseFormat;
 import org.apache.commons.lang3.StringUtils;
 
-public abstract class AbstractSource implements ISource {
+public abstract class AbstractSchemagen implements ISchemagen {
 
     /**
      * 下划线去前缀转驼峰
@@ -20,7 +20,6 @@ public abstract class AbstractSource implements ISource {
 
 
     /**
-     *
      * @param value
      * @return
      */

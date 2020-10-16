@@ -7,7 +7,7 @@ import java.util.List;
 /**
  *
  */
-public interface ISource {
+public interface ISchemagen {
 
     /**
      * 执行生成逻辑

@@ -2,11 +2,12 @@ package io.ukihsoroy.schemagen.bean;
 
 public class Column {
 
-    public Column(String columnName, String propertyName, String columnType, String propertyType, boolean primaryKey, Integer length, String comment) {
+    public Column(String columnName, String propertyName, String columnType, String propertyType, String odpsType, boolean primaryKey, Integer length, String comment) {
         this.columnName = columnName;
         this.propertyName = propertyName;
         this.columnType = columnType;
         this.propertyType = propertyType;
+        this.odpsType = odpsType;
         this.primaryKey = primaryKey;
         this.length = length;
         this.comment = comment;
@@ -16,6 +17,7 @@ public class Column {
     private String propertyName;
     private String columnType;
     private String propertyType;
+    private String odpsType;
     private boolean primaryKey;
     private Integer length;
     private String comment;
@@ -50,6 +52,14 @@ public class Column {
 
     public void setPropertyType(String propertyType) {
         this.propertyType = propertyType;
+    }
+
+    public String getOdpsType() {
+        return odpsType;
+    }
+
+    public void setOdpsType(String odpsType) {
+        this.odpsType = odpsType;
     }
 
     public boolean isPrimaryKey() {

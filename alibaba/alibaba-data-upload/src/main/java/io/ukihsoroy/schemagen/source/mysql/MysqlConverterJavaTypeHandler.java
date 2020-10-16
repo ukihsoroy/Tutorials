@@ -3,11 +3,14 @@ package io.ukihsoroy.schemagen.source.mysql;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MysqlConverterSQLTypeHandler {
+/**
+ * @author K.O
+ */
+public class MysqlConverterJavaTypeHandler {
 
     private static final Map<String, String> container = new HashMap<String, String>();
 
-    {
+    static   {
         container.put("varchar", "String");
         container.put("char", "String");
         container.put("text", "String");

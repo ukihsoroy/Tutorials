@@ -4,7 +4,7 @@ import com.google.common.base.CaseFormat;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import io.ukihsoroy.schemagen.bean.Column;
 import io.ukihsoroy.schemagen.bean.Table;
-import io.ukihsoroy.schemagen.source.AbstractSource;
+import io.ukihsoroy.schemagen.source.AbstractSchemagen;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,13 +18,13 @@ import java.util.List;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class MysqlSource extends AbstractSource {
+public class MysqlSchemagen extends AbstractSchemagen {
 
     private final JdbcTemplate jDBCTemplate = new JdbcTemplate();
 
     private MysqlDataSource mysqlDataSource = null;
 
-    public MysqlSource(MysqlDataSource dataSource) {
+    public MysqlSchemagen(MysqlDataSource dataSource) {
         jDBCTemplate.setDataSource(dataSource);
         mysqlDataSource = dataSource;
     }
@@ -55,7 +55,8 @@ public class MysqlSource extends AbstractSource {
                     columnName,
                     mapUnderscoreToCamelCase(columnName),
                     columnType,
-                    MysqlConverterSQLTypeHandler.format(columnType),
+                    MysqlConverterJavaTypeHandler.format(columnType),
+                    MysqlConverterOdpsTypeHandler.format(columnType),
                     MysqlConstants.PRI.equalsIgnoreCase(rs.getString(MysqlConstants.COLUMN_KEY)),
                     len,
                     StringUtils.trimToEmpty(rs.getString(MysqlConstants.COLUMN_COMMENT))
