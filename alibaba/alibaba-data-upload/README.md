@@ -11,3 +11,9 @@
 ### 1.云下mysql, 云上odps
 
 
+## Task
+
+1. 读取schema生成ddl
+2. 读取schema生成字段映射清单
+3. 读取schema生成任务配置规则
+4. 读取字段映射清单，测试sql case，生成测试报告
