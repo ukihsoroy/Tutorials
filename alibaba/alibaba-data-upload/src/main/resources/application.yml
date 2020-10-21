@@ -10,14 +10,14 @@ spring:
     url: jdbc:mysql:///automation?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
   profiles:
     active: local
-
-automation:
-  datasource:
-    mysql:
-      #url:
-      #port:
-      username: root
-      password: tiger
+  jpa:
+    show-sql: true
+automation.datasource:
+  mysql:
+    #url:
+    #port:
+    username: root
+    password: tiger
 #    odps:
 #      accessId:
 #      accessKey:
