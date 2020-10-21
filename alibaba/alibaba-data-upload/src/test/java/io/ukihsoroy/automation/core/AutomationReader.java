@@ -1,5 +1,8 @@
 package io.ukihsoroy.automation.core;
 
+import io.ukihsoroy.automation.repository.JobRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -8,7 +11,8 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author K.O
  */
-public final class AutomationReader {
+
+public class AutomationReader {
 
     //todo 读取resource配置，表与表
     //todo 读取用例
@@ -22,5 +26,4 @@ public final class AutomationReader {
         inputStream.close();
         return new String(bytes, StandardCharsets.UTF_8);
     }
-
 }
