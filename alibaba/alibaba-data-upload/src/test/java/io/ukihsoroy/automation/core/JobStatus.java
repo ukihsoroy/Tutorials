@@ -6,11 +6,11 @@ package io.ukihsoroy.automation.core;
  */
 public enum JobStatus {
 
-    PRE(0, "待运行"),
-    RUN(1, "运行中"),
-    SUCCESS(2, "成功"),
-    FAIL(3, "失败"),
-    OVER(4, "完成"),
+    PRE(0, "准备阶段"),
+    RUNNING(1, "运行中"),
+    TESTED(2, "运行完毕"),
+    REPORT(3, "导出报告"),
+    COMPLETE(4, "完成"),
     ;
 
     JobStatus(Integer status, String name) {

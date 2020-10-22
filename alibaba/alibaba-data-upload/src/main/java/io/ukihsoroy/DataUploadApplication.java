@@ -1,5 +1,6 @@
 package io.ukihsoroy;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +28,10 @@ public class DataUploadApplication {
 		properties.setProperty("defaultEncoding", "UTF-8");
 		factoryBean.setFreemarkerSettings(properties);
 		return factoryBean;
+	}
+
+	@Bean
+	public ObjectMapper objectMapper() {
+		return new ObjectMapper();
 	}
 }

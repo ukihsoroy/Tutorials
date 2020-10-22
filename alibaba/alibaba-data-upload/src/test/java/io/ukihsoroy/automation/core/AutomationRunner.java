@@ -1,9 +1,15 @@
 package io.ukihsoroy.automation.core;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import io.ukihsoroy.automation.bean.Automation;
+import io.ukihsoroy.automation.bean.CompareResultView;
+import io.ukihsoroy.automation.bean.FeatureResultView;
+import io.ukihsoroy.automation.bean.JdbcTemplateFactory;
 import io.ukihsoroy.automation.entity.Job;
 import io.ukihsoroy.automation.repository.JobRepository;
-import org.checkerframework.checker.units.qual.A;
+import io.ukihsoroy.schemagen.bean.Column;
+import io.ukihsoroy.schemagen.bean.Table;
+import io.ukihsoroy.schemagen.source.mysql.MysqlSchemagen;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +17,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static io.ukihsoroy.automation.core.AutomationConst.BASIC_COUNT_SQL;
+import static io.ukihsoroy.automation.core.AutomationConst.BASIC_RAND_SQL;
 
 /**
  * @author K.O
@@ -31,6 +42,12 @@ public class AutomationRunner {
     @Autowired
     private JdbcTemplate workCenterTemplate;
 
+    @Autowired
+    private JdbcTemplateFactory jdbcTemplateFactory;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     public void readFeature(String batchNo, String name) {
         try {
             String content = AutomationReader.readAutomationConf(name);
@@ -42,6 +59,13 @@ public class AutomationRunner {
                 job.setSourceDatabase(automation.getSourceDatabase());
                 job.setProjectId(automation.getProjectId());
                 job.setTableName(automation.getTableName());
+                try {
+                    String sqls = objectMapper.writeValueAsString(automation.getSqls());
+                    job.setTaskScript(sqls);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                job.setStatus(JobStatus.PRE.getStatus());
                 job.setCreateTime(new Date());
                 return job;
             }).collect(Collectors.toList());
@@ -51,18 +75,140 @@ public class AutomationRunner {
         }
     }
 
-    public void runner(String batchNo) {
+    public void runner(String batchNo) throws IOException {
+        LogAppender logAppender = new LogAppender("d://log/" + batchNo + ".log");
         List<Job> jobs = jobRepository.findJobByBatchNoAndStatus(batchNo, JobStatus.PRE.getStatus());
         if (jobs.size() > 0) {
             Job job = jobs.get(0);
-            //1, 比较数据条数
+            job.setStartTime(new Date());
+            job.setStatus(JobStatus.RUNNING.getStatus());
+            jobRepository.save(job);
+            FeatureResultView view = new FeatureResultView();
+            //0, 获取原数据库数据源
+            JdbcTemplate instance = jdbcTemplateFactory.getInstance(job.getSourceDatabase());
 
-            //2, 构建结果
+            //1, 比较数据条数
+            CompareResultView countView = new CompareResultView();
+            extractCount(String.format(BASIC_COUNT_SQL, job.getTableName()), instance, (sourceCount, targetCount) -> {
+                countView.setSource(sourceCount.toString());
+                countView.setTarget(targetCount.toString());
+                countView.setCompare(sourceCount.equals(targetCount));
+            });
+            view.setCount(countView);
+
+            //2, 根据云下主键比较
+            CompareResultView primaryView = compareDataByPrimaryKey(job, instance, logAppender);
+            view.setPrimary(primaryView);
+
+            //3, 自定义sql比较
+            List<String> sqls = objectMapper.readValue(job.getTaskScript(), new TypeReference<List<String>>(){});
+            List<CompareResultView> extensions = new ArrayList<>();
+            sqls.forEach(sql -> {
+                if (sql.contains("COUNT")) {
+                    try {
+                        extractCount(sql, instance, (sourceCount, targetCount) -> {
+                            CompareResultView extensionView = new CompareResultView();
+                            extensionView.setSource(sourceCount.toString());
+                            extensionView.setTarget(targetCount.toString());
+                            extensionView.setCompare(sourceCount.equals(targetCount));
+                            extensions.add(extensionView);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        extractRecords(sql, instance, (sourceData, targetData) -> {
+                            List<Map<String, Object>> source = (List<Map<String, Object>>) sourceData;
+                            List<Map<String, Object>> target = (List<Map<String, Object>>) targetData;
+
+                            CompareResultView extensionView = new CompareResultView();
+
+                            //如果都是查询单条
+                            if (source.size() == target.size() && source.size() == 1) {
+                                Map<String, Object> underData = source.get(0);
+                                String underJson = objectMapper.writeValueAsString(underData);
+                                extensionView.setSource(underJson);
+                                Map<String, Object> upperData = target.get(0);
+                                String upperJson = objectMapper.writeValueAsString(upperData);
+                                extensionView.setTarget(upperJson);
+                                extensionView.setCompare(underData.equals(upperData));
+                            } else if (source.size() > 0) {
+                                Integer cloudUpperSum = 0;
+                                for (Map<String, Object> underData : source) {
+                                    for (Map<String, Object> upperData : target) {
+                                        if (underData.equals(upperData)) {
+                                            cloudUpperSum ++;
+                                            String underJson = objectMapper.writeValueAsString(underData);
+                                            logAppender.append("extension upperJson: " + underJson);
+                                            String upperJson = objectMapper.writeValueAsString(upperData);
+                                            logAppender.append("extension upperJson: " + upperJson);
+                                        }
+                                    }
+                                }
+                                extensionView.setSource(String.valueOf(source.size()));
+                                extensionView.setTarget(String.valueOf(cloudUpperSum));
+                                extensionView.setCompare(cloudUpperSum.equals(source.size()));
+                            }
+                            extensions.add(extensionView);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            view.setExtensions(extensions);
+            job.setStatus(JobStatus.TESTED.getStatus());
+            job.setEndTime(new Date());
+            job.setTaskReport(objectMapper.writeValueAsString(view));
+            jobRepository.save(job);
         }
     }
 
-    public void compareCount() {
-//        extractCount();
+    private CompareResultView compareDataByPrimaryKey(Job job, JdbcTemplate instance, LogAppender logAppender) throws IOException {
+        MysqlSchemagen mysqlSchemagen = new MysqlSchemagen((MysqlDataSource) instance.getDataSource());
+        Table table = mysqlSchemagen.extractRecord(job.getTableName());
+
+        CompareResultView primaryView = new CompareResultView();
+
+        //当前表的全部主键
+        List<Column> primaryColumns = new ArrayList<>();
+
+        table.getColumns().forEach(column -> {
+            if (column.isPrimaryKey()) {
+                primaryColumns.add(column);
+            }
+        });
+
+        //随机查询云下5条数据
+        List<Map<String, Object>> cloudUnderDatum = sigmaTemplate.queryForList(String.format(BASIC_RAND_SQL, job.getTableName()));
+        Integer cloudUpperSum = 0; //云上数据总数统计
+        for (Map<String, Object> underDate : cloudUnderDatum) {
+            String sql = formatSql(job.getTableName(), primaryColumns, underDate);
+            System.out.println("sql: " + sql);
+            logAppender.append("sql: " + sql);
+            String underJson = objectMapper.writeValueAsString(underDate);
+            logAppender.append("primary underJson: " + underJson);
+            //查询云上
+            List<Map<String, Object>> cloudUpperDatum = workCenterTemplate.queryForList(sql);
+            if (cloudUpperDatum.size() > 0) {
+                //云下数据
+                Map<String, Object> upperData = cloudUpperDatum.get(0);
+                String upperJson = objectMapper.writeValueAsString(upperData);
+                logAppender.append("primary upperJson: " + upperJson);
+                logAppender.append("primary compare: " + upperData.equals(underDate));
+                //如果值相同计数 +1
+                if (upperData.equals(underDate)) {
+                    cloudUpperSum ++;
+                }
+            } else {
+                logAppender.append("cloudUpperDatum.size() < 0");
+            }
+        }
+        primaryView.setSource(String.valueOf(cloudUnderDatum.size()));
+        primaryView.setTarget(String.valueOf(cloudUpperSum));
+        primaryView.setCompare(cloudUpperSum.equals(cloudUnderDatum.size()));
+        return primaryView;
     }
 
     /**
@@ -70,10 +216,10 @@ public class AutomationRunner {
      * @param sql
      * @param compare
      */
-    public void extractRecords(String sql, ICompare compare) {
-        List<Map<String, Object>> sigmaData = sigmaTemplate.queryForList(sql);
-        List<Map<String, Object>> odpsData = workCenterTemplate.queryForList(sql);
-        compare.compare(sigmaData, odpsData);
+    private void extractRecords(String sql, JdbcTemplate instance, ICompare compare) throws IOException {
+        List<Map<String, Object>> sourceData = instance.queryForList(sql);
+        List<Map<String, Object>> targetData = workCenterTemplate.queryForList(sql);
+        compare.compare(sourceData, targetData);
     }
 
     /**
@@ -81,9 +227,32 @@ public class AutomationRunner {
      * @param sql
      * @param compare
      */
-    public void extractCount(String sql, ICompare compare) {
-        Long sigmaCount = sigmaTemplate.queryForObject(sql, Long.class);
-        Long odpsCount = workCenterTemplate.queryForObject(sql, Long.class);
-        compare.compare(sigmaCount, odpsCount);
+    private void extractCount(String sql, JdbcTemplate instance, ICompare compare) throws IOException {
+        Long sourceCount = instance.queryForObject(sql, Long.class);
+        Long targetCount = workCenterTemplate.queryForObject(sql, Long.class);
+        compare.compare(sourceCount, targetCount);
+    }
+
+    private String formatSql(String tableName, List<Column> primaryColumns, Map<String, Object> underDatum) {
+        if (primaryColumns.size() == 0) {
+            return String.format("SELECT * FROM %s", tableName);
+        } else {
+            StringBuilder sql = new StringBuilder(String.format("SELECT * FROM %s", tableName));
+            sql.append(" WHERE 1 = 1 ");
+            primaryColumns.forEach(column ->
+                    sql.append("AND ").append(formatCondition(column.getColumnName(), underDatum.get(column.getColumnName()))));
+            return sql.toString();
+        }
+    }
+
+    private String formatCondition(String columnName, Object value) {
+        if (value instanceof Number) {
+            return String.format("%s = %s", columnName,   value);
+        } else if (value instanceof Date) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return "DATE_FORMAT(" + columnName + ", '%Y-%m-%d %T') = '" + sdf.format((Date) value) + "'";
+        } else {
+            return String.format("%s = '%s'", columnName, value);
+        }
     }
 }

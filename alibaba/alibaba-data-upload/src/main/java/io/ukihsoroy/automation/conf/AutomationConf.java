@@ -17,7 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @EnableConfigurationProperties(AutomationDataSourceProperties.class)
 public class AutomationConf {
 
-    @Autowired AutomationDataSourceProperties properties;
+    @Autowired
+    AutomationDataSourceProperties properties;
 
     /**
      * 数据库实例地址，每个实例创建一个
