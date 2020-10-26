@@ -10,6 +10,7 @@ import io.ukihsoroy.automation.repository.JobRepository;
 import io.ukihsoroy.schemagen.bean.Column;
 import io.ukihsoroy.schemagen.bean.Table;
 import io.ukihsoroy.schemagen.source.mysql.MysqlSchemagen;
+import org.checkerframework.checker.units.qual.C;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static io.ukihsoroy.automation.core.AutomationConst.BASIC_COUNT_SQL;
-import static io.ukihsoroy.automation.core.AutomationConst.BASIC_RAND_SQL;
+import static io.ukihsoroy.automation.core.AutomationConst.*;
 
 /**
  * @author K.O
@@ -47,6 +44,15 @@ public class AutomationRunner {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    private static Set<String> compareColumnTypeContains = new HashSet<>();
+
+    static {
+        compareColumnTypeContains.add("datetime");
+        compareColumnTypeContains.add("time");
+        compareColumnTypeContains.add("decimal");
+        compareColumnTypeContains.add("timestamp");
+    }
 
     public void readFeature(String batchNo, String name) {
         try {
@@ -100,7 +106,68 @@ public class AutomationRunner {
             CompareResultView primaryView = compareDataByPrimaryKey(job, instance, logAppender);
             view.setPrimary(primaryView);
 
-            //3, 自定义sql比较
+            //3, 比较数据类型
+            MysqlSchemagen mysqlSchemagen = new MysqlSchemagen((MysqlDataSource) instance.getDataSource());
+            Table table = mysqlSchemagen.extractRecord(job.getTableName());
+
+            //当前表需要比较的字段
+            Set<String> compareColumn = new HashSet<>();
+
+            table.getColumns().forEach(column -> {
+                if (compareColumnTypeContains.contains(column.getColumnType())) {
+                    compareColumn.add(column.getColumnName());
+                }
+            });
+
+            List<CompareResultView> dataTypeViews = new ArrayList<>();
+            for (String columnName : compareColumn) {
+                String sql = String.format(BASIC_DATA_TYPE_SQL, columnName, job.getTableName(), columnName);
+                try {
+                    extractRecords(sql, instance, (sourceData, targetData) -> {
+                        List<Map<String, Object>> source = (List<Map<String, Object>>) sourceData;
+                        List<Map<String, Object>> target = (List<Map<String, Object>>) targetData;
+
+                        CompareResultView dataTypeView = new CompareResultView();
+
+                        Map<String, String> cloudUnder = new HashMap<>();
+                        cloudUnder.put("column", columnName);
+                        Map<String, String> cloudUpper = new HashMap<>();
+                        cloudUpper.put("column", columnName);
+
+                        //汇总云下数据
+                        for (Map<String, Object> line : source) {
+                            if (null != line.get("TYPE_LENGTH")) {
+                                String number = line.get("NUMBER").toString();
+                                String typeLength = line.get("TYPE_LENGTH").toString();
+                                cloudUnder.put(typeLength, number);
+                            }
+                        }
+
+                        //汇总云上数据
+                        for (Map<String, Object> line : target) {
+                            if (null != line.get("TYPE_LENGTH")) {
+                                String number = line.get("NUMBER").toString();
+                                String typeLength = line.get("TYPE_LENGTH").toString();
+                                cloudUpper.put(typeLength, number);
+                            }
+                        }
+
+                        String underJson = objectMapper.writeValueAsString(cloudUnder);
+                        dataTypeView.setSource(underJson);
+
+                        String upperJson = objectMapper.writeValueAsString(cloudUpper);
+                        dataTypeView.setTarget(upperJson);
+                        dataTypeView.setCompare(cloudUnder.equals(cloudUpper));
+                        dataTypeViews.add(dataTypeView);
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            view.setDataType(dataTypeViews);
+
+
+            //4, 自定义sql比较
             List<String> sqls = objectMapper.readValue(job.getTaskScript(), new TypeReference<List<String>>(){});
             List<CompareResultView> extensions = new ArrayList<>();
             sqls.forEach(sql -> {

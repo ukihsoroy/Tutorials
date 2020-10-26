@@ -19,6 +19,11 @@ public class FeatureResultView {
     private CompareResultView primary;
 
     /**
+     * 数据类型及精度比较
+     */
+    private List<CompareResultView> dataType;
+
+    /**
      * 扩展结果比较
      */
     private List<CompareResultView> extensions;
@@ -38,6 +43,14 @@ public class FeatureResultView {
 
     public void setPrimary(CompareResultView primary) {
         this.primary = primary;
+    }
+
+    public List<CompareResultView> getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(List<CompareResultView> dataType) {
+        this.dataType = dataType;
     }
 
     public List<CompareResultView> getExtensions() {

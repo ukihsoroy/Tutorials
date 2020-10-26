@@ -23,7 +23,7 @@ public class MysqlGeneratorTests {
     @Test
     public void mysqlSchema() {
         MysqlSchemagen mysqlSchemagen = new MysqlSchemagen(mysqlDataSource);
-        Table table = mysqlSchemagen.extractRecord("t_send_code_log");
+        Table table = mysqlSchemagen.extractRecord("cloudods");
         System.out.print(table.getName());
         for (Column column : table.getColumns()) {
             System.out.print("|" + column.getColumnName());

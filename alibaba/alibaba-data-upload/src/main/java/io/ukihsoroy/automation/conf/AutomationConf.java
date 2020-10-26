@@ -26,7 +26,7 @@ public class AutomationConf {
      */
     @Bean
     public JdbcTemplate sigmaTemplate() {
-        return new JdbcTemplate(mysqlDataSource("sigma_server"));
+        return new JdbcTemplate(mysqlDataSource("automation"));
     }
 
     /**

@@ -26,6 +26,7 @@ public class MysqlConverterOdpsTypeHandler {
         container.put("date", "DATE");
         container.put("datetime", "DATETIME");
         container.put("timestamp", "TIMESTAMP");
+        container.put("time", "TIME");
         container.put("json", "JSON");
     }
 
