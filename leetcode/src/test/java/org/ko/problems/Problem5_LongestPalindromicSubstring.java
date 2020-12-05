@@ -12,7 +12,7 @@ public class Problem5_LongestPalindromicSubstring {
 
     /**
      * 输入字符串, 返回相同字母最长的字符串
-     * @example #{
+     * @example #{longestPalindrome
      *     @Input abcdaba
      *     @Output abcda
      * }
