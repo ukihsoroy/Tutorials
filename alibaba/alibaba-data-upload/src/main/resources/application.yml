@@ -12,6 +12,8 @@ spring:
     active: local
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
 automation.datasource:
   mysql:
     #url:
