@@ -11,7 +11,8 @@ public enum DataSyncType {
      */
     STREAMX("streamx"),
     DATAX("datax"),
-    JDBC("jdbc")
+    JDBC("jdbc"),
+    SQL("sql")
     ;
 
     DataSyncType(String value) {

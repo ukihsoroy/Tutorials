@@ -30,6 +30,9 @@ public class Task {
     @Column(name = "origin_table_name")
     private String originTableName;
 
+    @Column(name = "origin_table_type")
+    private String originTableType;
+
     @Column(name = "target_datasource_name")
     private String targetDatasourceName;
 
@@ -60,6 +63,9 @@ public class Task {
     @Column(name = "task_report")
     private String taskReport;
 
+    @Column(name = "increment")
+    private String increment;
+
     @Column(name = "enable")
     private Integer enable;
 
@@ -75,13 +81,14 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, String executorBatch, Integer uploadTableId, String originDatasourceName, String originSchemaName, String originTableName, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, Integer testingStrategyId, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
+    public Task(Integer id, String executorBatch, Integer uploadTableId, String originDatasourceName, String originSchemaName, String originTableName, String originTableType, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, Integer testingStrategyId, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
         this.id = id;
         this.executorBatch = executorBatch;
         this.uploadTableId = uploadTableId;
         this.originDatasourceName = originDatasourceName;
         this.originSchemaName = originSchemaName;
         this.originTableName = originTableName;
+        this.originTableType = originTableType;
         this.targetDatasourceName = targetDatasourceName;
         this.targetSchemaName = targetSchemaName;
         this.targetTableName = targetTableName;
@@ -116,6 +123,14 @@ public class Task {
 
     public Integer getUploadTableId() {
         return uploadTableId;
+    }
+
+    public String getOriginTableType() {
+        return originTableType;
+    }
+
+    public void setOriginTableType(String originTableType) {
+        this.originTableType = originTableType;
     }
 
     public void setUploadTableId(Integer uploadTableId) {
@@ -224,6 +239,14 @@ public class Task {
 
     public void setTaskReport(String taskReport) {
         this.taskReport = taskReport;
+    }
+
+    public String getIncrement() {
+        return increment;
+    }
+
+    public void setIncrement(String increment) {
+        this.increment = increment;
     }
 
     public Integer getEnable() {

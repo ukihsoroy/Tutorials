@@ -3,6 +3,7 @@ package io.ukihsoroy.gatling.strategy;
 import io.ukihsoroy.gatling.repository.TaskRepository;
 import io.ukihsoroy.gatling.repository.TestingStrategyRepository;
 import io.ukihsoroy.gatling.repository.UploadTableRepository;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,6 +26,10 @@ public abstract class AbstractGatlingStrategy implements IGatlingStrategy {
 
     @Autowired
     protected Map<String, JdbcTemplate> jdbcTemplates;
+
+
+    @Autowired
+    protected ObjectMapper objectMapper;
 
     /**
      * 执行测试

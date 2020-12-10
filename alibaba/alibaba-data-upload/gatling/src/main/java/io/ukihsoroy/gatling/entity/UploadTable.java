@@ -24,6 +24,9 @@ public class UploadTable {
     @Column(name = "origin_table_name")
     private String originTableName;
 
+    @Column(name = "origin_table_type")
+    private String originTableType;
+
     @Column(name = "target_datasource_name")
     private String targetDatasourceName;
 
@@ -39,6 +42,9 @@ public class UploadTable {
     @Column(name = "data_sync_type")
     private String dataSyncType;
 
+    @Column(name = "increment")
+    private String increment;
+
     @Column(name = "enable")
     private Integer enable;
 
@@ -51,19 +57,20 @@ public class UploadTable {
     @Column(name = "gmt_updated")
     private Date gmtUpdated;
 
-    public UploadTable() {
-    }
+    public UploadTable() {}
 
-    public UploadTable(Integer id, String originDatasourceName, String originSchemaName, String originTableName, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
+    public UploadTable(Integer id, String originDatasourceName, String originSchemaName, String originTableName, String originTableType, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, String increment, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
         this.id = id;
         this.originDatasourceName = originDatasourceName;
         this.originSchemaName = originSchemaName;
         this.originTableName = originTableName;
+        this.originTableType = originTableType;
         this.targetDatasourceName = targetDatasourceName;
         this.targetSchemaName = targetSchemaName;
         this.targetTableName = targetTableName;
         this.targetTableType = targetTableType;
         this.dataSyncType = dataSyncType;
+        this.increment = increment;
         this.enable = enable;
         this.version = version;
         this.gmtCreated = gmtCreated;
@@ -100,6 +107,14 @@ public class UploadTable {
 
     public void setOriginTableName(String originTableName) {
         this.originTableName = originTableName;
+    }
+
+    public String getOriginTableType() {
+        return originTableType;
+    }
+
+    public void setOriginTableType(String originTableType) {
+        this.originTableType = originTableType;
     }
 
     public String getTargetDatasourceName() {
@@ -140,6 +155,14 @@ public class UploadTable {
 
     public void setDataSyncType(String dataSyncType) {
         this.dataSyncType = dataSyncType;
+    }
+
+    public String getIncrement() {
+        return increment;
+    }
+
+    public void setIncrement(String increment) {
+        this.increment = increment;
     }
 
     public Integer getEnable() {
