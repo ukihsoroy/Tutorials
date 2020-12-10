@@ -1,5 +1,6 @@
 package io.ukihsoroy.gatling.strategy;
 
+import io.ukihsoroy.gatling.entity.Task;
 import io.ukihsoroy.gatling.repository.TaskRepository;
 import io.ukihsoroy.gatling.repository.TestingStrategyRepository;
 import io.ukihsoroy.gatling.repository.UploadTableRepository;
@@ -36,14 +37,14 @@ public abstract class AbstractGatlingStrategy implements IGatlingStrategy {
      * @throws Exception
      */
     @Override
-    public abstract void executor() throws Exception;
+    public abstract void executor(Task task);
 
     /**
      * 导出测试报告
      * @throws Exception
      */
     @Override
-    public abstract void exportReport() throws Exception;
+    public abstract void exportReport();
 
 
 }

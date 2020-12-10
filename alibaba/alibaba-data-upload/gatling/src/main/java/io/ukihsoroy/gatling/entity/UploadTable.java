@@ -12,7 +12,7 @@ import java.util.Date;
 public class UploadTable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "origin_datasource_name")

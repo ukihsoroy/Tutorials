@@ -8,6 +8,8 @@ spring:
     username: root
     password: tiger
     url: jdbc:mysql:///automation?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
+    data: classpath:sql/data.sql
+#    initialization-mode: always
   profiles:
     active: local
   jpa:

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class CountCompareGatlingStrategy extends AbstractGatlingStrategy {
 
     private Logger logger = LoggerFactory.getLogger(CountCompareGatlingStrategy.class);
 
-    private static final Integer COUNT_COMPARE_GATLING_ID = 1;
+    private static final String COUNT_COMPARE_GATLING_NAME = "countCompareGatlingStrategy";
 
     /**
      * MaxCompute 云上的表
@@ -44,38 +45,35 @@ public class CountCompareGatlingStrategy extends AbstractGatlingStrategy {
     private static final String POLAR_DELTA_TABLE_COUNT_SQL = "SELECT COUNT(1) FROM {0} WHERE DATE_FORMAT({1}, '%Y%m%d') <= '{2}' AND DATE_FORMAT({3}, '%Y%m%d') > DATE_FORMAT(DATA_SUB('{4}', INTERVAL 1 DAY), '%Y%m%d')";
 
     @Override
-    public void executor() throws Exception {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.set(Calendar.DAY_OF_MONTH, -1);
-        String batchTime = DateFormatUtils.format(calendar.getTime(), DatePatternConst.yyyyMMdd);
-        List<Task> tasks = taskRepository.findTasksByExecutorBatchAndTeAndTestingStrategyIdAndTaskStatus(batchTime, COUNT_COMPARE_GATLING_ID, TaskStatusType.PRE.getStatus());
-        for (Task task : tasks) {
+    public void executor(Task task){
             //保存为测试中
-            task.setStartTime(new Date());
-            task.setTaskStatus(TaskStatusType.TESTING.getStatus());
-            taskRepository.save(task);
+        task.setStartTime(new Date());
+        task.setTaskStatus(TaskStatusType.TESTING.getStatus());
+        taskRepository.save(task);
 
-            //获取jdbc client
-            JdbcTemplate originJdbcTemplate = jdbcTemplates.get(task.getOriginDatasourceName());
-            JdbcTemplate targetJdbcTemplate = jdbcTemplates.get(task.getTargetDatasourceName());
+        //获取jdbc client
+        JdbcTemplate originJdbcTemplate = jdbcTemplates.get(task.getOriginDatasourceName());
+        JdbcTemplate targetJdbcTemplate = jdbcTemplates.get(task.getTargetDatasourceName());
 
-            //构建查询sql
-            String originSql = meshExecutorSql(task.getOriginTableType(), task.getOriginTableName(), task.getExecutorBatch(), task.getIncrement());
-            String targetSql = meshExecutorSql(task.getTargetTableType(), task.getTargetTableName(), task.getExecutorBatch(), task.getIncrement());
+        //构建查询sql
+        String originSql = meshExecutorSql(task.getOriginTableType(), task.getOriginTableName(), task.getExecutorBatch(), task.getIncrement());
+        String targetSql = meshExecutorSql(task.getTargetTableType(), task.getTargetTableName(), task.getExecutorBatch(), task.getIncrement());
 
-            //查询数据条目
-            Long originCount = originJdbcTemplate.queryForObject(originSql, Long.class);
-            Long targetCount = targetJdbcTemplate.queryForObject(targetSql, Long.class);
+        //查询数据条目
+        Long originCount = originJdbcTemplate.queryForObject(originSql, Long.class);
+        Long targetCount = targetJdbcTemplate.queryForObject(targetSql, Long.class);
 
-            //比较结果
-            CountCompareView countCompareView = new CountCompareView(originCount, targetCount, originCount != null && originCount.equals(targetCount));
+        //比较结果
+        CountCompareView countCompareView = new CountCompareView(originCount, targetCount, originCount != null && originCount.equals(targetCount));
+        try {
             String report = objectMapper.writeValueAsString(countCompareView);
-            task.setEndTime(new Date());
-            task.setTaskStatus(TaskStatusType.REPORT.getStatus());
             task.setTaskReport(report);
-            taskRepository.save(task);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        task.setEndTime(new Date());
+        task.setTaskStatus(TaskStatusType.REPORT.getStatus());
+        taskRepository.save(task);
     }
 
     private String meshExecutorSql(String tableType, String executorBatch, String tableName, String increment) {
@@ -104,7 +102,7 @@ public class CountCompareGatlingStrategy extends AbstractGatlingStrategy {
 
 
     @Override
-    public void exportReport() throws Exception {
+    public void exportReport() {
 
     }
 

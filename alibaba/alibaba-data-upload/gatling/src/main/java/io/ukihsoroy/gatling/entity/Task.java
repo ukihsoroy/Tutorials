@@ -12,7 +12,7 @@ import java.util.Date;
 public class Task {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "executor_batch")
@@ -48,8 +48,8 @@ public class Task {
     @Column(name = "data_sync_type")
     private String dataSyncType;
 
-    @Column(name = "testing_strategy_id")
-    private Integer testingStrategyId;
+    @Column(name = "testing_strategy_name")
+    private String testingStrategyName;
 
     @Column(name = "start_time")
     private Date startTime;
@@ -81,7 +81,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, String executorBatch, Integer uploadTableId, String originDatasourceName, String originSchemaName, String originTableName, String originTableType, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, Integer testingStrategyId, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
+    public Task(Integer id, String executorBatch, Integer uploadTableId, String originDatasourceName, String originSchemaName, String originTableName, String originTableType, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, String testingStrategyName, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
         this.id = id;
         this.executorBatch = executorBatch;
         this.uploadTableId = uploadTableId;
@@ -94,7 +94,7 @@ public class Task {
         this.targetTableName = targetTableName;
         this.targetTableType = targetTableType;
         this.dataSyncType = dataSyncType;
-        this.testingStrategyId = testingStrategyId;
+        this.testingStrategyName = testingStrategyName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.taskStatus = taskStatus;
@@ -201,12 +201,12 @@ public class Task {
         this.dataSyncType = dataSyncType;
     }
 
-    public Integer getTestingStrategyId() {
-        return testingStrategyId;
+    public String getTestingStrategyName() {
+        return testingStrategyName;
     }
 
-    public void setTestingStrategyId(Integer testingStrategyId) {
-        this.testingStrategyId = testingStrategyId;
+    public void setTestingStrategyName(String testingStrategyName) {
+        this.testingStrategyName = testingStrategyName;
     }
 
     public Date getStartTime() {

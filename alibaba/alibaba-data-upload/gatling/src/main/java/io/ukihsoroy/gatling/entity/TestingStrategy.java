@@ -12,7 +12,7 @@ import java.util.Date;
 public class TestingStrategy {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "strategy_name")
@@ -20,6 +20,9 @@ public class TestingStrategy {
 
     @Column(name = "strategy_zh_name")
     private String strategyZhName;
+
+    @Column(name = "origin_table_type")
+    private String originTableType;
 
     @Column(name = "target_table_type")
     private String targetTableType;
@@ -42,10 +45,11 @@ public class TestingStrategy {
     public TestingStrategy() {
     }
 
-    public TestingStrategy(Integer id, String strategyName, String strategyZhName, String targetTableType, String dataSyncType, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
+    public TestingStrategy(Integer id, String strategyName, String strategyZhName, String originTableType, String targetTableType, String dataSyncType, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
         this.id = id;
         this.strategyName = strategyName;
         this.strategyZhName = strategyZhName;
+        this.originTableType = originTableType;
         this.targetTableType = targetTableType;
         this.dataSyncType = dataSyncType;
         this.enable = enable;
@@ -76,6 +80,14 @@ public class TestingStrategy {
 
     public void setStrategyZhName(String strategyZhName) {
         this.strategyZhName = strategyZhName;
+    }
+
+    public String getOriginTableType() {
+        return originTableType;
+    }
+
+    public void setOriginTableType(String originTableType) {
+        this.originTableType = originTableType;
     }
 
     public String getTargetTableType() {

@@ -23,16 +23,6 @@ public class GatlingAutomationApplication {
 	}
 
 	@Bean
-	public FreeMarkerConfigurationFactoryBean freeMarkerConfigurationFactoryBean () {
-		FreeMarkerConfigurationFactoryBean factoryBean = new FreeMarkerConfigurationFactoryBean();
-		factoryBean.setTemplateLoaderPath("template");
-		Properties properties = new Properties();
-		properties.setProperty("defaultEncoding", "UTF-8");
-		factoryBean.setFreemarkerSettings(properties);
-		return factoryBean;
-	}
-
-	@Bean
 	public ObjectMapper objectMapper() {
 		return new ObjectMapper();
 	}

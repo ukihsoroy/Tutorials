@@ -14,12 +14,12 @@ public interface TaskRepository extends PagingAndSortingRepository<Task, Integer
     /**
      * 通过批次号和任务状态查找任务
      * @param executorBatch
-     * @param testingStrategyId
      * @param taskStatus
+     * @param enable
      * @return
      */
-    List<Task> findTasksByExecutorBatchAndTeAndTestingStrategyIdAndTaskStatus(String executorBatch,
-                                                                              Integer testingStrategyId,
-                                                                              Integer taskStatus);
+    List<Task> findTasksByExecutorBatchAndTaskStatusAndEnable(String executorBatch,
+                                                              Integer taskStatus,
+                                                              Integer enable);
 
 }
