@@ -15,8 +15,35 @@ public class Task {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "upload_strategy_id")
-    private Integer uploadStrategyId;
+    @Column(name = "executor_batch")
+    private String executorBatch;
+
+    @Column(name = "upload_table_id")
+    private Integer uploadTableId;
+
+    @Column(name = "origin_datasource_name")
+    private String originDatasourceName;
+
+    @Column(name = "origin_schema_name")
+    private String originSchemaName;
+
+    @Column(name = "origin_table_name")
+    private String originTableName;
+
+    @Column(name = "target_datasource_name")
+    private String targetDatasourceName;
+
+    @Column(name = "target_schema_name")
+    private String targetSchemaName;
+
+    @Column(name = "target_table_name")
+    private String targetTableName;
+
+    @Column(name = "target_table_type")
+    private String targetTableType;
+
+    @Column(name = "data_sync_type")
+    private String dataSyncType;
 
     @Column(name = "testing_strategy_id")
     private Integer testingStrategyId;
@@ -48,9 +75,18 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, Integer uploadStrategyId, Integer testingStrategyId, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
+    public Task(Integer id, String executorBatch, Integer uploadTableId, String originDatasourceName, String originSchemaName, String originTableName, String targetDatasourceName, String targetSchemaName, String targetTableName, String targetTableType, String dataSyncType, Integer testingStrategyId, Date startTime, Date endTime, Integer taskStatus, String taskReport, Integer enable, Integer version, Date gmtCreated, Date gmtUpdated) {
         this.id = id;
-        this.uploadStrategyId = uploadStrategyId;
+        this.executorBatch = executorBatch;
+        this.uploadTableId = uploadTableId;
+        this.originDatasourceName = originDatasourceName;
+        this.originSchemaName = originSchemaName;
+        this.originTableName = originTableName;
+        this.targetDatasourceName = targetDatasourceName;
+        this.targetSchemaName = targetSchemaName;
+        this.targetTableName = targetTableName;
+        this.targetTableType = targetTableType;
+        this.dataSyncType = dataSyncType;
         this.testingStrategyId = testingStrategyId;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -70,12 +106,84 @@ public class Task {
         this.id = id;
     }
 
-    public Integer getUploadStrategyId() {
-        return uploadStrategyId;
+    public String getExecutorBatch() {
+        return executorBatch;
     }
 
-    public void setUploadStrategyId(Integer uploadStrategyId) {
-        this.uploadStrategyId = uploadStrategyId;
+    public void setExecutorBatch(String executorBatch) {
+        this.executorBatch = executorBatch;
+    }
+
+    public Integer getUploadTableId() {
+        return uploadTableId;
+    }
+
+    public void setUploadTableId(Integer uploadTableId) {
+        this.uploadTableId = uploadTableId;
+    }
+
+    public String getOriginDatasourceName() {
+        return originDatasourceName;
+    }
+
+    public void setOriginDatasourceName(String originDatasourceName) {
+        this.originDatasourceName = originDatasourceName;
+    }
+
+    public String getOriginSchemaName() {
+        return originSchemaName;
+    }
+
+    public void setOriginSchemaName(String originSchemaName) {
+        this.originSchemaName = originSchemaName;
+    }
+
+    public String getOriginTableName() {
+        return originTableName;
+    }
+
+    public void setOriginTableName(String originTableName) {
+        this.originTableName = originTableName;
+    }
+
+    public String getTargetDatasourceName() {
+        return targetDatasourceName;
+    }
+
+    public void setTargetDatasourceName(String targetDatasourceName) {
+        this.targetDatasourceName = targetDatasourceName;
+    }
+
+    public String getTargetSchemaName() {
+        return targetSchemaName;
+    }
+
+    public void setTargetSchemaName(String targetSchemaName) {
+        this.targetSchemaName = targetSchemaName;
+    }
+
+    public String getTargetTableName() {
+        return targetTableName;
+    }
+
+    public void setTargetTableName(String targetTableName) {
+        this.targetTableName = targetTableName;
+    }
+
+    public String getTargetTableType() {
+        return targetTableType;
+    }
+
+    public void setTargetTableType(String targetTableType) {
+        this.targetTableType = targetTableType;
+    }
+
+    public String getDataSyncType() {
+        return dataSyncType;
+    }
+
+    public void setDataSyncType(String dataSyncType) {
+        this.dataSyncType = dataSyncType;
     }
 
     public Integer getTestingStrategyId() {

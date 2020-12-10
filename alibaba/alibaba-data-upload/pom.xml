@@ -2,11 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <modules>
-        <module>gatling</module>
-        <module>codegen</module>
-    </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -16,6 +11,13 @@
 	<groupId>io.ukihsoroy</groupId>
 	<artifactId>alibaba-data-upload</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>gatling</module>
+		<module>codegen</module>
+	</modules>
+
 	<name>data-upload</name>
 	<description>数据上云工具（自动生成任务、测试数据准确性）</description>
 

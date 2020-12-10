@@ -1,10 +1,30 @@
 package io.ukihsoroy.gatling.strategy;
 
+import io.ukihsoroy.gatling.repository.TaskRepository;
+import io.ukihsoroy.gatling.repository.TestingStrategyRepository;
+import io.ukihsoroy.gatling.repository.UploadTableRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.Map;
+
 /**
  * 策略基础类
  * @author K.O
  */
 public abstract class AbstractGatlingStrategy implements IGatlingStrategy {
+
+    @Autowired
+    protected TaskRepository taskRepository;
+
+    @Autowired
+    protected TestingStrategyRepository testingStrategyRepository;
+
+    @Autowired
+    protected UploadTableRepository uploadTableRepository;
+
+    @Autowired
+    protected Map<String, JdbcTemplate> jdbcTemplates;
 
     /**
      * 执行测试
@@ -19,5 +39,6 @@ public abstract class AbstractGatlingStrategy implements IGatlingStrategy {
      */
     @Override
     public abstract void exportReport() throws Exception;
+
 
 }

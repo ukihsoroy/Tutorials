@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.util.Properties;
@@ -14,10 +15,11 @@ import java.util.Properties;
  */
 @SpringBootApplication
 @EnableJpaRepositories
-public class DataUploadApplication {
+@EnableScheduling
+public class GatlingAutomationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DataUploadApplication.class, args);
+		SpringApplication.run(GatlingAutomationApplication.class, args);
 	}
 
 	@Bean
