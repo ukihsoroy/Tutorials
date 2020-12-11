@@ -23,6 +23,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<poi.version>3.17</poi.version>
 	</properties>
 
 	<dependencies>
@@ -103,6 +104,19 @@
 			<version>23.0</version>
 		</dependency>
 		<!-- util end-->
+
+		<!--Apache poi导入导出-->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
