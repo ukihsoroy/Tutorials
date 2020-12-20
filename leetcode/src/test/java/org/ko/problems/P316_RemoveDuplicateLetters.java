@@ -2,28 +2,43 @@ package org.ko.problems;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class P316_RemoveDuplicateLetters {
 
     public String removeDuplicateLetters(String s) {
-        int[] contains = new int[128];
-        Arrays.fill(contains, 0);
+        //
+        boolean[] vis = new boolean[26];
+
+        //
+        int[] num = new int[26];
+
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            contains[c] ++;
+            //记录每个位置的数量
+            num[s.charAt(i) - 'a']++;
         }
 
-        StringBuilder builder = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
 
-        for (int i = 0; i < contains.length; i++) {
-            if (contains[i] == 1) {
-                builder.append((char) i);
+        for (int i = 0; i < s.length(); i++) {
+
+            char ch = s.charAt(i);
+            if (!vis[ch - 'a']) {
+                //
+                while (sb.length() > 0 && sb.charAt(sb.length() - 1) > ch) {
+                    //
+                    if (num[sb.charAt(sb.length() - 1) - 'a'] > 0) {
+                        vis[sb.charAt(sb.length() - 1) - 'a'] = false;
+                        sb.deleteCharAt(sb.length() - 1);
+                    } else {
+                        break;
+                    }
+                }
+                vis[ch - 'a'] = true;
+                sb.append(ch);
             }
+            num[ch - 'a'] -= 1;
         }
-
-        return builder.toString();
+        return sb.toString();
     }
 
     @Test
