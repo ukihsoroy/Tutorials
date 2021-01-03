@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * 字符串转整数
  */
-public class Problem8_StringToInteger {
+public class P8_StringToInteger {
 
     public int myAtoi(String str) {
         str = str.trim();

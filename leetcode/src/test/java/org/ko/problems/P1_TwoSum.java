@@ -9,7 +9,7 @@ import java.util.Map;
  * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
  * You may assume that each input would have exactly one solution, and you may not use the same element twice.
  */
-public class Problem1_TwoSum {
+public class P1_TwoSum {
 
     /**
      * @param ary int数组, 取数组中两数相加等于sum

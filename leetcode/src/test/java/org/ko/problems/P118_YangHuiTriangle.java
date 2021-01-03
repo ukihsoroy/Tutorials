@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 杨辉三角形
  */
-public class Problem118_YangHuiTriangle {
+public class P118_YangHuiTriangle {
 
     public List<List<Integer>> generate(int numRows) {
 

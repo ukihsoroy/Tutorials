@@ -2,7 +2,7 @@ package org.ko.problems;
 
 import java.util.*;
 
-public class Problem15_ThreeSum {
+public class P15_ThreeSum {
 
     public static void main(String[] args) {
 

@@ -3,7 +3,7 @@ package org.ko.problems;
 /**
  * Implement regular expression matching with support for '.' and '*'.
  */
-public class Problem10_RegularExpressionMatching {
+public class P10_RegularExpressionMatching {
 
     public boolean isMatch(String s,String p){
         char[] sCharArray = s.toCharArray();

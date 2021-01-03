@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class Problem13_RomanToInt {
+public class P13_RomanToInt {
 
     /**
      * roman字符即是前面比后面大则相加，后面比前面大则相减，所以查看的时候多向后看一位

@@ -7,7 +7,7 @@ package org.ko.problems;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class Problem14_LongestCommonPrefix {
+public class P14_LongestCommonPrefix {
 
     public String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) return "";

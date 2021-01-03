@@ -10,7 +10,7 @@ import java.util.*;
  * 回溯算法
  * 递归
  */
-public class Problem18_LetterCombinations {
+public class P18_LetterCombinations {
 
     /**
      * 递归 + 深度优先搜索

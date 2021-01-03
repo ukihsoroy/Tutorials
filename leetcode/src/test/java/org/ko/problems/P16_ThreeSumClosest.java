@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class Problem16_ThreeSumClosest {
+public class P16_ThreeSumClosest {
 
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);

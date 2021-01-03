@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Determine whether an integer is a palindrome. Do this without extra space.
  */
-public class Problem9_PalindromeNumber {
+public class P9_PalindromeNumber {
 
     /**
      * 确定整数是否是回文。这样做没有额外的空间。

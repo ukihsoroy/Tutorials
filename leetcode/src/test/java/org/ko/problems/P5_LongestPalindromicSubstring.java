@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Given a string s, find the longest palindromic substring in s.
  * You may assume that the maximum length of s is 1000.
  */
-public class Problem5_LongestPalindromicSubstring {
+public class P5_LongestPalindromicSubstring {
 
     /**
      * 输入字符串, 返回相同字母最长的字符串

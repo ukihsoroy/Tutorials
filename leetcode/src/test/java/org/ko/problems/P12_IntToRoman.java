@@ -7,7 +7,7 @@ package org.ko.problems;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class Problem12_IntToRoman {
+public class P12_IntToRoman {
 
     public String intToRoman(int num) {
         // 把阿拉伯数字与罗马数字可能出现的所有情况和对应关系，放在两个数组中

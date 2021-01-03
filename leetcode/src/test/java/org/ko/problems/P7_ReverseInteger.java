@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Given a 32-bit signed integer, reverse digits of an integer.
  */
-public class Problem7_ReverseInteger {
+public class P7_ReverseInteger {
 
     /**
      * 给定一个32位有符号整数, 返回反转数字

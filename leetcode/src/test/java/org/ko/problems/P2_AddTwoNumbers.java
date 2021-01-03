@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * Add the two numbers and return it as a linked list.
  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  */
-public class Problem2_AddTwoNumbers {
+public class P2_AddTwoNumbers {
 
 
     /**

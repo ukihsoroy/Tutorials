@@ -7,7 +7,7 @@ package org.ko.problems;
  * @author K.O <br>
  * @version 1.0 <br>
  */
-public class Problem11_MaxArea {
+public class P11_MaxArea {
 
     /**
      * 通过移动短边来计算最大的空间

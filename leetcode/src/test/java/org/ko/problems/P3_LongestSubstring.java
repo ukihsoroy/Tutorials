@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Given a string, find the length of the longest substring without repeating characters.
  */
-public class Problem3_LongestSubstring {
+public class P3_LongestSubstring {
 
     /**
      * 求不重复的最长字符串长度
