@@ -74,6 +74,10 @@ public class MysqlSchemagen extends AbstractSchemagen {
         return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, name);
     }
 
+    public JdbcTemplate getJdbcTemplate() {
+        return jDBCTemplate;
+    }
+
     @Override
     public Table extractRecord(String name) {
         //表名字
