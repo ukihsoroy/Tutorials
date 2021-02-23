@@ -29,7 +29,7 @@ public class MysqlSchemagen extends AbstractSchemagen {
         mysqlDataSource = dataSource;
     }
 
-    private List<String> findTableNames(String database) {
+    public List<String> findTableNames(String database) {
         return jDBCTemplate.queryForList(MysqlConstants.INFORMATION_SCHEMA_TABLES, String.class, database);
     }
 

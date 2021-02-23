@@ -8,6 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -15,10 +18,12 @@ public class MysqlGeneratorTests {
 
     private MysqlDataSource mysqlDataSource;
 
+    private String name = "sigma_server";
+
     @Before
     public void mysqlSource() {
         mysqlDataSource = new MysqlDataSource();
-        mysqlDataSource.setDatabaseName("sigma_server");
+        mysqlDataSource.setDatabaseName(name);
         mysqlDataSource.setPort(3306);
         mysqlDataSource.setUser("root");
         mysqlDataSource.setPassword("tiger");
@@ -27,15 +32,16 @@ public class MysqlGeneratorTests {
     @Test
     public void mysqlSchema() {
         MysqlSchemagen mysqlSchemagen = new MysqlSchemagen(mysqlDataSource);
-        Table table = mysqlSchemagen.extractRecord("t_department");
-        System.out.print(table.getName());
-        for (Column column : table.getColumns()) {
-            System.out.print("|" + column.getColumnName());
-        }
-        String sql = buildInsertSql(table);
-        JdbcTemplate jdbcTemplate = mysqlSchemagen.getJdbcTemplate();
-        System.out.println(sql);
-        jdbcTemplate.execute(sql);
+        List<String> sigma_server = mysqlSchemagen.findTableNames(name);
+        sigma_server.forEach(name -> {
+            Table table = mysqlSchemagen.extractRecord(name);
+            for (int i = 0; i < 10; i++) {
+                String sql = buildInsertSql(table);
+                JdbcTemplate jdbcTemplate = mysqlSchemagen.getJdbcTemplate();
+                System.out.println(sql);
+                jdbcTemplate.execute(sql);
+            }
+        });
     }
 
     private String buildInsertSql(Table table) {
@@ -52,26 +58,29 @@ public class MysqlGeneratorTests {
         switch (column.getColumnType()) {
             case "varchar":
             case "char":
+            case "blob":
             case "text":
                 String value = UUID.randomUUID().toString();
                 return "'" + value.substring(0, value.length() > column.getLength() ? column.getLength() : value.length()) + "'";
+            case "smallint":
+                return String.valueOf(new Random().nextInt() % 10);
             case "int":
             case "tinyint":
-            case "smallint":
-                return "1";
             case "mediumint":
             case "bigint":
             case "float":
             case "double":
             case "decimal":
                 String deci = String.valueOf(Math.abs(new Random().nextInt()));
-                return "'" + deci.substring(0, deci.length() > column.getLength() ? column.getLength() : deci.length()) + "'";
+                return "'" + deci.substring(0, deci.length() > Math.round(column.getLength() / 2) ? Math.round(column.getLength() / 2) : deci.length()) + "'";
             case "date":
-                return "'2021-02-15'";
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                return "'" + sdf1.format(new Date()) + "'";
             case "datetime":
-                return "'2021-02-15 21:22:20'";
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
+                return "'" + sdf2.format(new Date()) + "'";
             case "timestamp":
-                return "12445611123";
+                return "'" + new Date().getTime() + "'";
             case "json":
                 return "'{}'";
             default:

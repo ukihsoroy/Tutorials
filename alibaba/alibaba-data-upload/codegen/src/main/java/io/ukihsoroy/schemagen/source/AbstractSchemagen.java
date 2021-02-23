@@ -26,7 +26,11 @@ public abstract class AbstractSchemagen implements ISchemagen {
     protected Integer toInt(String value) {
         int res = 0;
         if (StringUtils.isNotEmpty(value)) {
-            res = Integer.parseInt(value);
+            try {
+                res = Integer.parseInt(value);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return res;
     }
