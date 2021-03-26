@@ -32,7 +32,7 @@ import java.sql.SQLException;
 @MapperScan(basePackages = "org.apache.shardingsphere.example.core.mybatis.repository")
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
 public class ExampleMain {
-    
+
     public static void main(final String[] args) throws SQLException {
         try (ConfigurableApplicationContext applicationContext = SpringApplication.run(ExampleMain.class, args)) {
             ExampleExecuteTemplate.run(applicationContext.getBean(ExampleService.class));

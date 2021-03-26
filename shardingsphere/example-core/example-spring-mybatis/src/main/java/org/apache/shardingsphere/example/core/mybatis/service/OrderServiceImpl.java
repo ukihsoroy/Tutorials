@@ -24,26 +24,27 @@ import org.apache.shardingsphere.example.core.api.repository.AddressRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderItemRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderRepository;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @Primary
 public class OrderServiceImpl implements ExampleService {
-    
-    @Resource
+
+    @Autowired
     private OrderRepository orderRepository;
-    
-    @Resource
+
+    @Autowired
     private OrderItemRepository orderItemRepository;
-    
-    @Resource
+
+    @Autowired
     private AddressRepository addressRepository;
 
     @Override
@@ -54,7 +55,7 @@ public class OrderServiceImpl implements ExampleService {
         orderItemRepository.truncateTable();
         initAddressTable();
     }
-    
+
     private void initAddressTable() throws SQLException {
         addressRepository.createTableIfNotExists();
         addressRepository.truncateTable();
@@ -71,7 +72,7 @@ public class OrderServiceImpl implements ExampleService {
         orderRepository.dropTable();
         orderItemRepository.dropTable();
     }
-    
+
     @Override
     @Transactional
     public void processSuccess() throws SQLException {
@@ -82,7 +83,7 @@ public class OrderServiceImpl implements ExampleService {
         printData();
         System.out.println("-------------- Process Success Finish --------------");
     }
-    
+
     @Override
     @Transactional
     public void processFailure() throws SQLException {
@@ -118,7 +119,7 @@ public class OrderServiceImpl implements ExampleService {
             orderItemRepository.delete(each);
         }
     }
-    
+
     @Override
     public void printData() throws SQLException {
         System.out.println("---------------------------- Print Order Data -----------------------");

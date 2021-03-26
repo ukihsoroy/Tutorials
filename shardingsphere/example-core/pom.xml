@@ -22,13 +22,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.shardingsphere.example</groupId>
-        <artifactId>shardingsphere-example</artifactId>
+        <artifactId>shardingsphere</artifactId>
         <version>5.0.0-alpha</version>
     </parent>
     <artifactId>example-core</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
-    
+
     <modules>
         <module>config-utility</module>
         <module>example-api</module>

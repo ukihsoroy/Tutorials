@@ -24,14 +24,15 @@ import org.apache.shardingsphere.sharding.api.sharding.standard.StandardSharding
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Properties;
 import java.util.Set;
 
 public final class StandardModuloShardingTableAlgorithm implements StandardShardingAlgorithm<Long> {
-    
+
     @Override
     public void init() {
     }
-    
+
     @Override
     public String doSharding(final Collection<String> tableNames, final PreciseShardingValue<Long> shardingValue) {
         for (String each : tableNames) {
@@ -41,7 +42,7 @@ public final class StandardModuloShardingTableAlgorithm implements StandardShard
         }
         throw new UnsupportedOperationException("");
     }
-    
+
     @Override
     public Collection<String> doSharding(final Collection<String> tableNames, final RangeShardingValue<Long> shardingValue) {
         Set<String> result = new LinkedHashSet<>();
@@ -56,9 +57,19 @@ public final class StandardModuloShardingTableAlgorithm implements StandardShard
         }
         return result;
     }
-    
+
     @Override
     public String getType() {
         return "STANDARD_TEST_TBL";
+    }
+
+    @Override
+    public Properties getProps() {
+        return null;
+    }
+
+    @Override
+    public void setProps(Properties properties) {
+
     }
 }
