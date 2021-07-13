@@ -7,4 +7,9 @@ package io.ukihsoroy.robot.properties;
  * @email ko.shen@hotmail.com
  */
 public class RobotProperties {
+
+    private String appId;
+
+    private String appSecret;
+
 }
