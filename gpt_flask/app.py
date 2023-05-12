@@ -2,7 +2,7 @@ import flask
 from flask import Flask
 import openai
 
-openai.api_key = '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'
+openai.api_key = ''
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ def index(prompt_type):
     # 校验token，鉴权
     token = flask.request.headers.get("token")
     print(prompt_type)
-    if token != "68DFC3A7-4031-42B1-334B8A1B3982":
+    if token != "":
         return {
             "code": 0,
             "msg": "token error."
