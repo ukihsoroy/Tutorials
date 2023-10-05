@@ -1,4 +1,4 @@
-from langchain import PromptTemplate, HuggingFaceHub, LLMChain
+from langchain import PromptTemplate, LLMChain
 
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, pipeline, AutoModelForSeq2SeqLM
@@ -23,6 +23,6 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm_chain = LLMChain(prompt=prompt, llm=local_llm)
 
-question = "What is the capital of France?"
+question = "ABC"
 
 print(llm_chain.run(question))

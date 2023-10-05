@@ -3,7 +3,7 @@ from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 template = """Question: {question}
         Answer: Let's think step by step."""
 
-api_token = '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'
+api_token = ''
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
