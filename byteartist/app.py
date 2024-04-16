@@ -8,7 +8,7 @@ from requests_toolbelt import MultipartEncoder
 
 app = Flask(__name__)
 
-jwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwYWFzLnBhc3Nwb3J0LmF1dGgiLCJleHAiOjE2OTkwMzQ5MzYsImlhdCI6MTY5OTAzMTI3NiwidXNlcm5hbWUiOiJzaGVuemhpeXVhbi5ob20iLCJ0eXBlIjoicGVyc29uX2FjY291bnQiLCJyZWdpb24iOiJjbiIsInRydXN0ZWQiOnRydWUsInV1aWQiOiJmMjM1NzE4ZS02OGEzLTRjNzgtYjJlYy1jMjRjMzFkYWY0YzEiLCJzaXRlIjoiYm9lIiwic2NvcGUiOiJieXRlZGFuY2UiLCJzZXF1ZW5jZSI6IkVudGVycHJpc2UgU29sdXRpb25zIiwib3JnYW5pemF0aW9uIjoiUHJvZmVzc2lvbmFsIFNlcnZpY2VzLVRlY2huaWNhbCBDZW50ZXIiLCJ3b3JrX2NvdW50cnkiOiJDSE4iLCJsb2NhdGlvbiI6IkNOIiwiYXZhdGFyX3VybCI6Imh0dHBzOi8vczEtaW1maWxlLmZlaXNodWNkbi5jb20vc3RhdGljLXJlc291cmNlL3YxL3YyXzYyYTI5NzQxLTVhYWEtNDBhNi04MTY2LTBiM2Q4MDliN2ViZ34_aW1hZ2Vfc2l6ZT1ub29wXHUwMDI2Y3V0X3R5cGU9XHUwMDI2cXVhbGl0eT1cdTAwMjZmb3JtYXQ9cG5nXHUwMDI2c3RpY2tlcl9mb3JtYXQ9LndlYnAiLCJlbWFpbCI6InNoZW56aGl5dWFuLmhvbUBieXRlZGFuY2UuY29tIiwiZW1wbG95ZWVfaWQiOjYyNTkxMTJ9.uSEzVKxcAccHymK_ckfFAPeaeuPF-X39XMwp4nBgs0IrT1Rr-9dEUxAbj_7xBKOVX-0dV5PsLZtoT6tXprbMcWrc53PTjmeXfP6vHZrnlh6o0RKaUNkcSQUBth1lzmOqs8surZDTlptHQP80_Ho5MmyqlOSeHPqEfHaUEzZYfN0"
+jwt = ""
 
 @app.route('/')
 def generator():  # put application's code here
@@ -64,7 +64,7 @@ def send_image_src(src):
     print(data.decode("utf-8"))
 
 def generator_image(text):
-    conn = http.client.HTTPSConnection("bytegen.bytedance.net")
+    conn = http.client.HTTPSConnection("")
     payload = json.dumps({
         "configs": [
             {
@@ -134,8 +134,8 @@ def generator_image(text):
         'Accept-Language': 'zh-CN,zh;q=0.9',
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
-        'Origin': 'https://byteartist.bytedance.net',
-        'Referer': 'https://byteartist.bytedance.net/',
+        'Origin': '',
+        'Referer': '',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-site',
@@ -167,14 +167,14 @@ def generator_image(text):
 
 
 def query_image(req_id):
-    conn = http.client.HTTPSConnection("bytegen.bytedance.net")
+    conn = http.client.HTTPSConnection("bytegen.")
     payload = ''
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'zh-CN,zh;q=0.9',
         'Connection': 'keep-alive',
-        'Origin': 'https://byteartist.bytedance.net',
-        'Referer': 'https://byteartist.bytedance.net/',
+        'Origin': 'https://byteartist.',
+        'Referer': 'https://byteartist./',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-site',
