@@ -13,7 +13,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>6.5.11</version>
         </dependency>
 
         <!--包含安全名称空间解析代码和Java配置代码, 使用XML配置时需要引入-->
